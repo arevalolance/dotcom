@@ -21,7 +21,7 @@ const Home: NextPageWithLayout = () => {
           />
           <span className="min-w-[335px] font-space-grotesk text-[14px]">
             Hi my name is
-          </span>{" "}
+          </span>
           <div className="min-w-[370px] sm:max-w-[550px] flex flex-col">
             <span className="font-space-grotesk font-bold text-[50px] sm:text-[70px] leading-none text-center underline">
               Lance Arevalo
@@ -63,10 +63,10 @@ const Home: NextPageWithLayout = () => {
           <Icon className="text-[40px]" icon="file-icons:go" />
         </div>
 
-        <div className="flex flex-col justify-center font-space-grotesk px-10">
+        <div className="flex flex-col justify-center font-space-grotesk sm:mx-16">
           <div className="flex flex-col">
             <span className="text-[24px]">about</span>
-            <p className="text-[14px] mt-5">
+            <p className="text-sm mt-5">
               My passion for building helpful and exciting technology for the
               people brought me to Saint Louis University, where I study B.S.
               Computer Science. I&apos;m a third-year computer science student
@@ -74,33 +74,31 @@ const Home: NextPageWithLayout = () => {
               and front-end design.
             </p>
             <br />
-            <p className="text-[14px] mt-5">
+            <p className="text-sm mt-5">
               Currently, I focus on back-end web development, building
               API&apos;s for my projects. This site is still a work in progress
               and will be a place to see how I&apos;ll grow as a developer.
             </p>
 
-            <p className="text-[14px] mt-5 ">
+            <p className="text-sm mt-5 ">
               Here are some tools I&apos;ve been using recently:
             </p>
-            <div className="flex flex-row">
-              <ul>
-                <Bullet
-                  string={"TypeScript/JavaScript"}
-                  icon={"akar-icons:gear"}
-                />
-                <Bullet string={"Node.js"} icon={"akar-icons:gear"} />
-                <Bullet string={"Go"} icon={"akar-icons:gear"} />
-                <Bullet string={"Java"} icon={"akar-icons:gear"} />
-              </ul>
-              <ul className="ml-5">
-                <Bullet string={"Python"} icon={"akar-icons:gear"} />
-                <Bullet string={"Git"} icon={"akar-icons:gear"} />
-                <Bullet string={"Linux"} icon={"akar-icons:gear"} />
-              </ul>
-            </div>
 
-            <div className="mt-20">
+            <ul className="flex flex-col flex-wrap h-[100px]">
+              <Bullet
+                string={"TypeScript/JavaScript"}
+                icon={"akar-icons:gear"}
+              />
+              <Bullet string={"Node.js"} icon={"akar-icons:gear"} />
+              <Bullet string={"Go"} icon={"akar-icons:gear"} />
+              <Bullet string={"Java"} icon={"akar-icons:gear"} />
+              <Bullet string={"Rust"} icon={"akar-icons:gear"} />
+              <Bullet string={"Python"} icon={"akar-icons:gear"} />
+              <Bullet string={"Git"} icon={"akar-icons:gear"} />
+              <Bullet string={"Linux"} icon={"akar-icons:gear"} />
+            </ul>
+
+            <div className="mt-10">
               <span className="text-[24px]">contact</span>
               <p className="text-[14px]">
                 Feel free to reach me at{" "}
