@@ -6,10 +6,15 @@ import { Icon } from "@iconify/react";
 import Typewriter from "typewriter-effect";
 import Bullet from "../components/Bullet";
 import Link from "next/link";
+import Head from "next/head";
 
 const Home: NextPageWithLayout = () => {
   return (
     <>
+      <Head>
+        <title>Home - Lance Arevalo</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
       <section className="h-[85vh] flex flex-col items-center justify-between">
         <div className="flex flex-col items-center mt-20">
           <Image
