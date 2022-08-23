@@ -4,6 +4,7 @@ import { NextPageWithLayout } from "./_app";
 import ResumeRow, { ResumeRowType } from "../components/ResumeRow";
 import ResumeHeading from "../components/ResumeHeading";
 import Bullet from "../components/Bullet";
+import Head from "next/head";
 
 const Resume: NextPageWithLayout = () => {
   const tools = [
@@ -87,6 +88,10 @@ const Resume: NextPageWithLayout = () => {
 
   return (
     <>
+      <Head>
+        <title>Resume - Lance Arevalo</title>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
       <section className="mt-10 mb-20">
         <div className="flex flex-row justify-between w-full">
           <div className="flex flex-col text-left font-space-grotesk">
