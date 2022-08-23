@@ -26,6 +26,16 @@ const Resume: NextPageWithLayout = () => {
       date: "July - August, 2022",
       description: [
         {
+          job: "Data Validation",
+          description:
+            "Utilized spreadsheet functions which reduced the time of validating the company's data and documents.",
+        },
+        {
+          job: "Technical Documentation",
+          description:
+            "Managed company's documentation on multiple menu pages ensuring that each component follows the required design and business rules of the company.",
+        },
+        {
           job: "Quality Assurance",
           description:
             "Assured that each component's functionality in their system was up to date and withhold standards that is made by the company",
