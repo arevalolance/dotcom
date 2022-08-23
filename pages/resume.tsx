@@ -28,17 +28,17 @@ const Resume: NextPageWithLayout = () => {
         {
           job: "Data Validation",
           description:
-            "Utilized spreadsheet functions which reduced the time of validating the company's data and documents.",
+            "Utilized spreadsheet functions which reduced the time validating the company's data and documents.",
         },
         {
           job: "Technical Documentation",
           description:
-            "Managed company's documentation on multiple menu pages ensuring that each component follows the required design and business rules of the company.",
+            "Managed company's documentation on multiple menu pages, ensuring that each component follows the company's required standards. I have also written a script in JS that generates a template for documentation based on business rules on a specific page.",
         },
         {
           job: "Quality Assurance",
           description:
-            "Assured that each component's functionality in their system was up to date and withhold standards that is made by the company",
+            "Assured that each component's functionality in their system was up to date and withheld standards that the company made",
         },
       ],
       listLabel: "Technologies and Tools",
@@ -53,17 +53,17 @@ const Resume: NextPageWithLayout = () => {
         {
           job: "Dashboard UI/UX Design",
           description:
-            "Built and designed a dashboard page that displays system statistic and status for the administrator using HTML5 and CSS3",
+            "Built and designed a dashboard page that displays system statistics and status for the administrator using HTML5 and CSS3",
         },
         {
           job: "Quality Assurance",
           description:
-            "Assured the robustness of the functionalities of the system through hands-on testing in different campuses",
+            "Assured the robustness of the system's functionalities through hands-on testing on different campuses.",
         },
         {
           job: "On-site Technical Support",
           description:
-            "Implemented fair voting policies through on-site administration of system.",
+            "Implemented fair voting policies through on-site administration of system and voters.",
         },
       ],
       listLabel: "Technologies and Tools",
@@ -84,11 +84,6 @@ const Resume: NextPageWithLayout = () => {
           job: "Clerkship",
           description:
             "Handled clerkship for police clearances and led the team to produce efficient work.",
-        },
-        {
-          job: "Seminar",
-          description:
-            "Was introduced to the different procedures that the PNP does to manage crime in the city.",
         },
       ],
       listLabel: "Technologies and Tools",
