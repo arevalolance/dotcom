@@ -39,7 +39,7 @@ const Home: NextPageWithLayout = () => {
                     "INTP-T",
                     "design hobbyist",
                     "gamer",
-                    "full-stack engineer",
+                    "full-stack developer",
                     "music enjoyer",
                     "pokemon trainer",
                     "cringe kid",
