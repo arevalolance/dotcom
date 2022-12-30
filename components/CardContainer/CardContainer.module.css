@@ -1,0 +1,7 @@
+.grow {
+  transition: transform .3s;
+}
+
+.grow:hover {
+  transform: scale(1.005);
+}
