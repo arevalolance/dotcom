@@ -1,6 +1,6 @@
-import ArticleCard from '../ArticleCard';
-import CardContainer from '../CardContainer';
-import CardHeader from '../CardHeader';
+import ArticleCard from 'components/ArticleCard';
+import CardContainer from 'components/CardContainer';
+import CardHeader from 'components/CardHeader';
 
 const BlogSection = () => {
   return (

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import ToolPill from '../ToolPill';
+import ToolPill from 'components/ToolPill';
 
 const ToolBar = (props: {
   setActiveTool: Dispatch<SetStateAction<string>>;

@@ -1,11 +1,11 @@
 'use client';
 
-import CardContainer from '../CardContainer';
-import CardHeader from '../CardHeader';
-import ToolBar from '../ToolBar';
-import { useEffect, useState } from 'react';
-import ToolCard from '../ToolCard';
-import { tools } from '../../lib/allTools';
+import CardContainer from 'components/CardContainer';
+import CardHeader from 'components/CardHeader';
+import ToolBar from 'components/ToolBar';
+import ToolCard from 'components/ToolCard';
+import { tools } from 'lib/allTools';
+import { useState } from 'react';
 
 const ToolSection = () => {
   const [activeTool, setActiveTool] = useState<string>('Development');

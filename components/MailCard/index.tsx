@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import Divider from '../Divider';
-import LinkButton from '../LinkButton';
-import SocialCard from '../SocialCard';
-import { email } from '../../lib/info';
+import Divider from 'components/Divider';
+import LinkButton from 'components/LinkButton';
+import SocialCard from 'components/SocialCard';
+import { email } from 'lib/info';
 import { Inter } from '@next/font/google';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500'] });

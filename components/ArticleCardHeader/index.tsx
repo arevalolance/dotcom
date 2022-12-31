@@ -1,5 +1,5 @@
 import { Inter } from '@next/font/google';
-import { shortener } from '../../lib/stringMan';
+import { shortener } from 'lib/stringMan';
 import Link from 'next/link';
 
 interface ArticleCardHeaderProps {
@@ -16,7 +16,7 @@ const ArticleCardHeader = (props: ArticleCardHeaderProps) => {
       className={`${inter.className} hover:underline ${props.className}`}
     >
       <span className="text-gray-900 text-md">{props.title}</span>
-      <span className="text-gray-500 text-sm">-{props.desc}</span>
+      <span className="text-gray-500 text-sm">—{props.desc}</span>
     </div>
   );
 };

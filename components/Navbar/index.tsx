@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import NavItem from '../NavItem';
+import NavItem from 'components/NavItem';
 import { Icon } from '@iconify/react';
 import { Tooltip } from '@mui/material';
 

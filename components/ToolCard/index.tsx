@@ -1,7 +1,7 @@
 import { Inter } from '@next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
-import { shortener } from '../../lib/stringMan';
+import { shortener } from 'lib/stringMan';
 import { Tooltip } from '@mui/material';
 import { useState } from 'react';
 

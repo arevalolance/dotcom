@@ -1,11 +1,10 @@
 import { Inter } from '@next/font/google';
 import Image from 'next/image';
-import BlogLinkHeader from '../BlogLinkHeader';
+import BlogLinkHeader from 'components/BlogLinkHeader';
 import { useEffect, useState } from 'react';
-import getYoutubeData from '../../lib/getYoutubeData';
-import { shortener } from '../../lib/stringMan';
+import getYoutubeData from 'lib/getYoutubeData';
+import { shortener } from 'lib/stringMan';
 import Link from 'next/link';
-import axios from 'axios';
 
 const inter = Inter({
   subsets: ['latin'],

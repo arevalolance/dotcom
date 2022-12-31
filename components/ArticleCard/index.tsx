@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import Divider from '../Divider';
+import Divider from 'components/Divider';
 import { Inter } from '@next/font/google';
 import Image from 'next/image';
-import ArticleCardHeader from '../ArticleCardHeader';
-import { shortener } from '../../lib/stringMan';
+import ArticleCardHeader from 'components/ArticleCardHeader';
 import { Icon } from '@iconify/react';
+import { shortener } from 'lib/stringMan';
 
 const inter = Inter({ subsets: ['latin'] });
 

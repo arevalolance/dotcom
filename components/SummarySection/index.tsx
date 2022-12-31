@@ -1,8 +1,8 @@
 import { Inter } from '@next/font/google';
-import { aboutSummary } from '../../lib/info';
-import CardContainer from '../CardContainer';
-import CardHeader from '../CardHeader';
-import Divider from '../Divider';
+import { aboutSummary } from 'lib/info';
+import CardContainer from 'components/CardContainer';
+import CardHeader from 'components/CardHeader';
+import Divider from 'components/Divider';
 
 const inter = Inter({ subsets: ['latin'] });
 

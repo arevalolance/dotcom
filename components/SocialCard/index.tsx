@@ -1,6 +1,6 @@
-import CardContainer from '../CardContainer';
+import CardContainer from 'components/CardContainer';
 import { Inter } from '@next/font/google';
-import Divider from '../Divider';
+import Divider from 'components/Divider';
 import {
   ReactElement,
   JSXElementConstructor,

@@ -1,15 +1,14 @@
-import { Inter } from '@next/font/google';
 import Image from 'next/image';
-import Link from 'next/link';
+import CardContainer from 'components/CardContainer';
+import LinkButton from 'components/LinkButton';
+import { Inter } from '@next/font/google';
+import { Icon } from '@iconify/react';
 import {
   twitter_url,
   twitter_handle,
   twitter_pfp,
   twitter_name,
-} from '../../lib/info';
-import CardContainer from '../CardContainer';
-import LinkButton from '../LinkButton';
-import { Icon } from '@iconify/react';
+} from 'lib/info';
 
 const inter = Inter({
   subsets: ['latin'],
