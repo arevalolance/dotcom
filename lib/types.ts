@@ -15,10 +15,13 @@ export type BookmarkEntry = {
 };
 
 export type BookmarkEntries = {
-  bookmarks: {
-    id: number;
-    link: string;
-    tag: string;
-    bookmarkedAt: string;
-  }[];
+  bookmarks: BookmarkEntry[];
+};
+
+export type YoutubeDetails = {
+  title: string;
+  description: string;
+  creator: string;
+  creator_url: string;
+  image_url: string;
 };

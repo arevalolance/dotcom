@@ -68,7 +68,7 @@ const BookmarkInfo = (props: {
   setBookmark: Dispatch<SetStateAction<string>>;
 }) => {
   const { data, isLoading, error } = useSWR<BookmarkData>(
-    `/api/metadata?url=${props.link}`,
+    `/api/metadata/general?url=${props.link}`,
     fetcher
   );
 
@@ -162,7 +162,7 @@ const BookmarkInformation = (props: {
   entry: BookmarkEntry;
 }) => {
   const { data, isLoading, error } = useSWR<BookmarkData>(
-    `api/metadata?url=${props.bookmark}`,
+    `api/metadata/general?url=${props.bookmark}`,
     fetcher
   );
 
@@ -202,6 +202,7 @@ const BookmarkInformation = (props: {
         {!isLoading && data?.image && (
           <Link
             href={data.link}
+            target="_blank"
             className="min-w-[130px] flex min-h-fit hover:shadow-md rounded-md overflow-hidden origin-center hover:scale-[1.1]"
           >
             <Image
@@ -236,10 +237,6 @@ const BookmarkInformation = (props: {
 const BookmarksSection = () => {
   const [bookmark, setBookmark] = useState<string>('');
   const [entry, setEntry] = useState<BookmarkEntry>(null);
-
-  useEffect(() => {
-    console.log('THIS AINT IT', bookmark);
-  }, [bookmark]);
 
   return (
     <CardContainer className="max-w-[710px] h-[500px] px-4 flex flex-col">

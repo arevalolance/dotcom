@@ -13,7 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       description: data.description,
     });
   } catch (err) {
-    return res.status(500).json({ message: 'Internal Server Error' });
+    return res.status(500).json({ message: err });
   }
 };
 

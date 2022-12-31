@@ -5,17 +5,96 @@ import { useEffect, useState } from 'react';
 import getYoutubeData from 'lib/getYoutubeData';
 import { shortener } from 'lib/stringMan';
 import Link from 'next/link';
+import fetcher from 'lib/fetcher';
+import useSWR from 'swr';
+import { YoutubeDetails } from 'lib/types';
 
 const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '500', '700'],
 });
 
-interface YoutubeDetails {
-  title: string;
-  creator: string;
-  creator_url: string;
-}
+const LinkEmbed = (props: { slug: string; tag: string }) => {
+  const { data, isLoading, error } = useSWR<YoutubeDetails>(
+    `/api/metadata/youtube?slug=${props.slug}`,
+    fetcher
+  );
+
+  useEffect(() => {
+    if (!isLoading) {
+      console.log('YOUTUBE', data);
+    } else if (error) {
+      console.log('ERROR', error);
+    }
+  }, [isLoading]);
+
+  return (
+    <>
+      <div className="mt-2 flex flex-row">
+        <Link
+          className="hover:drop-shadow-md"
+          href={`https://www.youtube.com/watch?v=${props.slug}`}
+        >
+          <div className="min-w-[180px] min-h-[105px] max-w-[180px] max-h-[105px] overflow-hidden flex items-center rounded-md">
+            <Image
+              className="object-fill"
+              src={`http://i3.ytimg.com/vi/${props.slug}/hqdefault.jpg`}
+              alt={''}
+              width={180}
+              height={105}
+            />
+          </div>
+        </Link>
+
+        <div className="ml-2 ">
+          <div className="flex flex-col gap-y-2">
+            <div className="flex flex-col">
+              <Link
+                href={
+                  isLoading
+                    ? '#'
+                    : `https://www.youtube.com/watch?v=${props.slug}`
+                }
+              >
+                <div
+                  className={`${inter.className} flex flex-row items-center gap-x-2`}
+                >
+                  <span className="font-normal text-white text-sm px-2 bg-blue-400 rounded-md">
+                    {props.tag}
+                  </span>
+                  <span className="font-medium text-gray-900 text-sm hover:underline">
+                    {isLoading
+                      ? 'Loading...'
+                      : data.title.length > 60
+                      ? shortener(data.title, 60)
+                      : data.title}
+                  </span>
+                </div>
+              </Link>
+
+              <Link
+                href={isLoading ? '#' : data.creator_url}
+                className="hover:underline font-medium text-gray-500 text-xs"
+              >
+                @{isLoading ? 'Loading...' : data.creator}
+              </Link>
+            </div>
+
+            <p
+              className={`${inter.className} text-sm font-normal text-gray-500`}
+            >
+              {isLoading
+                ? 'Loading...'
+                : data.description.length > 210
+                ? shortener(data.description, 200)
+                : data.description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 const BlogLink = (props: {
   title: string;
@@ -26,20 +105,8 @@ const BlogLink = (props: {
   embed?: {
     slug: string;
     tag: string;
-    youtubeDescription: string;
   };
 }) => {
-  const [youtubeDetails, setYoutubeDetails] =
-    useState<YoutubeDetails | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    if (props.embed && !mounted) {
-      getYoutubeData(props.embed.slug).then(setYoutubeDetails);
-    }
-    setMounted(true);
-  }, []);
-
   return (
     <div className="gap-y-1 my-2 border-[1px] border-transparent hover:border-gray-200 hover:shadow-md rounded-md p-4">
       <BlogLinkHeader
@@ -54,65 +121,9 @@ const BlogLink = (props: {
         {props.summary}
       </span>
 
-      {youtubeDetails && props.embed && (
-        <div className="mt-2 flex flex-row">
-          {/*  IMAGE */}
-          <Link
-            className="hover:drop-shadow-md"
-            href={`https://www.youtube.com/watch?v=${props.embed.slug}`}
-          >
-            <div className="min-w-[180px] min-h-[105px] max-w-[180px] max-h-[105px] overflow-hidden flex items-center rounded-md">
-              <Image
-                className="object-fill"
-                src={`http://i3.ytimg.com/vi/${props.embed.slug}/hqdefault.jpg`}
-                alt={youtubeDetails.title}
-                width={180}
-                height={105}
-              />
-            </div>
-          </Link>
-
-          {/*  TAGS */}
-          <div className="ml-2 ">
-            {/* TITLE */}
-            <div className="flex flex-col gap-y-2">
-              <div className="flex flex-col">
-                <Link
-                  href={`https://www.youtube.com/watch?v=${props.embed.slug}`}
-                >
-                  <div
-                    className={`${inter.className} flex flex-row items-center gap-x-2`}
-                  >
-                    <span className="font-normal text-white text-sm px-2 bg-blue-400 rounded-md">
-                      {props.embed.tag}
-                    </span>
-                    <span className="font-medium text-gray-900 text-sm hover:underline">
-                      {youtubeDetails.title.length > 60
-                        ? shortener(youtubeDetails.title, 60)
-                        : youtubeDetails.title}
-                    </span>
-                  </div>
-                </Link>
-
-                <Link
-                  href={youtubeDetails.creator_url}
-                  className="hover:underline font-medium text-gray-500 text-xs"
-                >
-                  @{youtubeDetails.creator}
-                </Link>
-              </div>
-
-              <p
-                className={`${inter.className} text-sm font-normal text-gray-500`}
-              >
-                {props.embed.youtubeDescription.length > 210
-                  ? shortener(props.embed.youtubeDescription, 200)
-                  : props.embed.youtubeDescription}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
+      {props.embed ? (
+        <LinkEmbed slug={props.embed.slug} tag={props.embed.tag} />
+      ) : null}
     </div>
   );
 };

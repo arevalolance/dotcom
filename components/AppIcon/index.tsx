@@ -7,7 +7,7 @@ import useSWR from 'swr';
 
 const AppIcon = (props: { link: string }) => {
   const { data, isLoading } = useSWR<BookmarkData>(
-    `/api/metadata?url=${props.link}`,
+    `/api/metadata/general?url=${props.link}`,
     fetcher
   );
 

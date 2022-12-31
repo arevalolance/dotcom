@@ -63,8 +63,6 @@ const Blog = () => {
               embed={{
                 slug: '_rRFDDfXiFE',
                 tag: 'Video',
-                youtubeDescription:
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit ac mi nec facilisis. Cras non metus tincidunt arcu lacinia',
               }}
             />
             <BlogLink
