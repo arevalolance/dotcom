@@ -1,6 +1,6 @@
 import { Inter } from '@next/font/google';
-import BlogLink from '../components/BlogLink';
-import Navbar from '../components/Navbar';
+import BlogLink from 'components/BlogLink';
+import Navbar from 'components/Navbar';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500'] });
 

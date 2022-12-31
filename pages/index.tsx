@@ -1,15 +1,13 @@
 import { Be_Vietnam_Pro, Inter } from '@next/font/google';
 import Image from 'next/image';
-import BlogSection from '../components/BlogSection';
-import BookmarksSection from '../components/BookmarksSection';
-import Divider from '../components/Divider';
-import MailCard from '../components/MailCard';
-import SummarySection from '../components/SummarySection';
-import ToolSection from '../components/ToolSection';
-import TwitterCard from '../components/TwitterCard';
-import Navbar from '../components/Navbar';
-import { useEffect } from 'react';
-import getYoutubeData from '../lib/getYoutubeData';
+import BlogSection from 'components/BlogSection';
+import BookmarksSection from 'components/BookmarksSection';
+import Divider from 'components/Divider';
+import MailCard from 'components/MailCard';
+import SummarySection from 'components/SummarySection';
+import ToolSection from 'components/ToolSection';
+import TwitterCard from 'components/TwitterCard';
+import Navbar from 'components/Navbar';
 
 const beVietnamPro = Be_Vietnam_Pro({
   subsets: ['latin'],
@@ -17,13 +15,9 @@ const beVietnamPro = Be_Vietnam_Pro({
 });
 
 const Index = () => {
-  useEffect(() => {
-    getYoutubeData('sPD9JlT_288').then(console.log);
-  }, []);
   return (
     <>
       <Navbar />
-
       <div>
         <div className="flex flex-row items-center min-h-[367px] max-w-[1040px] mx-auto">
           <div className="mr-5">

@@ -1,11 +1,11 @@
 import { Inter } from '@next/font/google';
-import CardContainer from '../components/CardContainer';
-import CardHeader from '../components/CardHeader';
-import Divider from '../components/Divider';
-import MailCard from '../components/MailCard';
-import TwitterCard from '../components/TwitterCard';
-import { about } from '../lib/info';
-import Navbar from '../components/Navbar';
+import CardContainer from 'components/CardContainer';
+import CardHeader from 'components/CardHeader';
+import Divider from 'components/Divider';
+import MailCard from 'components/MailCard';
+import TwitterCard from 'components/TwitterCard';
+import Navbar from 'components/Navbar';
+import { about } from 'lib/info';
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '700'] });
 
