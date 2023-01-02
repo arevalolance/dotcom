@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import Divider from 'components/Divider';
-import { Inter } from '@next/font/google';
-import Image from 'next/image';
-import ArticleCardHeader from 'components/ArticleCardHeader';
-import { Icon } from '@iconify/react';
-import { shortener } from 'lib/stringMan';
+import Link from "next/link";
+import Divider from "components/Divider";
+import { Inter } from "@next/font/google";
+import Image from "next/image";
+import ArticleCardHeader from "components/ArticleCardHeader";
+import { Icon } from "@iconify/react";
+import { shortener } from "lib/stringMan";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 interface ArticleCardProps {
   title: string;
@@ -17,21 +17,14 @@ interface ArticleCardProps {
 
 const ArticleCard = (props: ArticleCardProps) => {
   return (
-    <div className="flex justify-between flex-col w-[305px] h-[180px] border-[#e1e1e1] border-[1px] p-2 bg-white rounded-lg drop-shadow-md">
+    <div className="flex h-[180px] w-[305px] flex-col justify-between rounded-lg border-[1px] border-[#e1e1e1] bg-white p-2 drop-shadow-md">
       <div>
         <div className="flex flex-row justify-between ">
-          <div className="w-full text-ellipsis overflow-hidden break-all">
+          <div className="w-full overflow-hidden text-ellipsis break-all">
             <Link href="/blog">
-              <ArticleCardHeader
-                title={props.title}
-                desc={props.publishedAt}
-              />
+              <ArticleCardHeader title={props.title} desc={props.publishedAt} />
             </Link>
-            <Divider
-              className="mb-2"
-              thickness="light"
-              color="light"
-            />
+            <Divider className="mb-2" thickness="light" color="light" />
             <p className={`${inter.className} text-sm text-gray-500`}>
               {shortener(props.summary, 80)}
             </p>
@@ -39,7 +32,7 @@ const ArticleCard = (props: ArticleCardProps) => {
           {props.image ? (
             <Image
               src="/images/PFP.png"
-              alt={''}
+              alt={""}
               width={84}
               height={84}
               priority
@@ -48,9 +41,9 @@ const ArticleCard = (props: ArticleCardProps) => {
         </div>
       </div>
       <div className="flex w-full justify-end">
-        <Link href={'/'}>
+        <Link href={"/"}>
           <Icon
-            className="text-gray-700 hover:text-gray-900 rounded-md text-[25px] w-[25px] h-25px]"
+            className="h-25px] w-[25px] rounded-md text-[25px] text-gray-700 hover:text-gray-900"
             icon="ri:external-link-line"
           />
         </Link>

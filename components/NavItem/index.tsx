@@ -1,9 +1,9 @@
-import { Be_Vietnam_Pro } from '@next/font/google';
-import Link from 'next/link';
+import { Be_Vietnam_Pro } from "@next/font/google";
+import Link from "next/link";
 
 const beVietnamPro = Be_Vietnam_Pro({
-  subsets: ['latin'],
-  weight: '500',
+  subsets: ["latin"],
+  weight: "500",
 });
 
 const NavItem = (props: { text: string; url: string }) => {
@@ -11,17 +11,15 @@ const NavItem = (props: { text: string; url: string }) => {
     <Link
       href={props.url}
       className="
-    border-transparent border-[0.5px] hover:border-gray-300 active:border-gray-400
+    rounded-full border-[0.5px] border-transparent px-7
+    py-[10px]
+    text-gray-500
     hover:cursor-pointer
-    hover:bg-gray-100
-    active:bg-gray-200
-    px-7 py-[10px]
-    rounded-full
-    text-gray-500 hover:text-gray-900"
+    hover:border-gray-300 hover:bg-gray-100
+    hover:text-gray-900
+    active:border-gray-400 active:bg-gray-200"
     >
-      <span className={`${beVietnamPro.className}`}>
-        {props.text}
-      </span>
+      <span className={`${beVietnamPro.className}`}>{props.text}</span>
     </Link>
   );
 };

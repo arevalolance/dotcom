@@ -1,3 +1,5 @@
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
+
 export type BookmarkData = {
   name: string;
   link: string;
@@ -24,4 +26,18 @@ export type YoutubeDetails = {
   creator: string;
   creator_url: string;
   image_url: string;
+};
+
+export type Post = {
+  _id: string;
+  slug: string;
+  content: MDXRemoteSerializeResult;
+  title: string;
+  date: string;
+  excerpt: string;
+  coverImage: string;
+  readingTime: string;
+  tag: string;
+  embed: string;
+  embedTag;
 };

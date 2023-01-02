@@ -1,5 +1,5 @@
 .grow {
-  transition: transform .3s;
+  transition: transform 0.3s;
 }
 
 .grow:hover {

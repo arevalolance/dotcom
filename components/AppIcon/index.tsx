@@ -1,9 +1,9 @@
-import { Icon } from '@iconify/react';
-import fetcher from 'lib/fetcher';
-import { BookmarkData } from 'lib/types';
-import Image from 'next/image';
-import { useEffect } from 'react';
-import useSWR from 'swr';
+import { Icon } from "@iconify/react";
+import fetcher from "lib/fetcher";
+import { BookmarkData } from "lib/types";
+import Image from "next/image";
+import { useEffect } from "react";
+import useSWR from "swr";
 
 const AppIcon = (props: { link: string }) => {
   const { data, isLoading } = useSWR<BookmarkData>(
@@ -11,31 +11,20 @@ const AppIcon = (props: { link: string }) => {
     fetcher
   );
 
-  useEffect(() => {
-    if (!isLoading) {
-      console.log('TEST:', data);
-    }
-  });
-
   return (
     <div
-      className="flex p-[5px]
-    border-[5px] border-transparent active:border-[#6D4AFF] hover:border-[#B7B5BB]
-    justify-center items-center
-    w-[90px] h-[90px]
-    rounded-[20px]
-    hover:cursor-pointer
+      className="flex h-[90px]
+    w-[90px] items-center justify-center rounded-[20px]
+    border-[5px] border-transparent
+    p-[5px] hover:cursor-pointer
+    hover:border-[#B7B5BB]
+    active:border-[#6D4AFF]
     "
     >
       {isLoading ? (
-        <Icon icon={'mdi:link-variant'} />
+        <Icon icon={"mdi:link-variant"} />
       ) : (
-        <Image
-          src={data.icon}
-          alt={data.icon}
-          width={80}
-          height={80}
-        />
+        <Image src={data.icon} alt={data.icon} width={80} height={80} />
       )}
     </div>
   );

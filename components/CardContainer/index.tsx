@@ -3,8 +3,8 @@ import {
   JSXElementConstructor,
   ReactFragment,
   ReactPortal,
-} from 'react';
-import styles from './CardContainer.module.css';
+} from "react";
+import styles from "./CardContainer.module.css";
 
 const CardContainer = (props: {
   children:
@@ -21,7 +21,7 @@ const CardContainer = (props: {
 }) => {
   return (
     <div
-      className={`drop-shadow-md hover:drop-shadow-xl rounded-3xl bg-[#F8F8F8] p-10 ${props.className}`}
+      className={`rounded-3xl bg-[#F8F8F8] p-10 drop-shadow-md hover:drop-shadow-xl ${props.className}`}
     >
       {props.children}
     </div>

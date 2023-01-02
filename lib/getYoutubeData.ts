@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 const getYoutubeData = async (slug: string) => {
   try {

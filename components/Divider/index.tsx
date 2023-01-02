@@ -1,41 +1,39 @@
 const Divider = (props: {
-  thickness?: 'light' | 'medium' | 'heavy';
-  color?: 'light' | 'dark';
+  thickness?: "light" | "medium" | "heavy";
+  color?: "light" | "dark";
   className?: string;
 }) => {
   let thickness;
   switch (props.thickness) {
-    case 'light':
-      thickness = '1';
+    case "light":
+      thickness = "1";
       break;
-    case 'medium':
-      thickness = '2';
+    case "medium":
+      thickness = "2";
       break;
-    case 'heavy':
-      thickness = '4';
+    case "heavy":
+      thickness = "4";
       break;
     default:
-      thickness = '2';
+      thickness = "2";
       break;
   }
 
   let color;
   switch (props.color) {
-    case 'light':
-      color = 'gray-500';
+    case "light":
+      color = "gray-500";
       break;
-    case 'dark':
-      color = 'gray-900';
+    case "dark":
+      color = "gray-900";
       break;
     default:
-      color = 'gray-900';
+      color = "gray-900";
       break;
   }
 
   return (
-    <hr
-      className={`border-${color} border-${thickness} ${props.className}`}
-    />
+    <hr className={`border-${color} border-${thickness} ${props.className}`} />
   );
 };
 

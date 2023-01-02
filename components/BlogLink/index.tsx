@@ -1,17 +1,17 @@
-import { Inter } from '@next/font/google';
-import Image from 'next/image';
-import BlogLinkHeader from 'components/BlogLinkHeader';
-import { useEffect, useState } from 'react';
-import getYoutubeData from 'lib/getYoutubeData';
-import { shortener } from 'lib/stringMan';
-import Link from 'next/link';
-import fetcher from 'lib/fetcher';
-import useSWR from 'swr';
-import { YoutubeDetails } from 'lib/types';
+import { Inter } from "@next/font/google";
+import Image from "next/image";
+import BlogLinkHeader from "components/BlogLinkHeader";
+import { useEffect, useState } from "react";
+import getYoutubeData from "lib/getYoutubeData";
+import { shortener } from "lib/stringMan";
+import Link from "next/link";
+import fetcher from "lib/fetcher";
+import useSWR from "swr";
+import { YoutubeDetails } from "lib/types";
 
 const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
 });
 
 const LinkEmbed = (props: { slug: string; tag: string }) => {
@@ -20,14 +20,6 @@ const LinkEmbed = (props: { slug: string; tag: string }) => {
     fetcher
   );
 
-  useEffect(() => {
-    if (!isLoading) {
-      console.log('YOUTUBE', data);
-    } else if (error) {
-      console.log('ERROR', error);
-    }
-  }, [isLoading]);
-
   return (
     <>
       <div className="mt-2 flex flex-row">
@@ -35,11 +27,11 @@ const LinkEmbed = (props: { slug: string; tag: string }) => {
           className="hover:drop-shadow-md"
           href={`https://www.youtube.com/watch?v=${props.slug}`}
         >
-          <div className="min-w-[180px] min-h-[105px] max-w-[180px] max-h-[105px] overflow-hidden flex items-center rounded-md">
+          <div className="flex max-h-[105px] min-h-[105px] min-w-[180px] max-w-[180px] items-center overflow-hidden rounded-md">
             <Image
               className="object-fill"
               src={`http://i3.ytimg.com/vi/${props.slug}/hqdefault.jpg`}
-              alt={''}
+              alt={""}
               width={180}
               height={105}
             />
@@ -52,19 +44,19 @@ const LinkEmbed = (props: { slug: string; tag: string }) => {
               <Link
                 href={
                   isLoading
-                    ? '#'
+                    ? "#"
                     : `https://www.youtube.com/watch?v=${props.slug}`
                 }
               >
                 <div
                   className={`${inter.className} flex flex-row items-center gap-x-2`}
                 >
-                  <span className="font-normal text-white text-sm px-2 bg-blue-400 rounded-md">
+                  <span className="rounded-md bg-blue-400 px-2 text-sm font-normal text-white">
                     {props.tag}
                   </span>
-                  <span className="font-medium text-gray-900 text-sm hover:underline">
+                  <span className="text-sm font-medium text-gray-900 hover:underline">
                     {isLoading
-                      ? 'Loading...'
+                      ? "Loading..."
                       : data.title.length > 60
                       ? shortener(data.title, 60)
                       : data.title}
@@ -73,10 +65,10 @@ const LinkEmbed = (props: { slug: string; tag: string }) => {
               </Link>
 
               <Link
-                href={isLoading ? '#' : data.creator_url}
-                className="hover:underline font-medium text-gray-500 text-xs"
+                href={isLoading ? "#" : data.creator_url}
+                className="text-xs font-medium text-gray-500 hover:underline"
               >
-                @{isLoading ? 'Loading...' : data.creator}
+                @{isLoading ? "Loading..." : data.creator}
               </Link>
             </div>
 
@@ -84,7 +76,7 @@ const LinkEmbed = (props: { slug: string; tag: string }) => {
               className={`${inter.className} text-sm font-normal text-gray-500`}
             >
               {isLoading
-                ? 'Loading...'
+                ? "Loading..."
                 : data.description.length > 210
                 ? shortener(data.description, 200)
                 : data.description}
@@ -108,16 +100,14 @@ const BlogLink = (props: {
   };
 }) => {
   return (
-    <div className="gap-y-1 my-2 border-[1px] border-transparent hover:border-gray-200 hover:shadow-md rounded-md p-4">
+    <div className="my-2 gap-y-1 rounded-md border-[1px] border-transparent p-4 hover:border-gray-200 hover:shadow-md">
       <BlogLinkHeader
         tag={props.tag}
         title={props.title}
         publishedAt={props.publishedAt}
         slug={props.slug}
       />
-      <span
-        className={`${inter.className} text-gray-500 font-normal text-sm`}
-      >
+      <span className={`${inter.className} text-md font-normal text-gray-500`}>
         {props.summary}
       </span>
 

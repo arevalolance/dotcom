@@ -1,16 +1,16 @@
-import CardContainer from 'components/CardContainer';
-import { Inter } from '@next/font/google';
-import Divider from 'components/Divider';
+import CardContainer from "components/CardContainer";
+import { Inter } from "@next/font/google";
+import Divider from "components/Divider";
 import {
   ReactElement,
   JSXElementConstructor,
   ReactFragment,
   ReactPortal,
-} from 'react';
-import { Icon } from '@iconify/react';
-import Image from 'next/image';
+} from "react";
+import { Icon } from "@iconify/react";
+import Image from "next/image";
 
-const inter = Inter({ subsets: ['latin'], weight: '500' });
+const inter = Inter({ subsets: ["latin"], weight: "500" });
 
 const SocialCard = (props: {
   children:
@@ -28,12 +28,12 @@ const SocialCard = (props: {
 }) => {
   return (
     <CardContainer className="w-[340px] px-6 py-4" grow={false}>
-      <div className="flex flex-row items-center hover:bg-gray-200 hover:shadow-md p-2 rounded-md gap-4">
+      <div className="flex flex-row items-center gap-4 rounded-md p-2 hover:bg-gray-200 hover:shadow-md">
         <Image
           src={
-            'https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg'
+            "https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg"
           }
-          alt={''}
+          alt={""}
           width={50}
           height={50}
         />
@@ -43,7 +43,7 @@ const SocialCard = (props: {
             {props.title}
           </span>
           <span
-            className={`${inter.className} text-md text-gray-500 leading-none`}
+            className={`${inter.className} text-md leading-none text-gray-500`}
           >
             {props.subheader}
           </span>

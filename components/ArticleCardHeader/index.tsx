@@ -1,6 +1,6 @@
-import { Inter } from '@next/font/google';
-import { shortener } from 'lib/stringMan';
-import Link from 'next/link';
+import { Inter } from "@next/font/google";
+import { shortener } from "lib/stringMan";
+import Link from "next/link";
 
 interface ArticleCardHeaderProps {
   title: string;
@@ -8,15 +8,13 @@ interface ArticleCardHeaderProps {
   className?: string;
 }
 
-const inter = Inter({ subsets: ['latin'], weight: ['400', '700'] });
+const inter = Inter({ subsets: ["latin"], weight: ["400", "700"] });
 
 const ArticleCardHeader = (props: ArticleCardHeaderProps) => {
   return (
-    <div
-      className={`${inter.className} hover:underline ${props.className}`}
-    >
-      <span className="text-gray-900 text-md">{props.title}</span>
-      <span className="text-gray-500 text-sm">—{props.desc}</span>
+    <div className={`${inter.className} hover:underline ${props.className}`}>
+      <span className="text-md text-gray-900">{props.title}</span>
+      <span className="text-sm text-gray-500">—{props.desc}</span>
     </div>
   );
 };

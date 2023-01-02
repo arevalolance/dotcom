@@ -1,6 +1,6 @@
-import getYoutubeData from 'lib/getYoutubeData';
-import getMetaData from 'metadata-scraper';
-import { NextApiRequest, NextApiResponse } from 'next';
+import getYoutubeData from "lib/getYoutubeData";
+import getMetaData from "metadata-scraper";
+import { NextApiRequest, NextApiResponse } from "next";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -17,7 +17,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       image_url: `http://i3.ytimg.com/vi/${slug}/hqdefault.jpg`,
     });
   } catch (err) {
-    return res.status(500).json({ message: 'Internal Server Error' });
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
