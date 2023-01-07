@@ -37,10 +37,10 @@ const BookmarksSection = () => {
             height={150}
           />
         </div>
-        <div className="absolute bottom-0 z-10 mb-2 ml-2 rounded-full border-4 border-transparent bg-white p-2 duration-150 hover:scale-[1.1] hover:border-gray-200">
+        <div className="absolute bottom-0 z-10 mb-2 ml-2 rounded-full border-4 border-transparent border-border-button bg-background-surface p-2 duration-150 hover:scale-[1.1] hover:border-gray-200">
           <Link href={"/bookmarks"}>
             <Icon
-              className="z-25 h-[25px] w-[25px] text-black"
+              className="z-25 h-[25px] w-[25px] text-text-primary"
               icon="eva:diagonal-arrow-right-up-fill"
             />
           </Link>
