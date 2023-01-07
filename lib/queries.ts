@@ -15,6 +15,10 @@ export const indexQuery = `
   ${postFields}
 }`;
 
+export const latestPostQuery = `*[_type == "post"] | order(date desc,_updatedAt desc)[0] {
+  ${postFields}
+}`;
+
 export const postQuery = `
 {
   "post": *[_type == "post" && slug.current == $slug] | order(_updatedAt desc) [0] {

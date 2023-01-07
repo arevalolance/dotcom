@@ -7,8 +7,11 @@ import Container from "components/Container";
 import { Suspense } from "react";
 import MapCard from "components/MapCard";
 import ToolSection from "components/ToolSection";
+import { getClient } from "lib/sanity-client";
+import { latestPostQuery } from "lib/queries";
+import { Post } from "lib/types";
 
-const Index = () => {
+const Index = ({ post }) => {
   return (
     <Container>
       <Suspense fallback={false}>
@@ -16,12 +19,12 @@ const Index = () => {
           <SummarySection />
 
           <div className="flex w-full flex-col justify-between gap-4 md:hidden md:flex-row lg:flex">
-            <BlogSection />
+            <BlogSection post={post} />
             <MapCard />
           </div>
 
           <div className="hidden w-full flex-col justify-center gap-4  md:flex md:flex-row lg:hidden">
-            <BlogSection />
+            <BlogSection post={post} />
           </div>
 
           <div className="hidden h-fit flex-col justify-between gap-4 md:flex md:w-[698px] md:flex-row lg:hidden">
@@ -45,5 +48,15 @@ const Index = () => {
     </Container>
   );
 };
+
+export async function getStaticProps({ preview = false }) {
+  const post: Post = await getClient(preview).fetch(latestPostQuery);
+
+  return {
+    props: {
+      post: post,
+    },
+  };
+}
 
 export default Index;

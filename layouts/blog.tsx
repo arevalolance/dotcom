@@ -9,7 +9,7 @@ const BlogLayout = ({ children, post }: PropsWithChildren<{ post: Post }>) => {
       <h1 className="mb-4 text-3xl font-bold tracking-tight text-text-primary">
         {post.title}
       </h1>
-      <div className="mt-2 flex w-full flex-col items-start justify-between">
+      <div className="mt-2 flex w-full flex-row items-start justify-between">
         <div className="flex items-center">
           <Image
             alt="Lance Arevalo"
@@ -24,6 +24,8 @@ const BlogLayout = ({ children, post }: PropsWithChildren<{ post: Post }>) => {
             {format(parseISO(post.date), "MMMM dd, yyyy")}
           </p>
         </div>
+
+        <span className="text-sm text-text-secondary">{post.readingTime}</span>
       </div>
       <Suspense fallback={null}>
         <div className="prose mt-4 w-full max-w-none">{children}</div>
