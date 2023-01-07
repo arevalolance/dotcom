@@ -1,4 +1,5 @@
 import Navbar from "components/Navbar";
+import { motion } from "framer-motion";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
@@ -47,7 +48,16 @@ const Container = (props) => {
         id="skip"
         className="my-10 flex w-full flex-col justify-center bg-[#171717]"
       >
-        {children}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.8,
+            ease: [0, 0.71, 0.2, 1.01],
+          }}
+        >
+          {children}
+        </motion.div>
       </main>
     </>
   );
