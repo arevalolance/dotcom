@@ -9,7 +9,7 @@ const MailCard = (props: { className?: string }) => {
 
   return (
     <CardContainer
-      className={`mx-auto h-[260px] w-11/12 px-6 py-6 md:m-0 md:w-[700px] lg:w-[650px] ${props.className}`}
+      className={`mx-auto h-[260px] w-11/12 px-6 py-6 md:w-[700px] lg:w-[650px] ${props.className}`}
     >
       <div className="flex h-full flex-col justify-between">
         <div className="flex flex-col gap-y-2 text-text-primary">

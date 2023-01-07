@@ -34,7 +34,7 @@ const About = () => {
           </CardContainer>
         </div>
         <div className="flex w-full flex-col justify-between gap-y-4 md:flex-row">
-          <MailCard className="md:w-[450px]" />
+          <MailCard className="md:mx-0 md:w-[450px]" />
           <TwitterCard />
         </div>
       </div>
