@@ -5,11 +5,11 @@ import { parseISO, format } from "date-fns";
 
 const BlogLayout = ({ children, post }: PropsWithChildren<{ post: Post }>) => {
   return (
-    <article className="mx-auto mb-16 flex max-w-2xl flex-col items-start justify-center">
-      <h1 className="mb-4 text-3xl font-bold tracking-tight text-black md:text-5xl">
+    <article className="article mx-auto mb-16 flex w-11/12 max-w-2xl flex-col items-start justify-center">
+      <h1 className="mb-4 text-3xl font-bold tracking-tight text-text-primary">
         {post.title}
       </h1>
-      <div className="mt-2 flex w-full flex-col items-start justify-between md:flex-row md:items-center">
+      <div className="mt-2 flex w-full flex-col items-start justify-between">
         <div className="flex items-center">
           <Image
             alt="Lance Arevalo"
@@ -19,7 +19,7 @@ const BlogLayout = ({ children, post }: PropsWithChildren<{ post: Post }>) => {
             src="/images/PFP.png"
             className="rounded-full"
           />
-          <p className="ml-2 text-sm text-gray-700">
+          <p className="ml-2 text-sm text-text-secondary">
             {"Lance Arevalo / "}
             {format(parseISO(post.date), "MMMM dd, yyyy")}
           </p>

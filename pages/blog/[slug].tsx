@@ -1,4 +1,3 @@
-import Navbar from "components/Navbar";
 import BlogLayout from "layouts/blog";
 import { mdxToHtml } from "lib/mdx";
 import { postQuery, postSlugsQuery } from "lib/queries";
@@ -6,25 +5,22 @@ import { getClient, sanityClient } from "lib/sanity-client";
 import { Post } from "lib/types";
 import { MDXRemote } from "next-mdx-remote";
 import components from "components/MDXComponents";
+import Container from "components/Container";
 
 const PostPage = ({ post }: { post: Post }) => {
   return (
-    <>
-      <Navbar />
-
-      <div className="flex w-full">
-        <BlogLayout post={post}>
-          <MDXRemote
-            {...post.content}
-            components={
-              {
-                ...components,
-              } as any
-            }
-          />
-        </BlogLayout>
-      </div>
-    </>
+    <Container>
+      <BlogLayout post={post}>
+        <MDXRemote
+          {...post.content}
+          components={
+            {
+              ...components,
+            } as any
+          }
+        />
+      </BlogLayout>
+    </Container>
   );
 };
 

@@ -1,25 +1,56 @@
 import Link from "next/link";
-import NavItem from "components/NavItem";
 import { Icon } from "@iconify/react";
 import { Tooltip } from "@mui/material";
+import { useRouter } from "next/router";
 
 const IconLink = (props: { title: string; href: string; icon: string }) => {
   return (
     <Link className="hover:cursor-pointer " href={props.href}>
       <Tooltip title={props.title}>
-        <Icon className="h-[25px] w-[25px] text-[#231F20]" icon={props.icon} />
+        <Icon
+          className="h-[25px] w-[25px] text-text-primary"
+          icon={props.icon}
+        />
       </Tooltip>
     </Link>
   );
 };
 
-const Navbar = () => {
+const NavItem = (props: { text: string; url: string; isActive: boolean }) => {
   return (
-    <div className="my-10 flex items-center justify-between">
-      <nav className="my-auto flex w-fit flex-row rounded-full border-[0.5px] border-gray-100 bg-white p-1 shadow-lg">
-        <NavItem url={"/"} text={"Home"} />
-        <NavItem url={"/about"} text={"About"} />
-        <NavItem url={"/blog"} text={"Blog"} />
+    <Link
+      href={props.url}
+      className={`
+      hover:background-surface/50 rounded-full border-[0.5px] border-transparent
+      bg-background-surface
+      px-7
+      py-[10px]
+      text-text-primary hover:cursor-pointer
+      hover:border-border-surface hover:bg-background-primary/30
+      ${props.isActive ? "border-border-surface bg-background-primary" : ""}`}
+    >
+      <span>{props.text}</span>
+    </Link>
+  );
+};
+
+const Navbar = () => {
+  const router = useRouter();
+
+  return (
+    <div className="my-10 mx-auto hidden w-11/12 items-center justify-between md:visible md:flex lg:w-[1000px]">
+      <nav className="my-auto flex w-fit flex-row rounded-full border-[1px] border-border-surface bg-background-surface p-1 shadow-lg">
+        <NavItem url={"/"} text={"Home"} isActive={router.asPath === "/"} />
+        <NavItem
+          url={"/about"}
+          text={"About"}
+          isActive={router.asPath === "/about"}
+        />
+        <NavItem
+          url={"/blog"}
+          text={"Blog"}
+          isActive={router.asPath === "/blog"}
+        />
       </nav>
 
       <div className="flex flex-row gap-4">

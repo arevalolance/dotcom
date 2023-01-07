@@ -1,238 +1,309 @@
 import CardContainer from "components/CardContainer";
-import fetcher from "lib/fetcher";
-import { BookmarkData, BookmarkEntries, BookmarkEntry } from "lib/types";
-import { Inter } from "@next/font/google";
-import React, {
-  Dispatch,
-  JSXElementConstructor,
-  ReactElement,
-  ReactFragment,
-  ReactPortal,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
-import useSWR from "swr";
-import Image from "next/image";
 import { Icon } from "@iconify/react";
-import { shortener } from "lib/stringMan";
-import CardHeader from "components/CardHeader";
 import Divider from "components/Divider";
-import LinkButton from "components/LinkButton";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
-
-const InfoHeader = (props: { title: string }) => {
+const BookmarkLink = (props: { title; bookmarkedAt; link }) => {
   return (
-    <span className={`${inter.className} font-medium`}>
-      {props.title.length > 23 ? shortener(props.title, 20) : props.title}
-    </span>
-  );
-};
-
-const LinkIcon = (props: {
-  isLoading: boolean;
-  error: boolean;
-  icon?: string;
-  alt?: string;
-}) => {
-  return (
-    <div className="h-fit max-h-[20px] w-fit max-w-[20px] overflow-hidden rounded-md border-[1px] border-gray-300">
-      {props.isLoading || props.error ? (
-        <Icon icon={"mdi:link-variant"} />
-      ) : (
-        <Image
-          className="flex items-center justify-center object-contain"
-          src={props.icon}
-          width={15}
-          height={15}
-          alt={props.alt}
-        />
-      )}
-    </div>
-  );
-};
-
-const BookmarkInfo = (props: {
-  link: string;
-  setBookmark: Dispatch<SetStateAction<string>>;
-}) => {
-  const { data, isLoading, error } = useSWR<BookmarkData>(
-    `/api/metadata/general?url=${props.link}`,
-    fetcher
-  );
-
-  return (
-    <div
-      onClick={() => props.setBookmark(props.link)}
-      className="flex flex-col rounded-lg border-[1px] border-transparent p-2 hover:cursor-pointer hover:border-gray-300 active:bg-gray-100"
-    >
-      <InfoHeader title={isLoading ? "Loading..." : data.name} />
-      <div className="flex flex-row items-center gap-x-1">
-        <LinkIcon
-          isLoading={isLoading}
-          error={error}
-          icon={data?.icon}
-          alt={data?.link}
-        />
-        <span className={`${inter.className} text-sm text-gray-400`}>
-          {!isLoading && !error ? new URL(data.link).hostname : "Loading..."}
+    <Link href={`https://${props.link}`} target="_blank">
+      <div className="flex h-[31px] w-full flex-col justify-center gap-y-[2px] rounded-sm bg-[#323232] p-2 hover:bg-[#5f5f5f]">
+        <span className="flex flex-col text-[7px] font-medium text-white hover:underline">
+          {props.title}
         </span>
-      </div>
-    </div>
-  );
-};
-
-const Container = (props: {
-  children?:
-    | string
-    | number
-    | boolean
-    | ReactElement<any, string | JSXElementConstructor<any>>
-    | ReactFragment
-    | ReactPortal
-    | null
-    | undefined;
-  className?: string;
-}) => {
-  return (
-    <div
-      className={`gap-y-2 overflow-auto rounded-[10px] bg-[#fff] p-2 shadow-xl ${props.className}`}
-    >
-      {props.children}
-    </div>
-  );
-};
-
-const LinksContainer = (props: {
-  bookmark: string;
-  setBookmark: Dispatch<SetStateAction<string>>;
-  setEntry: Dispatch<SetStateAction<BookmarkEntry>>;
-}) => {
-  const { data, isLoading } = useSWR<BookmarkEntries>(`/api/bookmark`, fetcher);
-
-  useEffect(() => {
-    if (!isLoading) {
-      props.setBookmark(data.bookmarks[0].link);
-      props.setEntry(data.bookmarks[0]);
-    }
-  }, [isLoading]);
-
-  useEffect(() => {
-    if (!isLoading) {
-      const entry = data.bookmarks.filter(
-        (item) => item.link === props.bookmark
-      );
-      props.setEntry(entry[0]);
-    }
-  }, [props.bookmark]);
-
-  return (
-    <Container className="max-h-[370px] min-w-[230px] max-w-[230px]">
-      {isLoading
-        ? null
-        : data.bookmarks.map((bookmark) => (
-            <BookmarkInfo
-              key={bookmark.link}
-              link={bookmark.link}
-              setBookmark={props.setBookmark}
-            />
-          ))}
-    </Container>
-  );
-};
-
-const BookmarkInformation = (props: {
-  bookmark: string;
-  entry: BookmarkEntry;
-}) => {
-  const { data, isLoading, error } = useSWR<BookmarkData>(
-    `api/metadata/general?url=${props.bookmark}`,
-    fetcher
-  );
-
-  return (
-    <Container className="h-fit max-h-[339px] min-w-[432px] overflow-auto p-4">
-      <div className="flex flex-row items-center justify-between">
-        <div className="flex flex-col">
-          <span
-            className={`${inter.className} my-1 w-fit rounded-md bg-gray-800 px-2 py-1 text-xs text-white`}
-          >
-            {props.entry ? props.entry.tag : "Loading..."}
+        <div className="flex flex-row">
+          <div className="h-[7px] w-[7px] rounded-sm bg-[#1F1F1F]" />
+          <span className="text-[5px] text-[#D9D9D9]">{props.link}</span>
+          <div className="h-[7px] w-[7px] rounded-full bg-[#D9D9D9]" />
+          <span className="text-[5px] text-[#D9D9D9]">
+            Bookmarked at: {props.bookmarkedAt}
           </span>
-          <span className={`${inter.className} text-lg font-medium`}>
-            {isLoading ? "Loading..." : data.name}
-          </span>
-          <div className="flex flex-row items-center gap-x-1">
-            {!isLoading && (
-              <LinkIcon
-                isLoading={isLoading}
-                error={error}
-                icon={data.icon}
-                alt={data.link}
-              />
-            )}
-            <Link href={isLoading ? "/" : data.link} target="_blank">
-              <span
-                className={`${inter.className} text-sm text-gray-400 hover:underline`}
-              >
-                {isLoading ? "Loading..." : new URL(data.link).hostname}
-              </span>
-            </Link>
-          </div>
         </div>
-
-        {!isLoading && data?.image && (
-          <Link
-            href={data.link}
-            target="_blank"
-            className="flex min-h-fit min-w-[130px] origin-center overflow-hidden rounded-md hover:scale-[1.1] hover:shadow-md"
-          >
-            <Image src={data.image} width={130} height={135} alt={data.link} />
-          </Link>
-        )}
       </div>
-      <Divider className="mt-2 mb-4" />
-      <span className={`${inter.className} text-sm font-medium text-gray-500`}>
-        {data?.description}
-      </span>
-      <LinkButton label={"Visit link"} link={""} type={"default"} />
-      <span className={`${inter.className} text-xs font-medium text-gray-500`}>
-        {props.entry
-          ? `Date Bookmarked: ${props.entry.bookmarkedAt.split("T")[0]}`
-          : "Loading..."}
-      </span>
-    </Container>
+    </Link>
   );
 };
 
 const BookmarksSection = () => {
-  const [bookmark, setBookmark] = useState<string>("");
-  const [entry, setEntry] = useState<BookmarkEntry>(null);
-
   return (
-    <CardContainer className="flex h-[500px] max-w-[710px] flex-col px-4">
-      <CardHeader
-        className="px-8"
-        title={"My Bookmarks"}
-        desc={
-          "let’s take a look at some of the things I’ve found interesting or useful."
-        }
-      />
-      <Divider className="mt-2 mb-4" />
-      <div className="flex h-full flex-row justify-center gap-x-4">
-        {bookmark !== "" ? (
-          <BookmarkInformation entry={entry} bookmark={bookmark} />
-        ) : null}
-        <LinksContainer
-          setEntry={setEntry}
-          setBookmark={setBookmark}
-          bookmark={bookmark}
-        />
+    <CardContainer className="mx-auto flex h-[357.5px] w-11/12 flex-col overflow-hidden px-0 py-0 md:w-[700px] lg:h-[300px]">
+      <div className="relative h-full w-full items-end justify-end">
+        <div className="absolute bottom-[15%] z-10 mb-2 ml-2 hidden md:block">
+          <Image
+            alt="Bookmark Tip"
+            src={"/images/bookmark-tip.png"}
+            width={150}
+            height={150}
+          />
+        </div>
+        <div className="absolute bottom-0 z-10 mb-2 ml-2 rounded-full border-4 border-transparent bg-white p-2 duration-150 hover:scale-[1.1] hover:border-gray-200">
+          <Link href={"/bookmarks"}>
+            <Icon
+              className="z-25 h-[25px] w-[25px] text-black"
+              icon="eva:diagonal-arrow-right-up-fill"
+            />
+          </Link>
+        </div>
+        <h1 className="absolute mt-4 ml-4 font-chubbo text-3xl font-bold text-text-primary">
+          Bookmarks
+        </h1>
+        <motion.div
+          whileHover={{ translateY: "-30px" }}
+          style={{
+            height: "300px",
+            width: "300px",
+            rotateZ: -10,
+            borderRadius: "5px",
+            zIndex: 1,
+            position: "absolute",
+            right: "30%",
+            bottom: "-20%",
+          }}
+        >
+          <div className="flex h-full w-full flex-col rounded-md border-2 border-[#3D3D3D] bg-[#1F1F1F] p-2">
+            <span className="text-[11px] font-bold text-white">WEBSITES</span>
+            <p className="text-[5px] text-white">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Vestibulum iaculis viverra sem quis scelerisque. In ac facilisis
+              tellus. Donec a turpis tempus, viverra urna non, vestibulum
+              sapien.
+            </p>
+            <Divider className="my-2" thickness="light" color="light" />
+            <div className="flex w-full flex-col justify-center gap-y-[2px]">
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+            </div>
+          </div>
+        </motion.div>
+        <motion.div
+          whileHover={{ translateY: "-30px" }}
+          style={{
+            height: "300px",
+            width: "300px",
+            rotateZ: -10,
+            borderRadius: "5px",
+            zIndex: 2,
+            position: "absolute",
+            right: "20%",
+            bottom: "-20%",
+          }}
+        >
+          <div className="flex h-full w-full flex-col rounded-md border-2 border-[#3D3D3D] bg-[#1F1F1F] p-2">
+            <span className="text-[11px] font-bold text-white">WEBSITES</span>
+            <p className="text-[5px] text-white">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Vestibulum iaculis viverra sem quis scelerisque. In ac facilisis
+              tellus. Donec a turpis tempus, viverra urna non, vestibulum
+              sapien.
+            </p>
+            <Divider className="my-2" thickness="light" color="light" />
+            <div className="flex w-full flex-col justify-center gap-y-[2px]">
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+            </div>
+          </div>
+        </motion.div>
+        <motion.div
+          whileHover={{ translateY: "-30px" }}
+          style={{
+            height: "300px",
+            width: "300px",
+            rotateZ: -10,
+            borderRadius: "5px",
+            zIndex: 3,
+            position: "absolute",
+            right: "10%",
+            bottom: "-20%",
+          }}
+        >
+          <div className="flex h-full w-full flex-col rounded-md border-2 border-[#3D3D3D] bg-[#1F1F1F] p-2">
+            <span className="text-[11px] font-bold text-white">WEBSITES</span>
+            <p className="text-[5px] text-white">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Vestibulum iaculis viverra sem quis scelerisque. In ac facilisis
+              tellus. Donec a turpis tempus, viverra urna non, vestibulum
+              sapien.
+            </p>
+            <Divider className="my-2" thickness="light" color="light" />
+            <div className="flex w-full flex-col justify-center gap-y-[2px]">
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+            </div>
+          </div>
+        </motion.div>
+        <motion.div
+          whileHover={{ translateY: "-30px" }}
+          style={{
+            height: "300px",
+            width: "300px",
+            rotateZ: -10,
+            borderRadius: "5px",
+            zIndex: 4,
+            position: "absolute",
+            right: 0,
+            bottom: "-20%",
+          }}
+        >
+          <div className="flex h-full w-full flex-col rounded-md border-2 border-[#3D3D3D] bg-[#1F1F1F] p-2">
+            <span className="text-[11px] font-bold text-white">WEBSITES</span>
+            <p className="text-[5px] text-white">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Vestibulum iaculis viverra sem quis scelerisque. In ac facilisis
+              tellus. Donec a turpis tempus, viverra urna non, vestibulum
+              sapien.
+            </p>
+            <Divider className="my-2" thickness="light" color="light" />
+            <div className="flex w-full flex-col justify-center gap-y-[2px]">
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+            </div>
+          </div>
+        </motion.div>
+        <motion.div
+          whileHover={{ translateY: "-30px" }}
+          style={{
+            height: "300px",
+            width: "300px",
+            rotateZ: -10,
+            borderRadius: "5px",
+            zIndex: 5,
+            position: "absolute",
+            right: "-10%",
+            bottom: "-20%",
+            padding: "10px",
+          }}
+        >
+          <div className="flex h-full w-full flex-col rounded-md border-2 border-[#3D3D3D] bg-[#1F1F1F] p-2">
+            <span className="text-[11px] font-bold text-white">WEBSITES</span>
+            <p className="text-[5px] text-white">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Vestibulum iaculis viverra sem quis scelerisque. In ac facilisis
+              tellus. Donec a turpis tempus, viverra urna non, vestibulum
+              sapien.
+            </p>
+            <Divider className="my-2" thickness="light" color="light" />
+            <div className="flex w-full flex-col justify-center gap-y-[2px]">
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+              <BookmarkLink
+                title={"Lorem ipsum dolor sit amet"}
+                bookmarkedAt={"September, 05, 2020"}
+                link={"twitter.com/arevalolance"}
+              />
+            </div>
+          </div>
+        </motion.div>
       </div>
     </CardContainer>
   );

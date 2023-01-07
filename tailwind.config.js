@@ -10,29 +10,66 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        "text-primary": "#DEDEDE",
+        "text-secondary": "#999999",
+        "background-primary": "#171717",
+        "background-surface": "#202020",
+        "background-btn": "#DEDEDE",
+        "border-surface": "#3D3D3D",
+        "border-button": "#666666",
+      },
       fontFamily: {
         sans: ["Inter", ...fontFamily.sans],
+        chubbo: ["Chubbo-Variable", ...fontFamily.sans],
+        supreme: ["Supreme-Variable", ...fontFamily.sans],
+        tanker: ["Tanker-Regular", ...fontFamily.sans],
       },
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            color: theme("colors.gray.700"),
+            color: theme("colors.text-primary"),
             a: {
-              color: theme("colors.blue.500"),
+              color: theme("colors.blue.400"),
               "&:hover": {
-                color: theme("colors.blue.700"),
+                color: theme("colors.blue.600"),
               },
               code: { color: theme("colors.blue.400") },
             },
+            blockquote: {
+              borderLeftColor: theme("colors.text-primary"),
+              color: theme("colors.gray.300"),
+            },
             "h2,h3,h4": {
+              color: theme("colors.gray.100"),
               "scroll-margin-top": spacing[32],
             },
+            hr: { borderColor: theme("colors.text-primary") },
+            ol: {
+              li: {
+                "&:before": { color: theme("colors.gray.500") },
+              },
+            },
+            ul: {
+              li: {
+                "&:before": { backgroundColor: theme("colors.gray.500") },
+              },
+            },
+            strong: { color: theme("colors.gray.100") },
             thead: {
-              borderBottomColor: theme("colors.gray.200"),
+              th: {
+                color: theme("colors.gray.100"),
+              },
+              borderBottomColor: theme("colors.gray.600"),
             },
             code: { color: theme("colors.pink.500") },
             "blockquote p:first-of-type::before": false,
             "blockquote p:last-of-type::after": false,
+          },
+          tbody: {
+            tr: {
+              borderBottomColor: theme("colors.text-primary"),
+            },
           },
         },
       }),

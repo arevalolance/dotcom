@@ -1,59 +1,47 @@
-import { Be_Vietnam_Pro } from "@next/font/google";
-import Image from "next/image";
 import BlogSection from "components/BlogSection";
 import BookmarksSection from "components/BookmarksSection";
-import Divider from "components/Divider";
 import MailCard from "components/MailCard";
 import SummarySection from "components/SummarySection";
-import ToolSection from "components/ToolSection";
 import TwitterCard from "components/TwitterCard";
 import Container from "components/Container";
-
-const beVietnamPro = Be_Vietnam_Pro({
-  subsets: ["latin"],
-  weight: "900",
-});
+import { Suspense } from "react";
+import MapCard from "components/MapCard";
+import ToolSection from "components/ToolSection";
 
 const Index = () => {
   return (
     <Container>
-      <div className="mx-auto flex min-h-[367px] max-w-[1040px] flex-row items-center">
-        <div className="mr-5">
-          <h1
-            className={`${beVietnamPro.className} text-[71px] leading-none text-gray-900`}
-          >
-            LANCE AREVALO
-          </h1>
-          <Divider thickness="heavy" color="dark" />
-          <span>~ software developer ~</span>
-        </div>
-
-        <Image
-          src="/images/PFP.png"
-          alt={""}
-          width={367}
-          height={367}
-          priority
-        />
-      </div>
-
-      <div className="flex flex-row justify-between">
-        <div className="flex w-fit flex-col gap-8">
+      <Suspense fallback={false}>
+        <div className="mx-auto flex w-[390px] flex-wrap justify-center gap-4 md:w-[768px] lg:w-[1000px]">
           <SummarySection />
-          <ToolSection />
-        </div>
 
-        <div className="flex w-fit flex-col gap-8">
-          <BlogSection />
+          <div className="flex w-full flex-col justify-between gap-4 md:hidden md:flex-row lg:flex">
+            <BlogSection />
+            <MapCard />
+          </div>
 
-          <div className="flex flex-row justify-between">
-            <MailCard />
+          <div className="hidden w-full flex-col justify-center gap-4  md:flex md:flex-row lg:hidden">
+            <BlogSection />
+          </div>
+
+          <div className="hidden h-fit flex-col justify-between gap-4 md:flex md:w-[698px] md:flex-row lg:hidden">
+            <MapCard />
             <TwitterCard />
           </div>
 
-          <BookmarksSection />
+          <div className="flex w-full flex-col justify-between gap-4 md:flex-row">
+            <div className="flex md:hidden lg:flex">
+              <TwitterCard />
+            </div>
+            <BookmarksSection />
+          </div>
+
+          <div className="flex w-full flex-col justify-between gap-4 md:flex-col lg:flex-row">
+            <MailCard />
+            <ToolSection />
+          </div>
         </div>
-      </div>
+      </Suspense>
     </Container>
   );
 };

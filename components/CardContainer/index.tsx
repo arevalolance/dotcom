@@ -3,8 +3,8 @@ import {
   JSXElementConstructor,
   ReactFragment,
   ReactPortal,
+  useEffect,
 } from "react";
-import styles from "./CardContainer.module.css";
 
 const CardContainer = (props: {
   children:
@@ -17,11 +17,10 @@ const CardContainer = (props: {
     | null
     | undefined;
   className?: string;
-  grow?: boolean;
 }) => {
   return (
     <div
-      className={`rounded-3xl bg-[#F8F8F8] p-10 drop-shadow-md hover:drop-shadow-xl ${props.className}`}
+      className={`rounded-3xl border-[1px] border-border-surface bg-background-surface p-10 ${props.className}`}
     >
       {props.children}
     </div>

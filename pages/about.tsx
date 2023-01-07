@@ -7,39 +7,35 @@ import TwitterCard from "components/TwitterCard";
 import { about } from "lib/info";
 import Container from "components/Container";
 
-const inter = Inter({ subsets: ["latin"], weight: ["400", "700"] });
-
 const About = () => {
   return (
     <Container>
-      <div className="flex w-full flex-row gap-8">
-        <div className="flex flex-col gap-8">
-          <MailCard />
-          <TwitterCard />
-        </div>
-        <div className="flex w-full">
+      <div className="mx-auto flex w-[390px] flex-wrap justify-center gap-4 md:w-[768px] lg:w-[1000px]">
+        <div className="flex w-11/12 md:w-full">
           <CardContainer className="w-full">
-            <CardHeader
-              className="text-2xl"
-              title={"About Me"}
-              size="text-2xl"
-            />
+            <h1 className="font-chubbo text-2xl font-bold text-text-primary">
+              About Me
+            </h1>
             <Divider className="my-2" thickness="light" />
             <div className="flex flex-col gap-4">
               {about.map((item, index) => (
                 <div key={index}>
                   <span
-                    className={`${inter.className} text-xs font-bold text-gray-400`}
+                    className={`font-chubbo text-xs font-bold text-text-secondary`}
                   >
                     {item.header}
                   </span>
-                  <p className={`${inter.className} text-lg text-gray-600`}>
+                  <p className={`font-supreme text-lg text-text-primary`}>
                     {item.desc}
                   </p>
                 </div>
               ))}
             </div>
           </CardContainer>
+        </div>
+        <div className="flex w-full flex-col justify-between gap-y-4 md:flex-row">
+          <MailCard className="md:w-[450px]" />
+          <TwitterCard />
         </div>
       </div>
     </Container>

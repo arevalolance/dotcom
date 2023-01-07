@@ -1,58 +1,24 @@
-import ArticleCard from "components/ArticleCard";
 import CardContainer from "components/CardContainer";
-import CardHeader from "components/CardHeader";
+import LinkButton from "components/LinkButton";
 
 const BlogSection = () => {
   return (
-    <CardContainer className="max-w-[710px]">
-      <CardHeader
-        title={"Latest thoughts"}
-        desc={"below is where you can see my latest thoughts through my blog."}
-      />
-      {/* TODO: turn into a carousel of recent articles (max: 5 articles only) */}
-      <div className="flex w-full snap-x snap-mandatory flex-row gap-6 overflow-scroll scroll-smooth py-4 pb-9">
-        <div className="snap-center">
-          <div className="w-[135px]" />
-        </div>
-        <div className="snap-center">
-          <ArticleCard
-            title={"a quick brown fox jumps over the lazy dog"}
-            publishedAt={"08/10/2022"}
-            summary={
-              "publishedAt publishedAtpublishedAt publishedAt publishedAt publishedAtpublishedAtpublishedAtpublishedAt publishedAt publishedAt"
-            }
-          />
-        </div>
-        <div className="snap-center">
-          <ArticleCard
-            title={"a quick brown fox jumps over the lazy dog"}
-            publishedAt={"08/10/2022"}
-            summary={
-              "publishedAt publishedAtpublishedAt publishedAt publishedAt publishedAtpublishedAtpublishedAtpublishedAt publishedAt publishedAt"
-            }
-          />
-        </div>
-        <div className="snap-center">
-          <ArticleCard
-            title={"a quick brown fox jumps over the lazy dog"}
-            publishedAt={"08/10/2022"}
-            summary={
-              "publishedAt publishedAtpublishedAt publishedAt publishedAt publishedAtpublishedAtpublishedAtpublishedAt publishedAt publishedAt"
-            }
-          />
-        </div>
-        <div className="snap-center">
-          <ArticleCard
-            title={"a quick brown fox jumps over the lazy dog"}
-            publishedAt={"08/10/2022"}
-            summary={
-              "publishedAt publishedAtpublishedAt publishedAt publishedAt publishedAtpublishedAtpublishedAtpublishedAt publishedAt publishedAt"
-            }
-          />
-        </div>
-        <div className="snap-center">
-          <div className="w-[135px]" />
-        </div>
+    <CardContainer className="mx-auto flex h-fit w-11/12 flex-col justify-between gap-y-2 overflow-hidden p-1 md:mx-0 md:h-[300px] md:w-[700px] md:p-6">
+      <div className="flex flex-col gap-y-2 text-text-primary">
+        <h1 className="font-chubbo text-xl font-bold">
+          Instagram expands Reels to 90 seconds
+        </h1>
+        <p className="text-md font-supreme">
+          Meta on Thursday announced a series of updates and new features for
+          its Reels on Facebook and Instagram. While Instagram Reels&apos;
+          length has been extended to 90 seconds from 60 seconds, users can now
+          also import their own audio directly.
+        </p>
+      </div>
+
+      <div className="flex flex-row items-center justify-between">
+        <LinkButton label={"Read more"} link={`/blog`} />
+        <span className="font-supreme text-text-primary">March 1, 2020</span>
       </div>
     </CardContainer>
   );

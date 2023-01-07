@@ -2,42 +2,26 @@ import { Inter } from "@next/font/google";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 
-const inter = Inter({ subsets: ["latin"], weight: "500" });
-
 const LinkButton = (props: {
   label: string;
   link: string;
-  type: "twitter" | "mail" | "github" | "linkedin" | "default";
   icon?: string;
+  className?: string;
+  onClick?: () => void;
 }) => {
-  let btnType;
-  switch (props.type) {
-    case "twitter":
-      btnType = "btn-twitter";
-      break;
-    case "mail":
-      btnType = "btn-mail";
-      break;
-    case "github":
-      btnType = "btn-github";
-      break;
-    case "linkedin":
-      btnType = "btn-linkedin";
-      break;
-    default:
-      btnType = "btn-default";
-      break;
-  }
-
   return (
-    <Link href={props.link}>
+    <Link href={props.link} className="w-fit">
       <button
-        className={`${inter.className} ${btnType} flex flex-row items-center justify-center text-gray-700`}
+        onClick={props.onClick}
+        className={`flex flex-row items-center justify-center
+        gap-1 rounded-full
+        border-4 border-border-button/50
+        bg-background-surface px-3 py-1 text-white
+        duration-150 hover:border-border-button active:border-gray-400
+        ${props.className}`}
       >
+        <Icon icon="eva:diagonal-arrow-right-up-fill" className="text-lg" />
         {props.label}
-        {props.icon && (
-          <Icon className="text-[20px] text-gray-700" icon={props.icon} />
-        )}
       </button>
     </Link>
   );

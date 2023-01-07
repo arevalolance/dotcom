@@ -6,11 +6,7 @@ const ToolBar = (props: {
   activeTool: string;
 }) => {
   return (
-    <div
-      className="mt-2 flex flex-row justify-between rounded-md border-[1px]
-    border-gray-400 px-[6px]
-    py-[4px]"
-    >
+    <div className="flex flex-row justify-between gap-x-2 overflow-auto scroll-smooth rounded-md border-[1px] border-gray-200 p-1">
       <ToolPill
         isActive={props.activeTool === "Development"}
         onClick={props.setActiveTool}

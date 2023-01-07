@@ -2,26 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .btn-twitter {
-    @apply mt-4 w-full rounded-lg border-[1px] border-[#DAD9DD] bg-[#fff] p-2 text-center hover:border-[#000] hover:bg-[#f7f7f7] active:border-[#000] active:bg-[#1DA1F2] active:text-white;
-  }
+@font-face {
+  font-family: "Tanker-Regular";
+  src: url("/fonts/Tanker-Regular.woff2") format("woff2"),
+    url("/fonts/Tanker-Regular.woff") format("woff"),
+    url("/fonts/Tanker-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
 
-  .btn-mail {
-    @apply mt-4 w-full rounded-lg border-[1px] border-[#DAD9DD] bg-[#fff] p-2 text-center hover:border-[#19E5FF] hover:bg-[#f7f7f7] active:border-[#1E53EE] active:bg-gray-200 active:text-black;
-  }
+@font-face {
+  font-family: "Chubbo-Variable";
+  src: url("/fonts/Chubbo-Variable.woff2") format("woff2"),
+    url("/fonts/Chubbo-Variable.woff") format("woff"),
+    url("/fonts/Chubbo-Variable.ttf") format("truetype");
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
+}
 
-  .btn-github {
-    @apply mt-4 w-full rounded-lg border-[1px] border-[#DAD9DD] bg-[#fff] p-2 text-center hover:border-[#211f1f] hover:bg-[#f7f7f7] active:border-[#000] active:bg-[#211f1f] active:text-white;
-  }
+@font-face {
+  font-family: "Supreme-Variable";
+  src: url("/fonts/Supreme-Variable.woff2") format("woff2"),
+    url("/fonts/Supreme-Variable.woff") format("woff"),
+    url("/fonts/Supreme-Variable.ttf") format("truetype");
+  font-weight: 100 800;
+  font-display: swap;
+  font-style: normal;
+}
 
-  .btn-linkedin {
-    @apply mt-4 w-full rounded-lg border-[1px] border-[#DAD9DD] bg-[#fff] p-2 text-center hover:border-[#0077b5] hover:bg-[#f7f7f7] active:border-[#000] active:bg-[#0077b5] active:text-white;
-  }
+html {
+  min-width: 360px;
+  scroll-behavior: smooth;
+  background-color: #171717;
+}
 
-  .btn-default {
-    @apply mt-4 w-full rounded-lg border-[1px] border-[#DAD9DD] bg-[#fff] p-2 text-center hover:border-[#000] hover:bg-[#f7f7f7] active:border-[#000] active:bg-[#D9D9D9] active:text-gray-900;
-  }
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* https://seek-oss.github.io/capsize/ */
@@ -71,7 +91,7 @@
 }
 
 .prose .anchor:after {
-  @apply text-gray-300 dark:text-gray-700;
+  @apply text-text-secondary;
   content: "#";
 }
 
@@ -80,15 +100,15 @@
 }
 
 .prose pre {
-  @apply border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-900;
+  @apply border border-gray-700 bg-gray-900;
 }
 
 .prose code {
-  @apply rounded-lg border border-gray-100 bg-gray-100 px-1 py-0.5 text-gray-800 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-200;
+  @apply rounded-lg border border-gray-800 bg-gray-900 px-1 py-0.5 text-gray-200;
 }
 
 .prose pre code {
-  @apply p-0 text-gray-800 dark:text-gray-200;
+  @apply p-0 text-gray-200;
   border: initial;
 }
 
@@ -107,11 +127,11 @@
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  @apply text-gray-700 dark:text-gray-300;
+  @apply text-gray-300;
 }
 
 .token.punctuation {
-  @apply text-gray-700 dark:text-gray-300;
+  @apply text-gray-300;
 }
 
 .token.property,
@@ -160,7 +180,7 @@
 
 code[class*="language-"],
 pre[class*="language-"] {
-  @apply text-gray-800 dark:text-gray-50;
+  @apply text-gray-50;
 }
 
 pre::-webkit-scrollbar {
@@ -173,7 +193,7 @@ pre {
 }
 
 .rehype-code-title {
-  @apply rounded-t-lg border border-b-0 border-gray-200 bg-gray-200 px-5 py-3 font-mono text-sm font-bold text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200;
+  @apply rounded-t-lg border border-b-0 border-gray-700 bg-gray-800 px-5 py-3 font-mono text-sm font-bold text-gray-200;
 }
 
 .rehype-code-title + pre {
@@ -181,7 +201,7 @@ pre {
 }
 
 .highlight-line {
-  @apply -mx-4 block border-l-4 border-blue-500 bg-gray-100 px-4 dark:bg-gray-800;
+  @apply -mx-4 block border-l-4 border-blue-500 bg-gray-800 px-4;
 }
 
 /* Remove Safari input shadow on mobile */
@@ -192,21 +212,8 @@ input[type="email"] {
   appearance: none;
 }
 
-.metric-card > a {
-  @apply no-underline;
-}
-
-.metric-card > p {
-  @apply my-2;
-}
-
 .step > h3 {
   @apply my-0;
-}
-
-.prose .tweet a {
-  text-decoration: inherit;
-  font-weight: inherit;
 }
 
 table {

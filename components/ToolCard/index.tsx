@@ -2,10 +2,7 @@ import { Inter } from "@next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { shortener } from "lib/stringMan";
-import { Tooltip } from "@mui/material";
 import { useState } from "react";
-
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500"] });
 
 const ToolCard = (props: {
   name: string;
@@ -15,10 +12,9 @@ const ToolCard = (props: {
 }) => {
   const [imageError, setImageError] = useState(false);
   return (
-    <Link href={props.url}>
-      <div className="flex min-h-[80px] items-center justify-between rounded-md border-[1px] border-[#E1E1E1] bg-white p-2">
-        <div className="flex w-full flex-row items-center  gap-2">
-          {/* TODO: Maybe change Image into AppIcon component */}
+    <Link href={props.url} target="_blank">
+      <div className="flex min-h-[80px] items-center justify-between rounded-md border-[1px] border-tan-gray-light p-2 hover:border-tan-gray-dark">
+        <div className="flex w-full flex-row items-center  gap-x-4">
           <div className="max-h-[50px] max-w-[50px] overflow-hidden rounded-md">
             {props.icon && !imageError ? (
               <Image
@@ -33,22 +29,15 @@ const ToolCard = (props: {
           </div>
 
           <div
-            className={`${inter.className} flex h-full w-full flex-col gap-y-1 overflow-hidden`}
+            className={`flex h-full w-full flex-col gap-y-1 overflow-hidden`}
           >
-            <span className="text-md font-medium leading-none">
+            <span className={`text-md font-medium leading-none`}>
               {props.name}
             </span>
-            {props.info ? (
-              <Tooltip title={props.info}>
-                <span className="text-xs font-medium leading-none text-gray-500">
-                  {props.info.length >= 60
-                    ? shortener(props.info, 50)
-                    : props.info}
-                </span>
-              </Tooltip>
-            ) : null}
             {props.url ? (
-              <span className="text-xs font-normal text-gray-500">
+              <span
+                className={`text-xs font-normal text-blue-500 hover:text-blue-700`}
+              >
                 {props.url.length >= 50 ? shortener(props.url, 40) : props.url}
               </span>
             ) : null}

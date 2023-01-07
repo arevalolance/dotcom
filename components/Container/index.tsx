@@ -42,12 +42,13 @@ const Container = (props) => {
           <meta property="article:published_time" content={meta.date} />
         )}
       </Head>
-      <div className="flex flex-col justify-center">
-        <Navbar />
-        <main id="skip" className="flex flex-col justify-center">
-          {children}
-        </main>
-      </div>
+      <Navbar />
+      <main
+        id="skip"
+        className="my-10 flex w-full flex-col justify-center bg-[#171717]"
+      >
+        {children}
+      </main>
     </>
   );
 };

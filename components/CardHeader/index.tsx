@@ -7,17 +7,13 @@ interface CardHeaderProps {
   size?: string;
 }
 
-const inter = Inter({ subsets: ["latin"], weight: "500" });
-
 const CardHeader = (props: CardHeaderProps) => {
   return (
     <div className={`flex items-center ${props.className}`}>
-      <p
-        className={`${inter.className} ${
-          props.size ? props.size : "text-lg"
-        } text-gray-500`}
-      >
-        <span className="text-gray-900">{props.title}</span>
+      <p className={`${props.size ? props.size : "text-lg"} font-supreme`}>
+        <span className="font-chubbo text-xl font-bold text-black">
+          {props.title}
+        </span>
         {props.desc ? `—${props.desc}` : null}
       </p>
     </div>
