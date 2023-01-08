@@ -32,7 +32,7 @@ const BookmarksSection = () => {
         <div className="absolute bottom-[15%] z-10 mb-2 ml-2 hidden md:block">
           <Image
             alt="Bookmark Tip"
-            src={"/images/bookmark-tip.png"}
+            src={"/images/bookmark-tip.webp"}
             width={150}
             height={150}
           />

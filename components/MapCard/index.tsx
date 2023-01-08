@@ -1,16 +1,16 @@
-import { Icon } from "@iconify/react";
 import Image from "next/image";
+import styles from "./MapCard.module.css";
 
 const MapCard = () => {
   return (
     <div
-      className="mx-auto flex
-    h-[357.5px] w-11/12
-    items-center justify-center
-    rounded-3xl
-    border-[1px] border-border-surface bg-[url('/images/MAP.jpg')]
-    bg-contain bg-no-repeat md:mx-0 md:h-[300px]
-    md:min-w-[300px] md:max-w-[300px]"
+      className={`${styles.map} mx-auto
+      flex h-[357.5px]
+      w-11/12 items-center
+      justify-center
+      rounded-3xl border-[1px] border-border-surface
+      bg-contain bg-no-repeat md:mx-0 md:h-[300px]
+      md:min-w-[300px] md:max-w-[300px]`}
     >
       <div
         className="flex
@@ -23,7 +23,7 @@ const MapCard = () => {
       >
         <Image
           alt="Ttestse"
-          src={"/images/MAP_MEMOJI.png"}
+          src={"/images/MAP_MEMOJI.webp"}
           className="rounded-full"
           width={90}
           height={90}

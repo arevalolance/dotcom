@@ -21,46 +21,8 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           onChange={(e) => setSearchValue(e.target.value)}
         />
 
-        {searchValue === "" && (
-          <div className="mt-8">
-            <span className={`text-xl font-medium text-text-primary`}>
-              Most Popular
-            </span>
-            <div className="mx-auto">
-              <BlogLink
-                title={"A quick brown fox jumps over the lazy dog"}
-                publishedAt={"09-09-2000"}
-                slug={"test-slug"}
-                summary={
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit ac mi nec facilisis. Cras non metus tincidunt arcu lacinia maximus. Etiam ac ipsum consectetur, condimentum lectus nec, vehicula nulla. Aenean feugiat vulputate gravida."
-                }
-                tag={"Essay"}
-              />
-              <BlogLink
-                title={"A quick brown fox jumps over the lazy dog"}
-                publishedAt={"09-09-2000"}
-                slug={"test-slug"}
-                summary={
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit ac mi nec facilisis. Cras non metus tincidunt arcu lacinia maximus. Etiam ac ipsum consectetur, condimentum lectus nec, vehicula nulla. Aenean feugiat vulputate gravida."
-                }
-              />
-              <BlogLink
-                title={"A quick brown fox jumps over the lazy dog"}
-                publishedAt={"09-09-2000"}
-                slug={"test-slug"}
-                summary={
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam suscipit ac mi nec facilisis. Cras non metus tincidunt arcu lacinia maximus. Etiam ac ipsum consectetur, condimentum lectus nec, vehicula nulla. Aenean feugiat vulputate gravida."
-                }
-              />
-            </div>
-          </div>
-        )}
-
         <div className="mt-8">
-          <span className={`text-xl font-medium text-text-primary`}>
-            Most Recent
-          </span>
-          <div className="mx-auto mt-4">
+          <div className="mx-auto">
             {searchValue !== "" && filteredBlogPosts.length === 0 ? (
               <span className="text-text-primary">
                 No blog posts with the term &apos;{searchValue}&apos; found
