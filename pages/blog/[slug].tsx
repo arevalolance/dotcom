@@ -5,22 +5,19 @@ import { getClient, sanityClient } from "lib/sanity-client";
 import { Post } from "lib/types";
 import { MDXRemote } from "next-mdx-remote";
 import components from "components/MDXComponents";
-import Container from "components/Container";
 
 const PostPage = ({ post }: { post: Post }) => {
   return (
-    <Container>
-      <BlogLayout post={post}>
-        <MDXRemote
-          {...post.content}
-          components={
-            {
-              ...components,
-            } as any
-          }
-        />
-      </BlogLayout>
-    </Container>
+    <BlogLayout post={post}>
+      <MDXRemote
+        {...post.content}
+        components={
+          {
+            ...components,
+          } as any
+        }
+      />
+    </BlogLayout>
   );
 };
 

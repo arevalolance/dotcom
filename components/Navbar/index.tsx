@@ -84,6 +84,7 @@ const Navbar = () => {
           href={"https://linkedin.com/in/arevalolance"}
           icon={"eva:linkedin-fill"}
         />
+        <IconLink title={"RSS Feed"} href={"/feed.xml"} icon={"bi:rss-fill"} />
       </div>
     </div>
   );
