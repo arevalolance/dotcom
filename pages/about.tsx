@@ -9,7 +9,7 @@ import Container from "components/Container";
 
 const About = () => {
   return (
-    <Container>
+    <Container title="About - Lance Arevalo">
       <div className="mx-auto flex w-[390px] flex-wrap justify-center gap-4 md:w-[768px] lg:w-[1000px]">
         <div className="flex w-11/12 md:w-full">
           <CardContainer className="w-full">
