@@ -16,7 +16,7 @@ const BlogLayout = ({ children, post }: PropsWithChildren<{ post: Post }>) => {
             height={24}
             width={24}
             sizes="20vw"
-            src="/images/PFP.png"
+            src="/images/PFP.webp"
             className="rounded-full"
           />
           <p className="ml-2 text-sm text-text-secondary">
