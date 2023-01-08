@@ -28,6 +28,7 @@ const SummarySection = () => {
           width={250}
           height={250}
           alt="Lance Arevalo"
+          priority
         />
       </div>
     </div>
