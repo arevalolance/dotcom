@@ -2,9 +2,11 @@ import fetcher from "lib/fetcher";
 import useSWR from "swr";
 import Image from "next/image";
 import { BookmarkEntries, BookmarkData, BookmarkEntry } from "lib/types";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
+import { getBookmarks } from "./api/bookmark";
+import Divider from "components/Divider";
 
 const SubLink = (props: { name; icon; link }) => {
   return (
@@ -38,7 +40,7 @@ const BookmarkLink = (props: {
             props.bookmark?.link === data.link
               ? "bg-background-surface"
               : "bg-background-primary/75"
-          } p-2 hover:bg-background-surface`}
+          } p-2 hover:cursor-pointer hover:bg-background-surface`}
         >
           <span className="overflow-hidden text-ellipsis whitespace-nowrap  text-text-primary">
             {data.name}
@@ -143,12 +145,10 @@ const Closer = () => {
   );
 };
 
-const Bookmarks = () => {
-  const { data, isLoading } = useSWR<BookmarkEntries>("/api/bookmark", fetcher);
+const Bookmarks = ({ bookmarks }: { bookmarks: BookmarkEntry[] }) => {
   const [bookmark, setBookmark] = useState<BookmarkData>(undefined);
-  const bookmarkTag = data?.bookmarks?.filter(
-    (b) => b.link === bookmark?.link
-  )[0]?.tag;
+  const bookmarkTag = bookmarks.filter((b) => b.link === bookmark?.link)[0]
+    ?.tag;
 
   return (
     <>
@@ -156,14 +156,14 @@ const Bookmarks = () => {
       <MobileLinks
         bookmark={bookmark}
         setBookmark={setBookmark}
-        links={isLoading ? null : data.bookmarks}
+        links={bookmarks}
       />
 
-      <div className="m-auto flex h-screen w-screen flex-row rounded-md border-border-surface md:h-[600px] md:w-[700px] md:border-[1px] lg:w-[1000px]">
+      <div className="m-auto flex h-screen w-screen flex-row rounded-md border-border-surface bg-background-surface md:h-[600px] md:w-[700px] md:border-[1px] lg:w-[1000px]">
         <DesktopLinks
           bookmark={bookmark}
           setBookmark={setBookmark}
-          links={isLoading ? null : data.bookmarks}
+          links={bookmarks}
         />
         {bookmark ? (
           <div className="flex h-full w-full items-center justify-center">
@@ -180,6 +180,7 @@ const Bookmarks = () => {
                   icon={bookmark.icon}
                   link={bookmark.link}
                 />
+                <Divider className="mt-2" thickness="light" color="light" />
                 <p className="text-md my-5 w-full overflow-hidden text-ellipsis italic text-text-secondary">
                   {bookmark.description}
                 </p>
@@ -199,12 +200,25 @@ const Bookmarks = () => {
           </div>
         ) : (
           <span className="m-auto text-lg text-text-primary">
-            Select a Bookmark
+            {bookmarks.length === 0
+              ? "Lance hasn't made any bookmarks yet"
+              : "Select a bookmark"}
           </span>
         )}
       </div>
     </>
   );
 };
+
+export async function getStaticProps() {
+  const res = await getBookmarks();
+  const bookmarks = JSON.parse(res);
+
+  return {
+    props: {
+      bookmarks,
+    },
+  };
+}
 
 export default Bookmarks;

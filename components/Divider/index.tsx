@@ -22,18 +22,20 @@ const Divider = (props: {
   let color;
   switch (props.color) {
     case "light":
-      color = "gray-500";
+      color = "border-surface";
       break;
     case "dark":
-      color = "gray-900";
+      color = "border-button";
       break;
     default:
-      color = "gray-900";
+      color = "border-surface";
       break;
   }
 
   return (
-    <hr className={`border-${color} border-${thickness} ${props.className}`} />
+    <hr
+      className={`border-${color} border-[${thickness}] ${props.className}`}
+    />
   );
 };
 
