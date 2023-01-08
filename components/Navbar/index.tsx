@@ -5,7 +5,12 @@ import { useRouter } from "next/router";
 
 const IconLink = (props: { title: string; href: string; icon: string }) => {
   return (
-    <Link className="hover:cursor-pointer " href={props.href}>
+    <Link
+      className="hover:cursor-pointer "
+      aria-label={props.title}
+      href={props.href}
+      target="_blank"
+    >
       <Tooltip title={props.title}>
         <Icon
           className="h-[25px] w-[25px] text-text-primary"
@@ -28,6 +33,7 @@ const NavItem = (props: { text: string; url: string; isActive: boolean }) => {
       text-text-primary hover:cursor-pointer
       hover:border-border-surface hover:bg-background-primary/30
       ${props.isActive ? "border-border-surface bg-background-primary" : ""}`}
+      aria-label={props.text}
     >
       <span>{props.text}</span>
     </Link>
@@ -56,18 +62,26 @@ const Navbar = () => {
       <div className="hidden flex-row gap-4 md:flex">
         <IconLink
           title={"Share to your friends"}
-          href={""}
+          href={
+            "https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20website:%20https://arevalolance.me"
+          }
           icon={"eva:share-fill"}
         />
         <IconLink
           title={"DM me on Twitter"}
-          href={""}
+          href={
+            "https://twitter.com/messages/compose?recipient_id=1562404850637639680&text=Hi!"
+          }
           icon={"eva:message-square-fill"}
         />
-        <IconLink title={"Resume/CV"} href={""} icon={"mingcute:paper-fill"} />
+        {/* <IconLink
+          title={"Resume/CV"}
+          href={"/resume"}
+          icon={"mingcute:paper-fill"}
+        /> */}
         <IconLink
           title={"Connect with me"}
-          href={""}
+          href={"https://linkedin.com/in/arevalolance"}
           icon={"eva:linkedin-fill"}
         />
       </div>

@@ -11,7 +11,7 @@ const BlogSection = ({ post }) => {
       </div>
 
       <div className="flex flex-row items-center justify-between">
-        <LinkButton label={"Read more"} link={`/blog/${post.slug}`} />
+        <LinkButton label={"Read Blog Post"} link={`/blog/${post.slug}`} />
         <span className="font-supreme text-text-primary">
           {format(parseISO(post.date), "MMMM dd, yyyy")}
         </span>
