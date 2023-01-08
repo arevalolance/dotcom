@@ -24,7 +24,7 @@ const SummarySection = () => {
       </div>
       <div className="h-[250px] w-[250px] shrink-0 grow-0 overflow-hidden rounded-full">
         <Image
-          src="/images/PFP.webp"
+          src="/static/images/PFP.webp"
           width={250}
           height={250}
           alt="Lance Arevalo"

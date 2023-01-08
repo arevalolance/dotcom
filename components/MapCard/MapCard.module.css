@@ -1,8 +1,10 @@
 .map {
-  background-image: url("/images/MAP.jpg");
+  background-image: url("/static/images/MAP.jpg");
 }
-@supports (background-image: -webkit-image-set(url("/images/MAP.webp") 1x)) {
+@supports (
+  background-image: -webkit-image-set(url("/static/images/MAP.webp") 1x)
+) {
   .map {
-    background-image: -webkit-image-set(url("/images/MAP.webp") 1x);
+    background-image: -webkit-image-set(url("/static/images/MAP.webp") 1x);
   }
 }

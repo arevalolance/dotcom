@@ -23,7 +23,7 @@ const MapCard = () => {
       >
         <Image
           alt="Ttestse"
-          src={"/images/MAP_MEMOJI.webp"}
+          src={"/static/images/MAP_MEMOJI.webp"}
           className="rounded-full"
           width={90}
           height={90}

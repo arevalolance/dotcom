@@ -28,5 +28,4 @@ export const about = [
 export const email = "arevalolance@icloud.com";
 export const twitter_url = "https://twitter.com/arevalolance";
 export const twitter_handle = "@arevalolance";
-export const twitter_pfp = "/images/PFP.png";
 export const twitter_name = "Lance Arevalo";
