@@ -10,9 +10,9 @@ const getYoutubeData = async (slug: string) => {
     });
 
     return {
-      title: response.data.title,
-      creator: response.data.author_name,
-      creator_url: response.data.author_url,
+      title: response.data?.title,
+      creator: response.data?.author_name,
+      creator_url: response.data?.author_url,
     };
   } catch (err) {
     return null;

@@ -55,27 +55,27 @@ const LinkEmbed = (props: { slug: string; tag: string }) => {
                 <span className="text-sm font-medium text-text-primary hover:underline">
                   {isLoading
                     ? "Loading..."
-                    : data.title.length > 60
-                    ? shortener(data.title, 60)
-                    : data.title}
+                    : data?.title.length > 60
+                    ? shortener(data?.title, 60)
+                    : data?.title}
                 </span>
               </div>
             </Link>
 
             <Link
-              href={isLoading ? "#" : data.creator_url}
+              href={isLoading ? "#" : data?.creator_url}
               className="text-xs font-medium text-text-secondary hover:underline"
             >
-              @{isLoading ? "Loading..." : data.creator}
+              @{isLoading ? "Loading..." : data?.creator}
             </Link>
           </div>
 
           <p className={`text-sm font-normal text-text-secondary`}>
             {isLoading
               ? "Loading..."
-              : data.description.length > 210
-              ? shortener(data.description, 200)
-              : data.description}
+              : data?.description.length > 210
+              ? shortener(data?.description, 200)
+              : data?.description}
           </p>
         </div>
       </div>
@@ -112,11 +112,11 @@ const BlogLinkHeader = (props: {
       <div className="mb-2 flex flex-col justify-between md:flex-row md:items-center">
         <p>
           {props.tag && <TagPill tag={props.tag} tagColor={tagColor} />}
-          <h1
-            className={`my-2 whitespace-normal text-lg font-bold text-text-primary hover:underline md:max-w-[500px] lg:max-w-[700px]`}
+          <span
+            className={`my-2 block whitespace-normal text-lg font-bold text-text-primary hover:underline md:max-w-[500px] lg:max-w-[680px]`}
           >
-            {props.title} this is a test if long test this
-          </h1>
+            {props.title} this is a test if long test this this note
+          </span>
         </p>
         <div className="mt-2 flex flex-row gap-x-4">
           <ViewCounter slug={props.slug} count={false} />

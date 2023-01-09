@@ -26,9 +26,9 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Inter", ...fontFamily.sans],
-        chubbo: ["Chubbo-Variable", ...fontFamily.sans],
-        supreme: ["Supreme-Variable", ...fontFamily.sans],
-        tanker: ["Tanker-Regular", ...fontFamily.sans],
+        chubbo: ["var(--font-chubbo)", ...fontFamily.sans],
+        supreme: ["var(--font-supreme)", ...fontFamily.sans],
+        tanker: ["var(--font-tanker)", ...fontFamily.sans],
       },
       typography: (theme) => ({
         DEFAULT: {

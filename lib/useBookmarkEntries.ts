@@ -39,27 +39,27 @@ export default function useBookmarkEntries() {
           {
             name: "TECHNICAL",
             description: "Technical articles, videos, and websites",
-            links: filterBookmarks(data.bookmarks, "TECHNICAL"),
+            links: filterBookmarks(data?.bookmarks, "TECHNICAL"),
           },
           {
             name: "READINGS",
             description: "Articles, videos, and websites",
-            links: filterBookmarks(data.bookmarks, "READING"),
+            links: filterBookmarks(data?.bookmarks, "READING"),
           },
           {
             name: "DESIGNS",
             description: "Articles, videos, and websites",
-            links: filterBookmarks(data.bookmarks, "DESIGN"),
+            links: filterBookmarks(data?.bookmarks, "DESIGN"),
           },
           {
             name: "VIDEOS",
             description: "Articles, videos, and websites",
-            links: filterBookmarks(data.bookmarks, "VIDEO"),
+            links: filterBookmarks(data?.bookmarks, "VIDEO"),
           },
           {
             name: "WEBSITES",
             description: "Articles, videos, and websites",
-            links: filterBookmarks(data.bookmarks, "WEBSITE"),
+            links: filterBookmarks(data?.bookmarks, "WEBSITE"),
           },
         ]);
         setLoading(false);
