@@ -9,7 +9,7 @@ import { BookmarkData } from "lib/types";
 import useSWR from "swr";
 import fetcher from "lib/fetcher";
 import useBookmarkEntries from "lib/useBookmarkEntries";
-import { useEffect } from "react";
+import { shortener } from "lib/stringMan";
 
 const normalPos = [-10, 0, 10, 20, 30];
 const smallPos = [-30, -20, -10, 0, 10];
@@ -23,17 +23,17 @@ const BookmarkLink = (props: { bookmarkedAt; link }) => {
   return (
     <Link href={props.link} target="_blank">
       <div className="flex h-[31px] w-full flex-col justify-center gap-y-[2px] rounded-sm bg-[#323232] p-2 hover:bg-[#5f5f5f]">
-        <span className="flex flex-col text-[7px] font-medium text-white hover:underline">
-          {isLoading ? "Loading..." : data.name}
-        </span>
-        <div className="flex flex-row gap-[2px]">
+        <h1 className="flex flex-col text-ellipsis text-[7px] font-medium text-white hover:underline">
+          {isLoading ? "Loading..." : shortener(data?.name, 65)}
+        </h1>
+        <div className="flex flex-row items-center gap-[2px]">
           <div className="flex h-[7px] w-[7px]  items-center justify-center overflow-hidden rounded-sm">
             {!isLoading && (
               <Image src={data?.icon} width={7} height={7} alt={data?.name} />
             )}
           </div>
           <span className="text-[5px] text-[#D9D9D9]">{props.link}</span>
-          <div className="h-[7px] w-[7px] rounded-full bg-[#D9D9D9]" />
+          <div className="mx-2 h-[3px] w-[3px] rounded-full bg-[#D9D9D9]" />
           <span className="text-[5px] text-[#D9D9D9]">
             Bookmarked at: {props.bookmarkedAt}
           </span>

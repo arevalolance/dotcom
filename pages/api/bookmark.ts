@@ -3,7 +3,11 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export async function getBookmarks() {
   try {
-    const entries = await prisma.bookmarks.findMany();
+    const entries = await prisma.bookmarks.findMany({
+      orderBy: {
+        bookmarkedAt: "desc",
+      },
+    });
     return JSON.stringify(entries);
   } catch (err) {
     return "";

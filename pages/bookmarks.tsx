@@ -1,8 +1,8 @@
 import fetcher from "lib/fetcher";
 import useSWR from "swr";
 import Image from "next/image";
-import { BookmarkEntries, BookmarkData, BookmarkEntry } from "lib/types";
-import { Suspense, useEffect, useState } from "react";
+import { BookmarkData, BookmarkEntry } from "lib/types";
+import { Suspense, useState } from "react";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
 import { getBookmarks } from "./api/bookmark";
@@ -35,17 +35,17 @@ const BookmarkLink = (props: {
     <Suspense fallback={false}>
       {!isLoading && (
         <div
-          onClick={() => props.setBookmark(data)}
+          onClick={() => props.setBookmark({ ...data, link: props.link })}
           className={`flex w-full flex-col rounded-md border-[1px] border-border-surface ${
-            props.bookmark?.link === data.link
+            props.bookmark?.link === data?.link
               ? "bg-background-surface"
               : "bg-background-primary/75"
           } p-2 hover:cursor-pointer hover:bg-background-surface`}
         >
           <span className="overflow-hidden text-ellipsis whitespace-nowrap  text-text-primary">
-            {data.name}
+            {data?.name}
           </span>
-          <SubLink name={data.name} icon={data.icon} link={data.link} />
+          <SubLink name={data?.name} icon={data?.icon} link={data?.link} />
         </div>
       )}
     </Suspense>
@@ -147,8 +147,9 @@ const Closer = () => {
 
 const Bookmarks = ({ bookmarks }: { bookmarks: BookmarkEntry[] }) => {
   const [bookmark, setBookmark] = useState<BookmarkData>(undefined);
-  const bookmarkTag = bookmarks.filter((b) => b.link === bookmark?.link)[0]
-    ?.tag;
+  const bookmarkTag = bookmarks.filter(
+    (b) => b.link.toLowerCase() === bookmark?.link.toLowerCase()
+  )[0]?.tag;
 
   return (
     <>
@@ -169,9 +170,11 @@ const Bookmarks = ({ bookmarks }: { bookmarks: BookmarkEntry[] }) => {
           <div className="flex h-full w-full items-center justify-center">
             <div className="m-auto flex h-fit w-11/12 justify-center rounded-md border-[1px] border-border-surface bg-background-primary py-10 md:border-t-[1px] md:border-b-[1px]">
               <div className="flex h-fit w-8/12 flex-col">
-                <span className="mb-2 w-fit rounded-md border-[1px] border-border-surface py-1 px-2 text-sm text-text-primary">
-                  {bookmarkTag}
-                </span>
+                {bookmarkTag && (
+                  <span className="mb-2 w-fit rounded-md border-[1px] border-border-surface py-1 px-2 text-sm text-text-primary">
+                    {bookmarkTag}
+                  </span>
+                )}
                 <h1 className="text-xl font-bold text-text-primary">
                   {bookmark.name}
                 </h1>
