@@ -27,6 +27,56 @@ const About = () => {
                   </p>
                 </div>
               ))}
+              <div>
+                <span
+                  className={`font-chubbo text-xs font-bold text-text-secondary`}
+                >
+                  WHAT I&apos;M CURRENTLY DOING
+                </span>
+                <div className="flex flex-row gap-x-2">
+                  <span className="font-supreme text-lg text-text-primary">
+                    1.
+                  </span>
+                  <p className={`font-supreme text-lg text-text-primary`}>
+                    I&apos;m in my senior year studying Computer Science in the
+                    Philippines. On the side, I&apos;m building various projects
+                    that tackle many topics, from UI/UX design to AI.
+                  </p>
+                </div>
+                <div className="flex flex-row gap-x-2">
+                  <span className="font-supreme text-lg text-text-primary">
+                    2.
+                  </span>
+                  <p className={`font-supreme text-lg text-text-primary`}>
+                    I&apos;m working on creating a weekly newsletter tackling
+                    news in technology and business that is worth knowing in a
+                    bite-sized manner. Aside from this, I&apos;m also exploring
+                    the world of content creation (e.g., videos, podcasts, etc.)
+                  </p>
+                </div>
+                <div className="flex flex-row gap-x-2">
+                  <span className="font-supreme text-lg text-text-primary">
+                    3.
+                  </span>
+                  <p className={`font-supreme text-lg text-text-primary`}>
+                    I&apos;ll be compiling and writing about my thoughts on a
+                    wide array of topics I find interesting on this website.
+                    This varies from essays, tutorials, snippets, and many more.
+                    Sorta making it a part of my &apos;second brain.&apos;
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <span
+                  className={`font-chubbo text-xs font-bold text-text-secondary`}
+                >
+                  FAVOURITE QUOTE
+                </span>
+                <p className={`font-supreme text-lg italic text-text-primary`}>
+                  &apos;Fear is the mind-killer&apos; - Dune (Frank Herbert)
+                </p>
+              </div>
             </div>
           </CardContainer>
         </div>
