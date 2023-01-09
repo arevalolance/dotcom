@@ -12,10 +12,12 @@ const SubLink = (props: { name; icon; link }) => {
   return (
     <div className="flex w-full flex-row items-center gap-x-2">
       <div className="flex h-[15px] w-[15px] overflow-hidden rounded-sm">
-        <Image src={props.icon} width={15} height={15} alt={props.name} />
+        {props.icon && (
+          <Image src={props.icon} width={15} height={15} alt={props.name} />
+        )}
       </div>
       <span className="text-text-secondary">
-        {new URL(props.link).hostname}
+        {props.link ? new URL(props.link).hostname : "---"}
       </span>
     </div>
   );
