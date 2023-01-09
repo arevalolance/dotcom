@@ -41,3 +41,8 @@ export type Post = {
   embed: string;
   embedTag;
 };
+
+export type Views = {
+  slug: string;
+  views: number;
+};

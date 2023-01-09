@@ -4,6 +4,7 @@ import Image from "next/image";
 import { parseISO, format } from "date-fns";
 import Container from "components/Container";
 import { urlForImage } from "lib/sanity";
+import ViewCounter from "components/ViewCounter";
 
 const BlogLayout = ({ children, post }: PropsWithChildren<{ post: Post }>) => {
   return (
@@ -34,9 +35,12 @@ const BlogLayout = ({ children, post }: PropsWithChildren<{ post: Post }>) => {
             </p>
           </div>
 
-          <span className="text-sm text-text-secondary">
-            {post.readingTime}
-          </span>
+          <div className="flex flex-row gap-x-2">
+            <span className="text-sm text-text-secondary">
+              {post.readingTime}
+            </span>
+            <ViewCounter slug={post.slug} count={true} />
+          </div>
         </div>
         <Suspense fallback={null}>
           <div className="prose mt-4 w-full max-w-none">{children}</div>

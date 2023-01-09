@@ -1,4 +1,3 @@
-import { Inter } from "@next/font/google";
 import Image from "next/image";
 import { Suspense } from "react";
 import { shortener } from "lib/stringMan";
@@ -6,7 +5,7 @@ import Link from "next/link";
 import fetcher from "lib/fetcher";
 import useSWR from "swr";
 import { YoutubeDetails } from "lib/types";
-import { Icon } from "@iconify/react";
+import ViewCounter from "components/ViewCounter";
 
 const TagPill = (props: { tag: string; tagColor: string }) => {
   return (
@@ -120,15 +119,7 @@ const BlogLinkHeader = (props: {
           </span>
         </p>
         <div className="mt-2 flex flex-row gap-x-4">
-          <div className="flex flex-row items-center gap-x-1">
-            <Icon
-              className="text-sm font-medium text-text-secondary"
-              icon="ic:outline-remove-red-eye"
-            />
-            <span className={`text-sm font-medium text-text-secondary`}>
-              9000
-            </span>
-          </div>
+          <ViewCounter slug={props.slug} count={false} />
           <span className={`text-sm font-medium text-text-secondary`}>
             {props.publishedAt.split("T")[0]}
           </span>
