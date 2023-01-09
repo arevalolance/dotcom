@@ -1,16 +1,13 @@
-import { Inter } from "@next/font/google";
 import CardContainer from "components/CardContainer";
-import CardHeader from "components/CardHeader";
 import Divider from "components/Divider";
 import MailCard from "components/MailCard";
-import TwitterCard from "components/TwitterCard";
 import { about } from "lib/info";
 import Container from "components/Container";
 
 const About = () => {
   return (
     <Container title="About - Lance Arevalo">
-      <div className="mx-auto flex w-[390px] flex-wrap justify-center gap-4 md:w-[768px] lg:w-[1000px]">
+      <div className="mobile-m:[w-375px] mx-auto flex w-[280px] flex-wrap justify-center gap-4 mobile-s:w-[320px] mobile:w-[390px] md:w-[768px] lg:w-[1000px]">
         <div className="flex w-11/12 md:w-full">
           <CardContainer className="w-full">
             <h1 className="font-chubbo text-2xl font-bold text-text-primary">
@@ -34,8 +31,7 @@ const About = () => {
           </CardContainer>
         </div>
         <div className="flex w-full flex-col justify-between gap-y-4 md:flex-row">
-          <MailCard className="md:mx-0 md:w-[450px]" />
-          <TwitterCard />
+          <MailCard className="md:mx-auto md:w-[450px]" />
         </div>
       </div>
     </Container>

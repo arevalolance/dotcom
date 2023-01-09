@@ -5,11 +5,12 @@ const MapCard = () => {
   return (
     <div
       className={`${styles.map} mx-auto
-      flex h-[357.5px]
+      flex h-[265px]
       w-11/12 items-center
-      justify-center
-      rounded-3xl border-[1px] border-border-surface
-      bg-contain bg-no-repeat md:mx-0 md:h-[300px]
+      justify-center rounded-3xl
+      border-[1px]
+      border-border-surface bg-contain bg-no-repeat
+      mobile-s:h-[293px] mobile-m:h-[343px] md:mx-0 md:h-[300px]
       md:min-w-[300px] md:max-w-[300px]`}
     >
       <div

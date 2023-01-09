@@ -4,7 +4,7 @@ import Image from "next/image";
 const SummarySection = () => {
   return (
     <div className="flex w-11/12 flex-col-reverse items-center gap-x-4 md:flex-row md:justify-between lg:w-[1000px]">
-      <div className="flex flex-col text-text-primary">
+      <div className="flex flex-col text-center text-text-primary mobile-m:text-left">
         <span className="font-tanker text-4xl">👋 Hi, I&apos;m</span>
         <h1 className="font-tanker text-6xl md:text-9xl">LANCE AREVALO</h1>
         <p className="font-tanker text-lg">

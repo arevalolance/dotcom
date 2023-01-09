@@ -14,7 +14,7 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   return (
     <Container title="Blog - Lance Arevalo">
-      <div className="mx-auto w-11/12 xl:w-6/12">
+      <div className="mx-auto w-11/12 mobile-s:w-[320px] mobile-m:w-[375px] mobile:w-[390px] md:w-[768px] lg:w-[1000px]">
         <input
           className={`text-md mx-auto w-full rounded-md border-[1px] border-transparent bg-background-surface p-2 text-text-primary placeholder:text-text-secondary focus:border-border-surface focus:outline-none`}
           placeholder="What do you want to read?"

@@ -10,6 +10,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        "mobile-s": "320px",
+        "mobile-m": "375px",
+        mobile: "390px",
+      },
       colors: {
         "text-primary": "#DEDEDE",
         "text-secondary": "#999999",

@@ -26,12 +26,15 @@ const NavItem = (props: { text: string; url: string; isActive: boolean }) => {
     <Link
       href={props.url}
       className={`
-      hover:background-surface/50 rounded-full border-[0.5px] border-transparent
+      hover:background-surface/50 rounded-full border-[0.5px]
+      border-transparent
       bg-background-surface
-      px-7
+      px-4
       py-[10px]
-      text-text-primary hover:cursor-pointer
+      text-text-primary
+      hover:cursor-pointer
       hover:border-border-surface hover:bg-background-primary/30
+      mobile-m:px-7
       ${props.isActive ? "border-border-surface bg-background-primary" : ""}`}
       aria-label={props.text}
     >

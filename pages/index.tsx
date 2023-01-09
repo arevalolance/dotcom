@@ -15,7 +15,7 @@ const Index = ({ post }) => {
   return (
     <Container>
       <Suspense fallback={false}>
-        <div className="mx-auto flex w-[390px] flex-wrap justify-center gap-4 md:w-[768px] lg:w-[1000px]">
+        <div className="mx-auto flex w-[290px] flex-wrap justify-center gap-4 mobile-s:w-[320px] mobile-m:w-[375px] mobile:w-[390px] md:w-[768px] lg:w-[1000px]">
           <SummarySection />
 
           <div className="flex w-full flex-col justify-between gap-4 md:hidden md:flex-row lg:flex">

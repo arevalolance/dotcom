@@ -47,7 +47,7 @@ const Container = (props) => {
       <Navbar />
       <main
         id="skip"
-        className="my-10 flex w-full flex-col justify-center bg-[#171717]"
+        className="mb-10 flex w-full flex-col justify-center bg-[#171717]"
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

@@ -109,14 +109,14 @@ const BlogLinkHeader = (props: {
 
   return (
     <Link href={`/blog/${props.slug}`}>
-      <div className="mb-2 flex flex-col justify-between md:flex-row">
+      <div className="mb-2 flex flex-col justify-between md:flex-row md:items-center">
         <p>
           {props.tag && <TagPill tag={props.tag} tagColor={tagColor} />}
-          <span
-            className={`my-2 text-lg font-bold text-text-primary hover:underline`}
+          <h1
+            className={`my-2 whitespace-normal text-lg font-bold text-text-primary hover:underline md:max-w-[500px] lg:max-w-[700px]`}
           >
-            {props.title}
-          </span>
+            {props.title} this is a test if long test this
+          </h1>
         </p>
         <div className="mt-2 flex flex-row gap-x-4">
           <ViewCounter slug={props.slug} count={false} />
