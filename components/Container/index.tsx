@@ -1,3 +1,4 @@
+import Footer from "components/Footer";
 import Navbar from "components/Navbar";
 import { motion } from "framer-motion";
 import Head from "next/head";
@@ -59,6 +60,7 @@ const Container = (props) => {
           {children}
         </motion.div>
       </main>
+      <Footer />
     </>
   );
 };
