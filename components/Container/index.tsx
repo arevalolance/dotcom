@@ -10,7 +10,7 @@ const Container = (props) => {
   const meta = {
     title: "Lance Arevalo - Your friendly neighborhood developer.",
     description: `Learn more about my journey as a developer, based in the Philippines, who writes about a range of topics including technology and design. I specialize in React and Typescript development.`,
-    image: "",
+    image: "https://arevalolance.me/static/images/banner.png",
     type: "website",
     ...customMeta,
   };
