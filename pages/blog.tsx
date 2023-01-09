@@ -21,29 +21,37 @@ const Blog = ({ posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
           onChange={(e) => setSearchValue(e.target.value)}
         />
 
-        <div className="mt-8">
-          <div className="mx-auto">
-            {searchValue !== "" && filteredBlogPosts.length === 0 ? (
-              <span className="text-text-primary">
-                No blog posts with the term &apos;{searchValue}&apos; found
-              </span>
-            ) : (
-              filteredBlogPosts.map((post) => (
-                <BlogLink
-                  key={post.slug}
-                  title={post.title}
-                  publishedAt={post.date}
-                  slug={post.slug}
-                  summary={post.excerpt}
-                  tag={post.tag}
-                  embed={
-                    post.embed ? { slug: post.embed, tag: post.embedTag } : null
-                  }
-                />
-              ))
-            )}
+        {posts.length > 0 ? (
+          <div className="mt-8">
+            <div className="mx-auto">
+              {searchValue !== "" && filteredBlogPosts.length === 0 ? (
+                <span className="text-text-primary">
+                  No blog posts with the term &apos;{searchValue}&apos; found
+                </span>
+              ) : (
+                filteredBlogPosts.map((post) => (
+                  <BlogLink
+                    key={post.slug}
+                    title={post.title}
+                    publishedAt={post.date}
+                    slug={post.slug}
+                    summary={post.excerpt}
+                    tag={post.tag}
+                    embed={
+                      post.embed
+                        ? { slug: post.embed, tag: post.embedTag }
+                        : null
+                    }
+                  />
+                ))
+              )}
+            </div>
           </div>
-        </div>
+        ) : (
+          <h1 className="mt-8 text-center font-chubbo text-lg text-text-primary">
+            No post has been published yet.
+          </h1>
+        )}
       </div>
     </Container>
   );
