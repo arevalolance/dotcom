@@ -43,22 +43,22 @@ export default function useBookmarkEntries() {
           },
           {
             name: "READINGS",
-            description: "Articles, videos, and websites",
+            description: "Interesting articles, blogs, etc to read",
             links: filterBookmarks(data?.bookmarks, "READING"),
           },
           {
             name: "DESIGNS",
-            description: "Articles, videos, and websites",
+            description: "Awesome design ideas",
             links: filterBookmarks(data?.bookmarks, "DESIGN"),
           },
           {
             name: "VIDEOS",
-            description: "Articles, videos, and websites",
+            description: "Cool videos to watch",
             links: filterBookmarks(data?.bookmarks, "VIDEO"),
           },
           {
             name: "WEBSITES",
-            description: "Articles, videos, and websites",
+            description: "Informative or useful sites that I often visit",
             links: filterBookmarks(data?.bookmarks, "WEBSITE"),
           },
         ]);

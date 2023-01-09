@@ -19,7 +19,11 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const entries = await prisma.bookmarks.findMany();
+    const entries = await prisma.bookmarks.findMany({
+      orderBy: {
+        bookmarkedAt: "desc",
+      },
+    });
     return res.status(200).json({ bookmarks: entries });
   } catch (err) {
     return res.status(500).json({ error: err });
