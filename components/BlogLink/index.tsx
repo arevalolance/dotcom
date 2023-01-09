@@ -115,7 +115,7 @@ const BlogLinkHeader = (props: {
           <span
             className={`my-2 block whitespace-normal text-lg font-bold text-text-primary hover:underline md:max-w-[500px] lg:max-w-[680px]`}
           >
-            {props.title} this is a test if long test this this note
+            {props.title}
           </span>
         </p>
         <div className="mt-2 flex flex-row gap-x-4">
