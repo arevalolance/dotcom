@@ -84,7 +84,7 @@ const links = [
   },
   {
     name: "logos:mysql",
-    link: "https://www.w3schools.com/sql/",
+    link: "https://www.mysql.com/",
   },
   {
     name: "logos:python",
