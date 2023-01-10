@@ -10,8 +10,8 @@ const MapCard = () => {
       justify-center rounded-3xl
       border-[1px]
       border-border-surface bg-contain bg-no-repeat
-      mobile-s:h-[293px] mobile-m:h-[343px] md:mx-0 md:h-[300px]
-      md:min-w-[300px] md:max-w-[300px]`}
+      mobile-s:h-[293px] mobile-m:h-[343px] mobile:h-[357.5px] md:mx-0
+      md:h-[300px] md:min-w-[300px] md:max-w-[300px]`}
     >
       <div
         className="flex
