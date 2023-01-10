@@ -49,16 +49,7 @@ const Container = (props) => {
         id="skip"
         className="mb-10 flex w-full flex-col justify-center bg-[#171717]"
       >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            duration: 0.8,
-            ease: [0, 0.71, 0.2, 1.01],
-          }}
-        >
-          {children}
-        </motion.div>
+        {children}
       </main>
       <Footer />
     </>
