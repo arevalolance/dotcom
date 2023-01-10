@@ -1,6 +1,7 @@
 import "styles/globals.css";
 import type { AppProps } from "next/app";
 import localFont from "@next/font/local";
+import { Analytics } from "@vercel/analytics/react";
 
 const tanker = localFont({
   src: "../public/fonts/Tanker-Regular.woff2",
@@ -36,6 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
         `}
       </style>
       <Component {...pageProps} />
+      <Analytics />
     </>
   );
 }
