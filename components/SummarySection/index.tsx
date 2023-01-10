@@ -16,7 +16,7 @@ const SummarySection = () => {
             build softwares
           </Link>
           , and write{" "}
-          <Link className="underline hover:text-text-primary/75" href="/blogs">
+          <Link className="underline hover:text-text-primary/75" href="/blog">
             blogs
           </Link>
           .
