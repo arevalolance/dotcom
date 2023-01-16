@@ -1,8 +1,10 @@
+import Divider from "components/Divider";
 import Footer from "components/Footer";
 import Navbar from "components/Navbar";
-import { motion } from "framer-motion";
+import Subscribe from "components/Subscribe";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Script from "next/script";
 
 const Container = (props) => {
   const router = useRouter();
@@ -50,6 +52,7 @@ const Container = (props) => {
         className="mb-10 flex w-full flex-col justify-center bg-[#171717]"
       >
         {children}
+        <Subscribe />
       </main>
       <Footer />
     </>
