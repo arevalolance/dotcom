@@ -49,8 +49,8 @@ const Subscribe = () => {
         Subscribe while it&apos;s early
       </h2>
       <p className="text-md font-supreme text-text-secondary">
-        Stay ahead of the game with my newsletter on tech, business, and the
-        internet.
+        Read stories from me directly in your inbox. Join my newsletter, and
+        don&apos;t miss out.
       </p>
       <form className="flex w-9/12 flex-col gap-y-4" onSubmit={subscribe}>
         <input
