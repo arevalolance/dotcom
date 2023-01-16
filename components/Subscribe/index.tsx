@@ -7,7 +7,6 @@ import useSWR from "swr";
 const Subscribe = () => {
   const inputEl = useRef(null);
   const [form, setForm] = useState<FormState>({ state: Form.Initial });
-  const { data } = useSWR<Subscribers>("/api/subscribers", fetcher);
 
   const subscribe = async (e) => {
     e.preventDefault();
@@ -17,8 +16,6 @@ const Subscribe = () => {
     const res = await fetch(`/api/subscribe?email=${email}`, {
       method: "POST",
     });
-
-    console.log(res);
 
     const { error } = await res.json();
     if (error) {
