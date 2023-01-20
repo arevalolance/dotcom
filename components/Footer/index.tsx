@@ -6,19 +6,19 @@ const Footer = () => {
       <div className="mx-auto flex w-[250px] flex-row justify-between sm:w-[390px]">
         <div className="flex flex-col gap-2">
           <Link
-            className="text-md text-text-secondary hover:underline"
+            className="text-text-secondary hover:underline"
             href={"https://github.com/arevalolance"}
           >
             Github
           </Link>
           <Link
-            className="text-md text-text-secondary hover:underline"
+            className="text-text-secondary hover:underline"
             href={"https://twitter.com/arevalolance"}
           >
             Twitter
           </Link>
           <Link
-            className="text-md text-text-secondary hover:underline"
+            className="text-text-secondary hover:underline"
             href={"https://www.linkedin.com/in/arevalolance/"}
           >
             LinkedIn
@@ -26,25 +26,25 @@ const Footer = () => {
         </div>
         <div className="flex flex-col gap-2">
           <Link
-            className="text-md text-text-secondary hover:underline"
+            className="text-text-secondary hover:underline"
             href={"https://www.linkedin.com/in/arevalolance/"}
           >
             Home
           </Link>
           <Link
-            className="text-md text-text-secondary hover:underline"
+            className="text-text-secondary hover:underline"
             href={"https://www.linkedin.com/in/arevalolance/"}
           >
             About
           </Link>
           <Link
-            className="text-md text-text-secondary hover:underline"
+            className="text-text-secondary hover:underline"
             href={"https://www.linkedin.com/in/arevalolance/"}
           >
             Blogs
           </Link>
           <Link
-            className="text-md text-text-secondary hover:underline"
+            className="text-text-secondary hover:underline"
             href={"https://www.linkedin.com/in/arevalolance/"}
           >
             RSS

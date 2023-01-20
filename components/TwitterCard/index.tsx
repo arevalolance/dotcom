@@ -10,18 +10,18 @@ const TwitterCard = () => {
       <div className="relative h-full w-full overflow-hidden rounded-2xl bg-[#98D0FF]">
         <div className="absolute top-1/2 left-1/2 z-30 -translate-x-1/2 -translate-y-1/2">
           <Icon
-            className="z-25 my-auto text-9xl text-white"
+            className="z-20 my-auto text-9xl text-white"
             icon="mdi:twitter"
           />
         </div>
         <div
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="absolute bottom-0 z-10 mb-2 ml-2 rounded-full border-4 border-transparent border-border-button bg-background-surface p-2 duration-150 hover:scale-[1.1] hover:border-gray-200"
+          className="absolute bottom-0 z-10 mb-2 ml-2 rounded-full border-4 border-border-button bg-background-surface p-2 duration-150 hover:scale-[1.1] hover:border-gray-200"
         >
           <Link href={twitter_url} target="_blank" aria-label="Twitter Card">
             <Icon
-              className="z-25 h-[25px] w-[25px] text-text-primary"
+              className="z-20 h-[25px] w-[25px] text-text-primary"
               icon="eva:diagonal-arrow-right-up-fill"
             />
           </Link>

@@ -149,7 +149,7 @@ const BlogLink = (props: {
           publishedAt={props.publishedAt}
           slug={props.slug}
         />
-        <span className={`text-md font-normal text-text-secondary`}>
+        <span className={`font-normal text-text-secondary`}>
           {props.summary}
         </span>
 

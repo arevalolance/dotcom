@@ -6,23 +6,23 @@ const Divider = (props: {
   let thickness;
   switch (props.thickness) {
     case "light":
-      thickness = "1";
+      thickness = "border-1";
       break;
     case "medium":
-      thickness = "2";
+      thickness = "border-2";
       break;
     case "heavy":
-      thickness = "4";
+      thickness = "border-4";
       break;
     default:
-      thickness = "2";
+      thickness = "border-2";
       break;
   }
 
   let color;
   switch (props.color) {
     case "light":
-      color = "border-surface";
+      color = "border-border-surface";
       break;
     case "dark":
       color = "border-button";
@@ -32,11 +32,7 @@ const Divider = (props: {
       break;
   }
 
-  return (
-    <hr
-      className={`border-${color} border-[${thickness}] ${props.className}`}
-    />
-  );
+  return <hr className={`${color} ${thickness} ${props.className}`} />;
 };
 
 export default Divider;

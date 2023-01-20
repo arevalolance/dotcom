@@ -15,7 +15,7 @@ const BlogLayout = ({ children, post }: PropsWithChildren<{ post: Post }>) => {
       date={new Date(post.date).toISOString()}
       type="article"
     >
-      <article className="article mx-auto mb-16 flex w-11/12 max-w-2xl flex-col items-start justify-center">
+      <article className="mx-auto mb-16 flex w-11/12 max-w-2xl flex-col items-start justify-center">
         <h1 className="mb-4 text-3xl font-bold tracking-tight text-text-primary">
           {post.title}
         </h1>

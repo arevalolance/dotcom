@@ -22,7 +22,7 @@ function RoundedImage(props) {
 
 function Callout(props) {
   return (
-    <div className="bg my-8 flex rounded-lg bg-gray-800 p-4">
+    <div className="my-8 flex rounded-lg bg-gray-800 p-4">
       <div className="mr-4 flex w-4 items-center">{props.emoji}</div>
       <div className="callout w-full text-white">{props.children}</div>
     </div>

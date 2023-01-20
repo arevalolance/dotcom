@@ -163,7 +163,7 @@ const ToolSection = () => {
   const [currentActive, setCurrentActive] = useState<string>("");
 
   return (
-    <CardContainer className="mx-auto flex w-11/12 flex-col items-center justify-center overflow-hidden py-0 px-0 md:h-[266px] md:w-[400px]">
+    <CardContainer className="mx-auto flex w-11/12 flex-col items-center justify-center overflow-hidden p-0 md:h-[266px] md:w-[400px]">
       <div className={styles.app}>
         <motion.div style={{ width: "100%", height: "100%" }}>
           <motion.div

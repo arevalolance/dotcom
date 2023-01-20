@@ -19,7 +19,7 @@ const MapCard = () => {
       cursor-pointer
       items-center justify-center overflow-hidden
       rounded-full
-      border-4 border-transparent border-gray-200
+      border-4 border-gray-200
       bg-blue-500/50 p-2 duration-150 hover:scale-[1.1]"
       >
         <Image

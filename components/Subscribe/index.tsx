@@ -48,7 +48,7 @@ const Subscribe = () => {
       <h2 className="font-chubbo text-4xl font-bold text-text-primary">
         Subscribe while it&apos;s early
       </h2>
-      <p className="text-md font-supreme text-text-secondary">
+      <p className="font-supreme text-text-secondary">
         Read stories from me directly in your inbox. Join my newsletter, and
         don&apos;t miss out.
       </p>
@@ -56,7 +56,7 @@ const Subscribe = () => {
         <input
           aria-label="Email for newsletter"
           ref={inputEl}
-          className={`text-md mx-auto w-full rounded-md
+          className={`mx-auto w-full rounded-md
           border-[1px] border-border-surface bg-background-surface p-2
           text-text-primary placeholder:text-text-secondary
           focus:border-border-button focus:outline-none`}

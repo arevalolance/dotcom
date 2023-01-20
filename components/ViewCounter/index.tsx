@@ -17,7 +17,7 @@ const ViewCounter = (props: { slug: string; count: boolean }) => {
 
       registerView();
     }
-  }, [props.slug]);
+  }, [props.count, props.slug]);
 
   return (
     <div className="flex flex-row items-center gap-x-1">

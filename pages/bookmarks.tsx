@@ -107,7 +107,7 @@ const MobileLinks = (props: {
         style={{
           transform: isOpen ? "translateX(0)" : "translateX(-280px)",
         }}
-        className={`z-15 absolute top-0 left-0 h-screen w-[280px] translate-y-[-280px] border-r-[1px] border-border-surface bg-background-primary  pt-16 duration-200 md:hidden`}
+        className={`absolute top-0 left-0 z-10 h-screen w-[280px] translate-y-[-280px] border-r-[1px] border-border-surface bg-background-primary  pt-16 duration-200 md:hidden`}
       >
         <div className="flex h-full w-full flex-col gap-y-2 overflow-auto scroll-smooth p-4">
           <button
@@ -137,10 +137,10 @@ const Closer = () => {
   return (
     <div
       onClick={() => router.push("/")}
-      className="absolute top-[20px] left-1/2 z-10 hidden -translate-x-1/2 cursor-pointer rounded-full border-4 border-transparent border-border-button bg-background-surface p-2 duration-150 hover:scale-[1.1] hover:border-gray-200 md:block"
+      className="absolute top-[20px] left-1/2 z-10 hidden -translate-x-1/2 cursor-pointer rounded-full border-4 border-border-button bg-background-surface p-2 duration-150 hover:scale-[1.1] hover:border-gray-200 md:block"
     >
       <Icon
-        className="z-25 h-[25px] w-[25px] text-text-primary"
+        className="z-20 h-[25px] w-[25px] text-text-primary"
         icon="material-symbols:close"
       />
     </div>
@@ -170,7 +170,7 @@ const Bookmarks = ({ bookmarks }: { bookmarks: BookmarkEntry[] }) => {
         />
         {bookmark ? (
           <div className="flex h-full w-full items-center justify-center">
-            <div className="m-auto flex h-fit w-11/12 justify-center rounded-md border-[1px] border-border-surface bg-background-primary py-10 md:border-t-[1px] md:border-b-[1px]">
+            <div className="m-auto flex h-fit w-11/12 justify-center rounded-md border-[1px] border-border-surface bg-background-primary py-10 md:border-y-[1px]">
               <div className="flex h-fit w-8/12 flex-col">
                 {bookmarkTag && (
                   <span className="mb-2 w-fit rounded-md border-[1px] border-border-surface py-1 px-2 text-sm text-text-primary">
@@ -186,11 +186,11 @@ const Bookmarks = ({ bookmarks }: { bookmarks: BookmarkEntry[] }) => {
                   link={bookmark.link}
                 />
                 <Divider className="mt-2" thickness="light" color="light" />
-                <p className="text-md my-5 w-full overflow-hidden text-ellipsis italic text-text-secondary">
+                <p className="my-5 w-full overflow-hidden text-ellipsis italic text-text-secondary">
                   {bookmark.description}
                 </p>
                 <button
-                  className="text-md flex w-full flex-row items-center justify-center
+                  className="flex w-full flex-row items-center justify-center
                   gap-x-1 rounded-md border-4 border-transparent
                 bg-background-surface py-1 text-white duration-150 hover:border-border-button"
                 >

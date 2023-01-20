@@ -9,7 +9,7 @@ const BlogSection = ({ post }) => {
         <>
           <div className="mb-2 flex flex-col gap-y-4 text-text-primary sm:mb-0">
             <h1 className="font-chubbo text-xl font-bold">{post.title}</h1>
-            <p className="text-md font-supreme">{post.excerpt}</p>
+            <p className="font-supreme">{post.excerpt}</p>
           </div>
 
           <div className="flex flex-col items-center justify-between md:flex-row">

@@ -51,6 +51,7 @@ const NavItem = (props: { text: string; url: string; isActive: boolean }) => {
   return (
     <Link
       href={props.url}
+      // eslint-disable-next-line tailwindcss/no-custom-classname
       className={`
       hover:background-surface/50 rounded-full border-[0.5px]
       border-transparent

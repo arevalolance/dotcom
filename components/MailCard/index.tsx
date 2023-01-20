@@ -9,14 +9,14 @@ const MailCard = (props: { className?: string }) => {
 
   return (
     <CardContainer
-      className={`mx-auto h-[260px] w-11/12 px-6 py-6 md:w-[700px] lg:w-[650px] ${props.className}`}
+      className={`mx-auto h-[260px] w-11/12 p-6 md:w-[700px] lg:w-[650px]${props.className}`}
     >
       <div className="flex h-full flex-col justify-between">
         <div className="flex flex-col gap-y-2 text-text-primary">
           <span className={`font-chubbo text-2xl  font-bold leading-none `}>
             Contact Me
           </span>
-          <p className="text-md font-supreme">
+          <p className="font-supreme">
             Have a question for me? Send your message down below and I&apos;ll
             get to it as soon as I can.
           </p>
@@ -24,7 +24,7 @@ const MailCard = (props: { className?: string }) => {
 
         <div className="flex flex-col gap-y-4">
           <input
-            className={`text-md w-full border-b-2 border-border-surface bg-transparent font-supreme text-text-primary placeholder:text-text-secondary focus:outline-none`}
+            className={`w-full border-b-2 border-border-surface bg-transparent font-supreme text-text-primary placeholder:text-text-secondary focus:outline-none`}
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
