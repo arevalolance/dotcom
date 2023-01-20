@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import { Tooltip } from "@mui/material";
 import { useRouter } from "next/router";
+import * as Tooltip from "@radix-ui/react-tooltip";
+import { cn } from "lib/utils";
 
 const IconLink = (props: { title: string; href: string; icon: string }) => {
   return (
@@ -11,12 +12,37 @@ const IconLink = (props: { title: string; href: string; icon: string }) => {
       href={props.href}
       target="_blank"
     >
-      <Tooltip title={props.title}>
-        <Icon
-          className="h-[25px] w-[25px] text-text-primary"
-          icon={props.icon}
-        />
-      </Tooltip>
+      {" "}
+      <Tooltip.Provider>
+        <Tooltip.Root>
+          <Tooltip.Trigger asChild>
+            <Icon
+              className={cn(
+                "h-[25px] w-[25px]",
+                "text-text-primary hover:text-text-secondary active:text-text-primary"
+              )}
+              icon={props.icon}
+            />
+          </Tooltip.Trigger>
+          <Tooltip.Portal>
+            <Tooltip.Content
+              className={cn(
+                "text-text-primary",
+                "bg-background-surface",
+                "p-2",
+                "rounded-md",
+                "text-sm",
+                "animate-in fade-in-25 slide-in-from-top-2"
+              )}
+              sideOffset={15}
+              side={"bottom"}
+            >
+              {props.title}
+              <Tooltip.Arrow className="fill-background-surface" />
+            </Tooltip.Content>
+          </Tooltip.Portal>
+        </Tooltip.Root>
+      </Tooltip.Provider>
     </Link>
   );
 };

@@ -1,9 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
+import { cn } from "lib/utils";
 
 const SummarySection = () => {
   return (
-    <div className="flex w-11/12 flex-col-reverse items-center gap-x-4 md:flex-row md:justify-between lg:w-[1000px]">
+    <div
+      className={cn(
+        "flex flex-col-reverse items-center gap-x-4 md:flex-row md:justify-between",
+        "w-11/12 lg:w-[1000px]"
+      )}
+    >
       <div className="flex flex-col text-center text-text-primary mobile-m:text-left">
         <span className="font-tanker text-4xl">👋 Hi, I&apos;m</span>
         <h1 className="font-tanker text-6xl md:text-9xl">LANCE AREVALO</h1>

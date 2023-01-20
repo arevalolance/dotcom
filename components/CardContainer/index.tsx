@@ -1,3 +1,4 @@
+import { cn } from "lib/utils";
 import {
   ReactElement,
   JSXElementConstructor,
@@ -20,7 +21,13 @@ const CardContainer = (props: {
 }) => {
   return (
     <div
-      className={`rounded-3xl border-[1px] border-border-surface bg-background-surface p-10 ${props.className}`}
+      className={cn(
+        "border-[1px] border-border-surface",
+        "bg-background-surface",
+        "p-10",
+        "rounded-3xl",
+        props.className
+      )}
     >
       {props.children}
     </div>
