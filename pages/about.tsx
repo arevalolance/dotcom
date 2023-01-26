@@ -81,7 +81,7 @@ const About = () => {
           </CardContainer>
         </div>
         <div className="flex w-full flex-col justify-between gap-y-4 md:flex-row">
-          <MailCard className="md:mx-auto md:w-[450px]" />
+          <MailCard className="md:mx-auto md:w-[768px]" />
         </div>
       </div>
     </Container>
