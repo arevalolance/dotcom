@@ -13,7 +13,7 @@ const IconLink = (props: { title: string; href: string; icon: string }) => {
       target="_blank"
     >
       {" "}
-      <Tooltip.Provider>
+      <Tooltip.Provider delayDuration={50}>
         <Tooltip.Root>
           <Tooltip.Trigger asChild>
             <Icon
