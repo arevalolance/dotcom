@@ -25,7 +25,7 @@ const ViewCounter = (props: { slug: string; count: boolean }) => {
         className="text-sm font-medium text-text-secondary"
         icon="ic:outline-remove-red-eye"
       />
-      <span className={`text-sm font-medium text-text-secondary`}>{`${
+      <span className={`font-supreme font-medium text-text-secondary`}>{`${
         views.valueOf() > 0 ? views.toLocaleString() : "–––"
       } views`}</span>
     </div>

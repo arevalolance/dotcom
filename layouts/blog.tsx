@@ -16,7 +16,7 @@ const BlogLayout = ({ children, post }: PropsWithChildren<{ post: Post }>) => {
       type="article"
     >
       <article className="mx-auto mb-16 flex w-11/12 max-w-2xl flex-col items-start justify-center">
-        <h1 className="mb-4 text-3xl font-bold tracking-tight text-text-primary">
+        <h1 className="mb-4 font-chubbo text-5xl font-bold tracking-tight text-text-primary">
           {post.title}
         </h1>
         <div className="mt-2 flex w-full flex-row items-start justify-between">
@@ -29,21 +29,23 @@ const BlogLayout = ({ children, post }: PropsWithChildren<{ post: Post }>) => {
               src="/static/images/PFP.webp"
               className="rounded-full"
             />
-            <p className="ml-2 text-sm text-text-secondary">
+            <p className="ml-2 font-supreme text-text-secondary">
               {"Lance Arevalo / "}
               {format(parseISO(post.date), "MMMM dd, yyyy")}
             </p>
           </div>
 
           <div className="flex flex-row gap-x-2">
-            <span className="text-sm text-text-secondary">
+            <span className="font-supreme text-text-secondary">
               {post.readingTime}
             </span>
             <ViewCounter slug={post.slug} count={true} />
           </div>
         </div>
         <Suspense fallback={null}>
-          <div className="prose mt-4 w-full max-w-none">{children}</div>
+          <div className="prose mt-4 w-full max-w-none font-supreme">
+            {children}
+          </div>
         </Suspense>
       </article>
     </Container>
