@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# arevalolance.me
 
-## Getting Started
+![Banner](https://www.arevalolance.me/static/images/banner.png)
 
-First, run the development server:
+This personal project is subject to change in terms of design, technology stack, and overall purpose. It serves as my digital playground, and as such, may be in a state of flux. Please use it only as a reference with discretion.
 
-```bash
+## Overview
+
+- `components/*` - Custom UI components
+- `layouts/*` - Custom UI layouts
+- `lib/*` - Helper utilities for external services and other functions
+- `pages/api/*` - API routes for retrieving metadata, view counts, and other data for blog posts
+- `pages/blog/*` - Pre-rendered static pages using MDX
+- `pages/feed.xml.tsx` - Automatically generated RSS feed
+- `pages/sitemap.xml.tsx` - Automatically generated sitemap for SEO optimization
+- `pages/*` - Website routes
+- `prisma/*` - Database schema for MySQL (PlanetScale)
+- `public/*` - Static assets such as fonts and images.
+
+## Stack
+
+- Sanity: CMS
+- Next.js: Framework
+- Prisma: ORM
+- PlanetScale: Database
+- TailwindCSS: Styling
+- Vercel: Deployment
+
+## Running Locally
+
+```
+git clone https://github.com/arevalolance/dotcom.git
+cd dotcom
+npm install
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Roadmap:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- [ ] - Guestbook/AMA Page
+- [ ] - Personal Dashboard
+- [ ] - Integrate Sanity Studio and Live Previews
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+_More over-engineered features and fun stuff coming soon._
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you have any questions DM me on [Twitter](https://twitter.com/arevalolance) or send me an [email](mailto:arevalowrites@gmail.com). Thanks for checking this out!
