@@ -8,6 +8,7 @@ const tanker = localFont({
   weight: "400",
   style: "normal",
   variable: "--font-chubbo",
+  display: "swap",
 });
 
 const chubbo = localFont({
@@ -15,6 +16,7 @@ const chubbo = localFont({
   weight: "200 700",
   style: "normal",
   variable: "--font-chubbo",
+  display: "swap",
 });
 
 const supreme = localFont({
@@ -22,6 +24,7 @@ const supreme = localFont({
   weight: "100 800",
   style: "normal",
   variable: "--font-supreme",
+  display: "swap",
 });
 
 export default function App({ Component, pageProps }: AppProps) {
