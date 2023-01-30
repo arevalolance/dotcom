@@ -12,6 +12,8 @@
     "@next/font": "13.1.1",
     "@popmotion/popcorn": "^0.4.4",
     "@prisma/client": "^4.8.0",
+    "@radix-ui/react-dialog": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.2",
     "@radix-ui/react-tooltip": "^1.0.3",
     "@sanity/image-url": "^1.0.1",
     "@types/node": "18.11.18",
