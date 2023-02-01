@@ -33,6 +33,14 @@ const Container = (props) => {
           href={`https://arevalolance.me${router.asPath}`}
         />
         <link href="https://github.com/arevalolance" rel="me" />
+        <link
+          rel="webmention"
+          href="https://webmention.io/www.arevalolance.me/webmention"
+        />
+        <link
+          rel="pingback"
+          href="https://webmention.io/www.arevalolance.me/xmlrpc"
+        />
         <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content="Lance Arevalo" />
         <meta property="og:description" content={meta.description} />
