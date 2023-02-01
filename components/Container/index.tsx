@@ -32,6 +32,7 @@ const Container = (props) => {
           rel="canonical"
           href={`https://arevalolance.me${router.asPath}`}
         />
+        <link href="https://github.com/arevalolance" rel="me" />
         <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content="Lance Arevalo" />
         <meta property="og:description" content={meta.description} />
