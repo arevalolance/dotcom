@@ -10,8 +10,10 @@ import ToolSection from "components/ToolSection";
 import { getClient } from "lib/sanity-client";
 import { latestPostQuery } from "lib/queries";
 import { Post } from "lib/types";
+import { getFilteredBookmarks } from "./api/bookmark";
+import { getMetadata } from "./api/metadata/general";
 
-const Index = ({ post }) => {
+const Index = ({ post, bookmarks }) => {
   return (
     <Container>
       <Suspense fallback={false}>
@@ -36,7 +38,7 @@ const Index = ({ post }) => {
             <div className="flex md:hidden lg:flex">
               <TwitterCard />
             </div>
-            <BookmarksSection />
+            <BookmarksSection bookmarks={bookmarks} />
           </div>
 
           <div className="flex w-full flex-col justify-between gap-4 md:flex-col lg:flex-row">
@@ -51,10 +53,21 @@ const Index = ({ post }) => {
 
 export async function getStaticProps({ preview = false }) {
   const post: Post = await getClient(preview).fetch(latestPostQuery);
+  const bookmarksRes = await getFilteredBookmarks();
+  let filteredBookmarks = JSON.parse(bookmarksRes as string);
+
+  for (const block of filteredBookmarks) {
+    for (const bookmark of block.links) {
+      const res = await getMetadata(bookmark.link);
+      const data = await JSON.parse(res);
+      bookmark.metadata = data;
+    }
+  }
 
   return {
     props: {
       post: post,
+      bookmarks: filteredBookmarks,
     },
   };
 }

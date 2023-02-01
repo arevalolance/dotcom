@@ -1,6 +1,17 @@
 import getMetaData from "metadata-scraper";
 import { NextApiRequest, NextApiResponse } from "next";
 
+export const getMetadata = async (url: string) => {
+  const data = await getMetaData(url);
+  return JSON.stringify({
+    name: data?.title,
+    link: data?.url,
+    icon: data?.icon,
+    image: data?.image,
+    description: data?.description,
+  });
+};
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { url } = req.query;

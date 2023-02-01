@@ -5,37 +5,40 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import useWindowDimensions from "lib/useWindowDimensions";
-import { BookmarkData } from "lib/types";
+import { BookmarkData, BookmarkEntry, BookmarkLinks } from "lib/types";
 import useSWR from "swr";
 import fetcher from "lib/fetcher";
-import useBookmarkEntries from "lib/useBookmarkEntries";
 import { shortener } from "lib/stringMan";
 
 const normalPos = [-10, 0, 10, 20, 30];
 const smallPos = [-30, -20, -10, 0, 10];
 
-const BookmarkLink = (props: { bookmarkedAt; link }) => {
-  const { data, isLoading } = useSWR<BookmarkData>(
-    `/api/metadata/general?url=${props.link}`,
-    fetcher
-  );
-
+const BookmarkLink = (props: { bookmarks: BookmarkData }) => {
   return (
-    <Link href={props.link} target="_blank">
+    <Link href={props.bookmarks.link} target="_blank">
       <div className="flex h-[31px] w-full flex-col justify-center gap-y-[2px] rounded-sm bg-[#323232] p-2 hover:bg-[#5f5f5f]">
         <h1 className="flex flex-col text-ellipsis text-[7px] font-medium text-white hover:underline">
-          {isLoading ? "Loading..." : shortener(data?.name, 65)}
+          {shortener(props.bookmarks.name, 65)}
         </h1>
         <div className="flex flex-row items-center gap-[2px]">
           <div className="flex h-[7px] w-[7px]  items-center justify-center overflow-hidden rounded-sm">
-            {!isLoading && (
-              <Image src={data?.icon} width={7} height={7} alt={data?.name} />
+            {props.bookmarks.icon ? (
+              <Image
+                src={props.bookmarks.icon}
+                width={7}
+                height={7}
+                alt={props.bookmarks.name}
+              />
+            ) : (
+              <Icon className="h-[7px] w-[7px]" icon="mdi:link-variant" />
             )}
           </div>
-          <span className="text-[5px] text-[#D9D9D9]">{props.link}</span>
+          <span className="text-[5px] text-[#D9D9D9]">
+            {props.bookmarks.link}
+          </span>
           <div className="mx-2 h-[3px] w-[3px] rounded-full bg-[#D9D9D9]" />
           <span className="text-[5px] text-[#D9D9D9]">
-            Bookmarked at: {props.bookmarkedAt}
+            {/* Bookmarked at: {props.bookmark.bookmarkedAt} */}
           </span>
         </div>
       </div>
@@ -43,9 +46,8 @@ const BookmarkLink = (props: { bookmarkedAt; link }) => {
   );
 };
 
-const BookmarksSection = () => {
+const BookmarksSection = (props: { bookmarks: BookmarkLinks[] }) => {
   const { width } = useWindowDimensions();
-  const { bookmarkEntries, loading, error } = useBookmarkEntries();
 
   return (
     <CardContainer className="mx-auto flex h-[357.5px] w-11/12 flex-col overflow-hidden p-0 md:w-[700px] lg:h-[300px]">
@@ -70,41 +72,35 @@ const BookmarksSection = () => {
           Bookmarks
         </h1>
 
-        {!loading &&
-          !error &&
-          bookmarkEntries.map((link, index) => (
-            <motion.div
-              key={link.name}
-              whileHover={{ translateY: "-30px" }}
-              style={{
-                height: "300px",
-                width: "300px",
-                rotateZ: -10,
-                borderRadius: "5px",
-                zIndex: Math.abs(5 - index),
-                position: "absolute",
-                right: `${width > 768 ? normalPos[index] : smallPos[index]}%`,
-                bottom: "-20%",
-              }}
-            >
-              <div className="flex h-full w-full flex-col rounded-md border-2 border-[#3D3D3D] bg-[#1F1F1F] p-2">
-                <span className="text-[11px] font-bold text-white">
-                  {link.name}
-                </span>
-                <p className="text-[5px] text-white">{link.description}</p>
-                <Divider className="my-2" thickness="light" color="light" />
-                <div className="flex w-full flex-col justify-center gap-y-[2px]">
-                  {link.links.map((link) => (
-                    <BookmarkLink
-                      key={link.link}
-                      bookmarkedAt={link.bookmarkedAt}
-                      link={link.link}
-                    />
-                  ))}
-                </div>
+        {props.bookmarks.map((link, index) => (
+          <motion.div
+            key={link.name}
+            whileHover={{ translateY: "-30px" }}
+            style={{
+              height: "300px",
+              width: "300px",
+              rotateZ: -10,
+              borderRadius: "5px",
+              zIndex: Math.abs(5 - index),
+              position: "absolute",
+              right: `${width > 768 ? normalPos[index] : smallPos[index]}%`,
+              bottom: "-20%",
+            }}
+          >
+            <div className="flex h-full w-full flex-col rounded-md border-2 border-[#3D3D3D] bg-[#1F1F1F] p-2">
+              <span className="text-[11px] font-bold text-white">
+                {link.name}
+              </span>
+              <p className="text-[5px] text-white">{link.description}</p>
+              <Divider className="my-2" thickness="light" color="light" />
+              <div className="flex w-full flex-col justify-center gap-y-[2px]">
+                {link.links.map((link) => (
+                  <BookmarkLink key={link.link} bookmarks={link.metadata} />
+                ))}
               </div>
-            </motion.div>
-          ))}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </CardContainer>
   );

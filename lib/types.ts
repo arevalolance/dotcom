@@ -13,11 +13,14 @@ export type BookmarkEntry = {
   id: number;
   link: string;
   tag: string;
-  bookmarkedAt: string;
+  bookmarkedAt: Date;
+  metadata?: BookmarkData;
 };
 
-export type BookmarkEntries = {
-  bookmarks: BookmarkEntry[];
+export type BookmarkLinks = {
+  name: string;
+  description: string;
+  links: BookmarkEntry[];
 };
 
 export type YoutubeDetails = {
