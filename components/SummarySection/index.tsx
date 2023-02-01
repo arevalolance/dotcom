@@ -35,6 +35,7 @@ const SummarySection = () => {
           height={250}
           alt="Lance Arevalo"
           priority
+          unoptimized
         />
       </div>
     </div>
