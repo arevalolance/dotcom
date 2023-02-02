@@ -14,18 +14,19 @@ const TwitterCard = () => {
             icon="mdi:twitter"
           />
         </div>
-        <div
+        <Link
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           className="absolute bottom-0 z-10 mb-2 ml-2 rounded-full border-4 border-border-button bg-background-surface p-2 duration-150 hover:scale-[1.1] hover:border-gray-200"
+          href={twitter_url}
+          target="_blank"
+          aria-label="Twitter Card"
         >
-          <Link href={twitter_url} target="_blank" aria-label="Twitter Card">
-            <Icon
-              className="z-20 h-[25px] w-[25px] text-text-primary"
-              icon="eva:diagonal-arrow-right-up-fill"
-            />
-          </Link>
-        </div>
+          <Icon
+            className="z-20 h-[25px] w-[25px] text-text-primary"
+            icon="eva:diagonal-arrow-right-up-fill"
+          />
+        </Link>
         <div
           className={`${
             isHovered ? "scale-[20]" : ""

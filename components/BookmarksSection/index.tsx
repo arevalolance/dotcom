@@ -60,14 +60,16 @@ const BookmarksSection = (props: { bookmarks: BookmarkLinks[] }) => {
             height={150}
           />
         </div>
-        <div className="absolute bottom-0 z-10 mb-2 ml-2 rounded-full border-4 border-border-button bg-background-surface p-2 duration-150 hover:scale-[1.1] hover:border-gray-200">
-          <Link href={"/bookmarks"} aria-label="Bookmarks">
-            <Icon
-              className="z-20 h-[25px] w-[25px] text-text-primary"
-              icon="eva:diagonal-arrow-right-up-fill"
-            />
-          </Link>
-        </div>
+        <Link
+          className="absolute bottom-0 z-10 mb-2 ml-2 rounded-full border-4 border-border-button bg-background-surface p-2 duration-150 hover:scale-[1.1] hover:border-gray-200"
+          href={"/bookmarks"}
+          aria-label="Bookmarks"
+        >
+          <Icon
+            className="z-20 h-[25px] w-[25px] text-text-primary"
+            icon="eva:diagonal-arrow-right-up-fill"
+          />
+        </Link>
         <h1 className="absolute mt-4 ml-4 font-chubbo text-3xl font-bold text-text-primary">
           Bookmarks
         </h1>
