@@ -25,27 +25,18 @@ const Footer = () => {
           </Link>
         </div>
         <div className="flex flex-col gap-2">
-          <Link
-            className="text-text-secondary hover:underline"
-            href={"https://www.linkedin.com/in/arevalolance/"}
-          >
+          <Link className="text-text-secondary hover:underline" href={"/"}>
             Home
           </Link>
-          <Link
-            className="text-text-secondary hover:underline"
-            href={"https://www.linkedin.com/in/arevalolance/"}
-          >
+          <Link className="text-text-secondary hover:underline" href={"/about"}>
             About
           </Link>
-          <Link
-            className="text-text-secondary hover:underline"
-            href={"https://www.linkedin.com/in/arevalolance/"}
-          >
+          <Link className="text-text-secondary hover:underline" href={"/blog"}>
             Blogs
           </Link>
           <Link
             className="text-text-secondary hover:underline"
-            href={"https://www.linkedin.com/in/arevalolance/"}
+            href={"/feed.xml"}
           >
             RSS
           </Link>
