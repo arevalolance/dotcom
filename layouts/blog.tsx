@@ -101,9 +101,11 @@ const BlogLayout = ({ children, post }: PropsWithChildren<{ post: Post }>) => {
                     <Icon icon="mdi:share" />
                   </div>
                 </DialogTrigger>
-                <DialogContent>
+                <DialogContent className="bg-background-primary">
                   <DialogHeader>
-                    <DialogTitle>Share this post</DialogTitle>
+                    <DialogTitle className="text-text-primary">
+                      Share this post
+                    </DialogTitle>
                   </DialogHeader>
                   <div className="flex flex-col items-center justify-center gap-x-5 rounded-md border-[1px] border-border-surface p-5 text-center sm:flex-row sm:text-start">
                     <Image
@@ -111,7 +113,7 @@ const BlogLayout = ({ children, post }: PropsWithChildren<{ post: Post }>) => {
                       alt="Lance Arevalo"
                       width={170}
                       height={100}
-                      className="rounded-md"
+                      className="rounded-md border-[1px] border-border-surface/50"
                     />
                     <div className="flex flex-col">
                       <span className="font-chubbo text-lg font-bold text-text-primary">
