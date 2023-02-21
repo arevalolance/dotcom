@@ -7,6 +7,7 @@ import { Icon } from "@iconify/react";
 import { useRouter } from "next/router";
 import { getBookmarks } from "./api/bookmark";
 import Divider from "components/Divider";
+import Link from "next/link";
 
 const SubLink = (props: { name; icon; link }) => {
   return (
@@ -189,7 +190,9 @@ const Bookmarks = ({ bookmarks }: { bookmarks: BookmarkEntry[] }) => {
                 <p className="my-5 w-full overflow-hidden text-ellipsis italic text-text-secondary">
                   {bookmark.description}
                 </p>
-                <button
+                <Link
+                  href={bookmark.link}
+                  target="_blank"
                   className="flex w-full flex-row items-center justify-center
                   gap-x-1 rounded-md border-4 border-transparent
                 bg-background-surface py-1 text-white duration-150 hover:border-border-button"
@@ -199,7 +202,7 @@ const Bookmarks = ({ bookmarks }: { bookmarks: BookmarkEntry[] }) => {
                     icon="eva:diagonal-arrow-right-up-fill"
                   />
                   Visit
-                </button>
+                </Link>
               </div>
             </div>
           </div>
