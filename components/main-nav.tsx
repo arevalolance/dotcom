@@ -20,7 +20,7 @@ export function MainNav({ items }: MainNavProps) {
         </Link>
       </div>
 
-      <button className="hidden md:block px-4 py-2 text-sm rounded-md bg-gray-100 hover:border-black/20 transition-colors hover:ease-in duration-150 border-gray-300/7 drop-shadow-sm shadow-inner-[1px] border-[1px]">
+      <button className="hidden md:block p-2 text-sm font-semibold rounded-md bg-gray-100 hover:border-black/20 transition-colors hover:ease-in duration-150 border-gray-300/7 drop-shadow-sm shadow-inner-[1px] border-[1px]">
         Contact me
       </button>
 
@@ -28,7 +28,7 @@ export function MainNav({ items }: MainNavProps) {
         {siteConfig.mainNav.map((item) => (
           <Link
             className={cn(
-              'text-black/70 hover:text-black hover:duration-150 ease-in font-medium'
+              'text-[#404040] hover:text-black hover:duration-150 ease-in font-medium'
             )}
             href={item.href}
             key={item.title}
