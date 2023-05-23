@@ -12,7 +12,7 @@ interface MainNavProps {
 
 export function MainNav({ items }: MainNavProps) {
   return (
-    <div className="container mx-auto flex justify-between items-center py-8">
+    <div className="container mx-auto flex justify-between items-center py-8 px-4 md:px-0">
       <div className="flex flex-row gap-4 items-center">
         <Link href="/">
           <MainLogo />
