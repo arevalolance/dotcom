@@ -1,6 +1,8 @@
+'use client';
+
 import { NavItem } from '@/types/nav';
 import { siteConfig } from '@/types/site-config';
-import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { MainLogo } from './ui/logo';
 import { cn } from '@/lib/utils';
@@ -11,6 +13,11 @@ interface MainNavProps {
 }
 
 export function MainNav({ items }: MainNavProps) {
+  let pathname = usePathname() || '/';
+  if (pathname.includes('/blog/')) {
+    pathname = '/blog';
+  }
+
   return (
     <div className="container mx-auto flex justify-between items-center py-8 px-4 md:px-0">
       <div className="flex flex-row gap-4 items-center">
@@ -28,7 +35,8 @@ export function MainNav({ items }: MainNavProps) {
         {siteConfig.mainNav.map((item) => (
           <Link
             className={cn(
-              'text-[#404040] hover:text-black hover:duration-150 ease-in font-medium'
+              'text-[#404040] hover:text-black hover:duration-150 ease-in font-medium',
+              item.href === pathname ? 'font-bold text-black' : null
             )}
             href={item.href}
             key={item.title}
