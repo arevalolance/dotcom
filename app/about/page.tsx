@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 
+import { projects } from "@/types/projects"
+
 export default function About() {
   return (
     <main className="container mx-auto my-16 lg:w-10/12 xl:w-[60%] 2xl:w-1/2">
@@ -52,32 +54,23 @@ export default function About() {
         <div className="flex flex-col">
           <table className="text-sm">
             <tbody>
-              <tr>
-                <td className="flex">
-                  <Link
-                    className="group flex flex-row items-center gap-[1px] text-sm hover:underline"
-                    href={""}
-                    target="_blank"
-                  >
-                    Project 1
-                    <ArrowUpRight className="h-3 w-3" />
-                  </Link>
-                </td>
-                <td>Description</td>
-              </tr>
-              <tr>
-                <td className="flex">
-                  <Link
-                    className="group flex flex-row items-center gap-[1px] text-sm hover:underline"
-                    href={""}
-                    target="_blank"
-                  >
-                    Project 2
-                    <ArrowUpRight className="h-3 w-3" />
-                  </Link>
-                </td>
-                <td>Description</td>
-              </tr>
+              {projects.recent.map((item) => (
+                <tr key={item.name}>
+                  <td className="m-0 w-[200px] border-spacing-0">
+                    <div className="flex">
+                      <Link
+                        className="group flex flex-row items-center gap-[1px] text-sm hover:underline"
+                        href={""}
+                        target="_blank"
+                      >
+                        {item.name}
+                        <ArrowUpRight className="h-3 w-3" />
+                      </Link>
+                    </div>
+                  </td>
+                  <td>{item.description}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

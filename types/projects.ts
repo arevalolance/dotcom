@@ -1,6 +1,18 @@
 export type Projects = typeof projects
 
 export const projects = {
+  recent: [
+    {
+      name: "Fandom",
+      description:
+        "create custom playlists from your favourite show, book, or movies.",
+    },
+    {
+      name: "design-system-template",
+      description:
+        "a template for your next ui project, built w/ storybook + next.js + tailwind-css",
+    },
+  ],
   side: [
     {
       name: "Fandom - Create Custom Playlists from Your Favorite Books, Movies, and TV Shows.",
