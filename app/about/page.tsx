@@ -7,9 +7,10 @@ export default function About() {
   return (
     <main className="container mx-auto my-16 max-w-[690px]">
       <div className="flex flex-col gap-4">
-        <h4 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-          Hello, I&apos;m Lance
-        </h4>
+        <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+          Hi, I&apos;m Lance
+        </h3>
+
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
         <p>
