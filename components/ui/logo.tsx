@@ -45,11 +45,7 @@ export function MainLogo() {
           gradientUnits="userSpaceOnUse"
         >
           <stop stop-color="#1D1D1D" />
-          <stop
-            offset="0.37668"
-            stop-color="#1D1D1D"
-            stop-opacity="0.924664"
-          />
+          <stop offset="0.37668" stop-color="#1D1D1D" stop-opacity="0.924664" />
           <stop offset="1" stop-color="#1D1D1D" stop-opacity="0.8" />
         </linearGradient>
         <linearGradient
@@ -61,11 +57,7 @@ export function MainLogo() {
           gradientUnits="userSpaceOnUse"
         >
           <stop stop-color="#1D1D1D" />
-          <stop
-            offset="0.37668"
-            stop-color="#1D1D1D"
-            stop-opacity="0.924664"
-          />
+          <stop offset="0.37668" stop-color="#1D1D1D" stop-opacity="0.924664" />
           <stop offset="1" stop-color="#1D1D1D" stop-opacity="0.8" />
         </linearGradient>
         <linearGradient
@@ -77,11 +69,7 @@ export function MainLogo() {
           gradientUnits="userSpaceOnUse"
         >
           <stop stop-color="#1D1D1D" />
-          <stop
-            offset="0.37668"
-            stop-color="#1D1D1D"
-            stop-opacity="0.924664"
-          />
+          <stop offset="0.37668" stop-color="#1D1D1D" stop-opacity="0.924664" />
           <stop offset="1" stop-color="#1D1D1D" stop-opacity="0.8" />
         </linearGradient>
         <linearGradient
@@ -130,5 +118,5 @@ export function MainLogo() {
         </linearGradient>
       </defs>
     </svg>
-  );
+  )
 }

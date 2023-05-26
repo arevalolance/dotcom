@@ -1,5 +1,6 @@
-import { siteConfig } from '@/types/site-config';
-import { MainNav } from './main-nav';
+import { siteConfig } from "@/types/site-config"
+
+import { MainNav } from "./main-nav"
 
 export function SiteHeader() {
   return (
@@ -8,5 +9,5 @@ export function SiteHeader() {
         <MainNav items={siteConfig.mainNav} />
       </div>
     </header>
-  );
+  )
 }

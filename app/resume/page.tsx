@@ -1,3 +1,3 @@
 export default function Resume() {
-  return <main className="container mx-auto"></main>;
+  return <main className="container mx-auto"></main>
 }

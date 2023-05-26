@@ -1,14 +1,23 @@
 {
   "name": "dotme",
-  "version": "0.1.0",
+  "version": "3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "preview": "next build && next start",
+    "typecheck": "tsc --noEmit",
+    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
+    "@radix-ui/react-aspect-ratio": "^1.0.2",
+    "@radix-ui/react-dialog": "^1.0.3",
+    "@radix-ui/react-dropdown-menu": "^2.0.4",
+    "@radix-ui/react-tooltip": "^1.0.5",
     "@types/node": "20.2.3",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
@@ -17,6 +26,9 @@
     "clsx": "^1.2.1",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-tailwindcss": "^3.8.0",
     "lucide": "^0.220.0",
     "lucide-react": "^0.220.0",
     "next": "13.4.3",
@@ -30,6 +42,9 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.9"
+    "@ianvs/prettier-plugin-sort-imports": "^3.7.1",
+    "@iconify/react": "^4.1.0",
+    "@tailwindcss/typography": "^0.5.9",
+    "prettier": "2.8.8"
   }
 }
