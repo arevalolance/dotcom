@@ -64,7 +64,7 @@ export default function Resume() {
   const router = useRouter()
 
   return (
-    <main className="container mx-auto my-16 max-w-[690px]">
+    <main className="container mx-auto my-16 lg:w-10/12 xl:w-[60%] 2xl:w-1/2">
       <div className="flex flex-col gap-4">
         <span className="text-sm">LANCE AREVALO</span>
         <div className="flex flex-row justify-between text-sm">

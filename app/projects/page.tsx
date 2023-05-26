@@ -5,12 +5,12 @@ import ProjectCard from "@/components/project-card"
 
 export default function Projects() {
   return (
-    <main className="container mx-auto my-10 flex flex-col gap-y-10 lg:w-10/12 xl:w-[60%] 2xl:w-1/2">
+    <main className="container mx-auto my-16 flex flex-col gap-y-10 lg:w-10/12 xl:w-[60%] 2xl:w-1/2">
       <div className="flex flex-col gap-4">
         <div className="mb-4 flex flex-col gap-2">
-          <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+          <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Side Projects
-          </h3>
+          </h4>
           <p className="text-justify">
             This contains the fun side projects I have made so far. Some of
             these projects are aimed at helping me have a better experience
@@ -18,7 +18,7 @@ export default function Projects() {
             technologies.
           </p>
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-wrap gap-4">
           {projects.side.map((item) => (
             <ProjectCard item={item} />
           ))}
@@ -27,9 +27,9 @@ export default function Projects() {
 
       <div className="flex flex-col gap-4">
         <div className="mb-4 flex flex-col gap-2">
-          <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+          <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
             My University Projects
-          </h3>
+          </h4>
           <p className="text-justify">
             This section contains the fun projects I made to fulfill
             requirements from different classes throughout my college years.
@@ -45,7 +45,7 @@ export default function Projects() {
             .
           </p>
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-wrap gap-4">
           {projects.college.map((item) => (
             <ProjectCard item={item} />
           ))}

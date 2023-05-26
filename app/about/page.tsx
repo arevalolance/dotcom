@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react"
 
 export default function About() {
   return (
-    <main className="container mx-auto my-16 max-w-[690px]">
+    <main className="container mx-auto my-16 lg:w-10/12 xl:w-[60%] 2xl:w-1/2">
       <div className="flex flex-col gap-4">
         <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
           Hi, I&apos;m Lance
