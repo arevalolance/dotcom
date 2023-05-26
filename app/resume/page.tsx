@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { ArrowUpRight, ExternalLink } from "lucide-react"
 
 interface ResumeInfo {
@@ -58,8 +61,10 @@ function JobSection({ info }: { info?: ResumeInfo }) {
 }
 
 export default function Resume() {
+  const router = useRouter()
+
   return (
-    <main className="container mx-auto max-w-[690px]">
+    <main className="container mx-auto my-16 max-w-[690px]">
       <div className="flex flex-col gap-4">
         <span className="text-sm">LANCE AREVALO</span>
         <div className="flex flex-row justify-between text-sm">
@@ -117,6 +122,13 @@ export default function Resume() {
             volutpat tortor eros sed nisi.
           </p>
         </div>
+
+        <button
+          onClick={() => router.push("/static/resume/arevalolance-resume.pdf")}
+          className="border-gray-300/7 shadow-inner-[1px] hidden rounded-md border-[1px] bg-gray-100 p-2 text-sm font-semibold drop-shadow-sm transition-colors duration-150 hover:border-black/20 hover:ease-in md:block"
+        >
+          Download PDF
+        </button>
       </div>
     </main>
   )
