@@ -73,10 +73,15 @@ module.exports = {
       },
     },
   },
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   plugins: [require("tailwindcss-animate"),
+  require("@tailwindcss/typography"),
   plugin(function ({ addVariant }) {
     addVariant('optional', '&:optional')
     addVariant('group-optional', ':merge(.group):optional &')
     addVariant('peer-optional', ':merge(.peer):optional ~ &')
-  })],
+  }),
+  ],
 }
