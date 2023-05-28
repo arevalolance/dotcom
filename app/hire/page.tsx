@@ -21,7 +21,7 @@ function SectionHeading({
   link?: string
 }) {
   return (
-    <div className="flex flex-row items-center gap-2 text-sm">
+    <div className="flex flex-row items-center gap-2 ">
       <span>{left}</span>
       <hr className="h-[1px] w-full border-t-[1px] border-dotted border-black" />
       {link ? (
@@ -44,7 +44,7 @@ function JobSection({ info }: { info?: ResumeInfo }) {
   return (
     <div className="flex flex-col gap-2">
       <SectionHeading left={2023} right={"Company"} />
-      <div className="flex flex-row items-start gap-10 text-sm">
+      <div className="flex flex-row items-start gap-10 ">
         <div className="flex">
           <span className="whitespace-nowrap">Job Role</span>
         </div>
@@ -66,8 +66,8 @@ export default function Resume() {
   return (
     <main className="container mx-auto my-16 lg:w-10/12 xl:w-[60%] 2xl:w-1/2">
       <div className="flex flex-col gap-4">
-        <span className="text-sm">LANCE AREVALO</span>
-        <div className="flex flex-row justify-between text-sm">
+        <span className="">LANCE AREVALO</span>
+        <div className="flex flex-row justify-between ">
           <span>SOFTWARE DEVELOPER</span>
           <div className="flex flex-row items-center gap-2">
             <span className="relative flex h-2 w-2">
@@ -111,7 +111,7 @@ export default function Resume() {
           <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
             About
           </h4>
-          <p className="text-justify text-sm text-black/80">
+          <p className="text-justify  text-black/80">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
             rutrum, sapien sit amet volutpat lacinia, nisi ante gravida eros, a
             volutpat tortor eros sed nisi.Lorem ipsum dolor sit amet,
@@ -125,7 +125,7 @@ export default function Resume() {
 
         <button
           onClick={() => router.push("/static/resume/arevalolance-resume.pdf")}
-          className="border-gray-300/7 shadow-inner-[1px] hidden rounded-md border-[1px] bg-gray-100 p-2 text-sm font-semibold drop-shadow-sm transition-colors duration-150 hover:border-black/20 hover:ease-in md:block"
+          className="border-gray-300/7 shadow-inner-[1px] hidden rounded-md border-[1px] bg-gray-100 p-2  font-semibold drop-shadow-sm transition-colors duration-150 hover:border-black/20 hover:ease-in md:block"
         >
           Download PDF
         </button>
