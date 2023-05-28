@@ -4,9 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run setup && next build",
+    "build": "next build",
     "build-only": "next build",
-    "setup": "node ./lib/setup.mjs",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
