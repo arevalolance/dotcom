@@ -19,6 +19,7 @@ const computedFields = {
       datePublished: doc.publishedAt,
       dateModified: doc.publishedAt,
       description: doc.summary,
+      topic: doc.topic,
       image: doc.image
         ? `https://arevalolance.com${doc.image}`
         : `https://arevalolance.com/api/og?title=${doc.title}`,
@@ -51,6 +52,9 @@ export const Blog = defineDocumentType(() => ({
     image: {
       type: "string",
     },
+    topic: {
+      type: "string"
+    }
   },
   computedFields,
 }))

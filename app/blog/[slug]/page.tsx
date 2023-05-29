@@ -45,12 +45,6 @@ export async function generateMetadata({
         },
       ],
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
   }
 }
 
@@ -62,18 +56,17 @@ export default async function Blog({ params }) {
   }
 
   return (
-    <section>
+    <section className="my-16 px-4 md:p-0">
       <script type="application/ld+json">
         {JSON.stringify(post.structuredData)}
       </script>
-      <h1 className="max-w-[650px] text-3xl font-bold">
+      <h1 className="mx-auto max-w-[650px] text-3xl font-bold">
         <Balancer>{post.title}</Balancer>
       </h1>
-      <div className="mb-8 mt-4 grid max-w-[650px] grid-cols-[auto_1fr_auto] items-center font-mono text-sm">
+      <div className="mx-auto mb-8 mt-4 grid max-w-[650px] grid-cols-[auto_1fr_auto] items-center font-mono text-sm">
         <div className="rounded-md bg-neutral-100 px-2 py-1 tracking-tighter dark:bg-neutral-800">
           {post.publishedAt}
         </div>
-        <div className="mx-2 h-[0.2em] bg-neutral-50 dark:bg-neutral-800" />
       </div>
       <Mdx code={post.body.code} />
     </section>
