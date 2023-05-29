@@ -8,10 +8,10 @@ import { allBlogs } from "contentlayer/generated"
 import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "Read my thoughts on software development, design, and more.",
-}
+// export const metadata: Metadata = {
+//   title: "Blog",
+//   description: "Read my thoughts on software development, design, and more.",
+// }
 
 const topics = ["Productivity", "Technology", "Film", "Tools and Technology"]
 
