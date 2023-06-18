@@ -27,8 +27,8 @@ export default async function About() {
         <p>
           I like to build fun projects. On my free time, I like to read and
           watch movies. If you want to learn more about my skills you can visit{" "}
-          <Link className="text-blue-500 underline" href={"/hire"}>
-            /hire
+          <Link className="text-blue-500 underline" href={"/work"}>
+            /work
           </Link>{" "}
           or{" "}
           <Link className="text-blue-500 underline" href={"/projects"}>

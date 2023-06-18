@@ -1,18 +1,19 @@
+import { Metadata } from "next"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
 import { Resume, resume } from "@/types/resume"
-import { Metadata } from "next"
+import DownloadResume from "@/components/download-resume"
 import JobSection from "@/components/job-section"
 import SectionHeading from "@/components/section-heading"
-import DownloadResume from "@/components/download-resume"
 
 export const metadata: Metadata = {
-  title: "Hire",
-  description: "Know more about my skills and how we can work together to build something amazing."
+  title: "work",
+  description:
+    "Know more about my skills and how we can work together to build something amazing.",
 }
 
-export default async function Resume() {
+export default async function Work() {
   return (
     <main className="container mx-auto my-14 text-sm lg:w-10/12 xl:w-[60%] 2xl:w-1/2">
       <div className="flex flex-col gap-10">
@@ -39,7 +40,6 @@ export default async function Resume() {
           ))}
         </div>
 
-
         <div className="flex flex-col gap-4">
           <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Achivements & Awards
@@ -50,15 +50,13 @@ export default async function Resume() {
           />
           <SectionHeading
             left={"2020"}
-            right={"Runner Up at 14th National Business Idea and Development (BIDA)"}
+            right={
+              "Runner Up at 14th National Business Idea and Development (BIDA)"
+            }
             link={"https://www.philippinechamber.com/"}
           />
-          <SectionHeading
-            left={"2019-2023"}
-            right={"Dean's Lister"}
-          />
+          <SectionHeading left={"2019-2023"} right={"Dean's Lister"} />
         </div>
-
 
         <div className="flex flex-col gap-4">
           <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
@@ -86,19 +84,41 @@ export default async function Resume() {
             Background
           </h4>
           <p className="group text-justify text-black/80">
-            Hi, I&apos;m Lance, a Software Developer with a passion in building innovative and fun things. With my interests in the web, I&apos;ve built several <Link className="text-blue-600 underline" href={"/projects"}>projects</Link> focusing on both frontend and backend on Social Networking, Data Visualization, Process Pipelines, and many more.
+            Hi, I&apos;m Lance, a Software Developer with a passion in building
+            innovative and fun things. With my interests in the web, I&apos;ve
+            built several{" "}
+            <Link className="text-blue-600 underline" href={"/projects"}>
+              projects
+            </Link>{" "}
+            focusing on both frontend and backend on Social Networking, Data
+            Visualization, Process Pipelines, and many more.
             <br />
             <br />
-            Beyond my professional pursuits, I&apos;m an avid film lover. Exploring the art of films fuels my creativity, influencing my design choices with a discerning eye for composition and the power of visual communication.
+            Beyond my professional pursuits, I&apos;m an avid film lover.
+            Exploring the art of films fuels my creativity, influencing my
+            design choices with a discerning eye for composition and the power
+            of visual communication.
             <br />
             <br />
-            I&apos;m excited to collaborate on meaningful projects and contribute my expertise. If you&apos;d like to discuss potential opportunities or learn more about my work, please don&apos;t hesitate to contact me through <Link className="text-blue-600 underline" href={"mailto:lancearevalo2000@gmail.com"}>email</Link>.
+            I&apos;m excited to collaborate on meaningful projects and
+            contribute my expertise. If you&apos;d like to discuss potential
+            opportunities or learn more about my work, please don&apos;t
+            hesitate to contact me through{" "}
+            <Link
+              className="text-blue-600 underline"
+              href={"mailto:lancearevalo2000@gmail.com"}
+            >
+              email
+            </Link>
+            .
           </p>
         </div>
 
         <div className="flex flex-col gap-2">
           <DownloadResume />
-          <span className="text-center text-gray-500">(Click &apos;Download PDF&apos; for a more detailed resume)</span>
+          <span className="text-center text-gray-500">
+            (Click &apos;Download PDF&apos; for a more detailed resume)
+          </span>
         </div>
       </div>
     </main>
