@@ -19,7 +19,7 @@ function FooterItem({ link, title }: FooterItem) {
 
 export function Footer() {
   return (
-    <footer className="container mx-auto my-4 flex flex-col items-center gap-y-10 p-4 md:flex-row md:justify-between md:gap-0 md:p-0">
+    <footer className="container mx-auto my-4 flex flex-col items-center gap-y-10 p-4 md:flex-row md:justify-between md:gap-0 md:py-0 2xl:px-0">
       <div className="flex flex-col items-center gap-y-2 md:items-start">
         <div className="flex flex-row gap-x-2">
           <Github />
@@ -47,7 +47,6 @@ export function Footer() {
             link={"https://linkedin.com/in/arevalolance"}
             title={"LinkedIn"}
           />
-          <FooterItem link={"/contact-me"} title={"Contact me"} />
         </div>
       </div>
     </footer>

@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+::-moz-selection {
+  /* Code for Firefox */
+  color: black;
+  background: rgb(198, 255, 83);
+}
+
+::selection {
+  color: black;
+  background: rgb(198, 255, 83);
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
