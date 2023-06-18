@@ -28,14 +28,15 @@ export default async function Home() {
         <div className="w-fit">
           <Image
             className="hidden rounded-full bg-gradient-to-br from-stone-800 to-black/40 shadow-md lg:block"
-            src={"/static/images/PFP_BNW.png"}
+            src={"/static/images/hero.webp"}
             alt={"Hero Image"}
             width={400}
             height={400}
           />
           <Image
+            priority
             className="block rounded-full bg-gradient-to-br from-stone-800 to-black/40 shadow-md md:hidden "
-            src={"/static/images/PFP_BNW.png"}
+            src={"/static/images/hero.webp"}
             alt={"Hero Image"}
             width={200}
             height={200}
