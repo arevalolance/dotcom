@@ -5,6 +5,7 @@ import { Resume, resume } from "@/types/resume"
 import { Metadata } from "next"
 import JobSection from "@/components/job-section"
 import SectionHeading from "@/components/section-heading"
+import DownloadResume from "@/components/download-resume"
 
 export const metadata: Metadata = {
   title: "Hire",
@@ -12,8 +13,6 @@ export const metadata: Metadata = {
 }
 
 export default function Resume() {
-  const router = useRouter()
-
   return (
     <main className="container mx-auto my-14 text-sm lg:w-10/12 xl:w-[60%] 2xl:w-1/2">
       <div className="flex flex-col gap-10">
@@ -98,14 +97,8 @@ export default function Resume() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <button
-            onClick={() => router.push("/static/resume/arevalolance-resume.pdf")}
-            className="border-gray-300/7 shadow-inner-[1px] rounded-md border-[1px] bg-gray-100 p-2  font-semibold drop-shadow-sm transition-colors duration-150 hover:border-black/20 hover:ease-in"
-          >
-            Download PDF
-          </button>
+          <DownloadResume />
           <span className="text-center text-gray-500">(Click &apos;Download PDF&apos; for a more detailed resume)</span>
-
         </div>
       </div>
     </main>

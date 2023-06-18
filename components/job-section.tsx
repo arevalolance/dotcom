@@ -1,3 +1,5 @@
+"use client"
+
 import SectionHeading from "./section-heading"
 
 interface ResumeInfo {
