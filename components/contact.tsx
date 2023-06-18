@@ -1,12 +1,13 @@
+"use client"
+
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { LinkedinIcon } from "lucide-react"
+import { usePathname } from "next/navigation"
 
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -18,14 +19,19 @@ export default function ContactModal() {
   const [message, setMessage] = useState<string>("")
   const [isModalOpen, openModal] = useState<boolean>(false)
 
+  let pathname = usePathname() || "/"
+  if (pathname.includes("/blog/")) {
+    pathname = "/blog"
+  }
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       // Ignore key presses with modifiers
       if (event.shiftKey || event.ctrlKey || event.altKey || event.metaKey) {
-        return;
+        return
       }
 
-      if (event.key === "c" || event.key === "C") {
+      if ((event.key === "c" || event.key === "C") && pathname !== "/blog") {
         openModal(true)
       }
     }
@@ -35,7 +41,7 @@ export default function ContactModal() {
     return () => {
       document.removeEventListener("keydown", handleKeyDown)
     }
-  }, [])
+  }, [pathname])
 
   return (
     <Dialog open={isModalOpen} onOpenChange={openModal}>
@@ -44,9 +50,7 @@ export default function ContactModal() {
           Contact me
         </button>
       </DialogTrigger>
-      <DialogContent
-        onOpenAutoFocus={(e) => e.preventDefault()}
-      >
+      <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
           <DialogTitle>Contact Me</DialogTitle>
           <DialogDescription>
