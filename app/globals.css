@@ -5,12 +5,12 @@
 ::-moz-selection {
   /* Code for Firefox */
   color: black;
-  background: rgb(198, 255, 83);
+  background: #c6ff53;
 }
 
 ::selection {
   color: black;
-  background: rgb(198, 255, 83);
+  background: #c6ff53;
 }
 
 @layer base {

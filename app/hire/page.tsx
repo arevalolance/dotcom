@@ -86,7 +86,7 @@ export default async function Resume() {
             Background
           </h4>
           <p className="group text-justify text-black/80">
-            Hi, I&apos;m Lance, a Software Developer with a passion in building innovative and fun things. With my interests in the web, I&apos;ve built several <Link className="text-blue-600 underline" href={"/projects"}>projects</Link> on the web focusing on both frontend and backend on Social Networking, Data Visualization, Process Pipelines, and many more.
+            Hi, I&apos;m Lance, a Software Developer with a passion in building innovative and fun things. With my interests in the web, I&apos;ve built several <Link className="text-blue-600 underline" href={"/projects"}>projects</Link> focusing on both frontend and backend on Social Networking, Data Visualization, Process Pipelines, and many more.
             <br />
             <br />
             Beyond my professional pursuits, I&apos;m an avid film lover. Exploring the art of films fuels my creativity, influencing my design choices with a discerning eye for composition and the power of visual communication.
