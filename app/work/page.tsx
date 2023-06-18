@@ -8,7 +8,7 @@ import JobSection from "@/components/job-section"
 import SectionHeading from "@/components/section-heading"
 
 export const metadata: Metadata = {
-  title: "work",
+  title: "Work",
   description:
     "Know more about my skills and how we can work together to build something amazing.",
 }

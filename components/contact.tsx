@@ -40,6 +40,8 @@ export default function ContactModal() {
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown)
+      openModal(false)
+      setMessage("")
     }
   }, [pathname])
 
@@ -77,9 +79,12 @@ export default function ContactModal() {
                 autoFocus={false}
               />
             </div>
-            <button className="border-gray-300/7 shadow-inner-[1px] hidden rounded-md border-[1px] bg-gray-100 p-2 text-sm font-semibold drop-shadow-sm transition-colors duration-150 hover:border-black/20 hover:ease-in md:block">
+            <Link
+              href={`mailto:hi@arevalolance.com?&subject=Let's chat!&body=${message}`}
+              className="border-gray-300/7 shadow-inner-[1px] hidden rounded-md border-[1px] bg-gray-100 p-2 text-center text-sm font-semibold drop-shadow-sm transition-colors duration-150 hover:border-black/20 hover:ease-in md:block"
+            >
               Send
-            </button>
+            </Link>
           </div>
 
           <div className="flex flex-row items-center gap-2 text-sm">

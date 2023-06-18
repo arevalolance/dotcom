@@ -60,7 +60,7 @@ export default async function About() {
           Chat with me via{" "}
           <Link
             className="text-blue-500 underline"
-            href={"mailto:lancearevalo2000@gmail.com"}
+            href={"mailto:hi@arevalolance.com"}
           >
             email
           </Link>{" "}
