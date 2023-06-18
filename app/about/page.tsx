@@ -61,6 +61,8 @@ export default async function About() {
           <Link
             className="text-blue-500 underline"
             href={"mailto:hi@arevalolance.com"}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             email
           </Link>{" "}
