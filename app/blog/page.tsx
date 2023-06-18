@@ -1,19 +1,20 @@
 "use client"
 
 import { useState } from "react"
-import type { Metadata } from "next"
+import { Metadata } from "next"
 import Link from "next/link"
 import { allBlogs } from "contentlayer/generated"
 
 import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 
-// export const metadata: Metadata = {
-//   title: "Blog",
-//   description: "Read my thoughts on software development, design, and more.",
-// }
+const topics = ["Productivity", "Tools and Technology", "Thoughts", "Others"]
 
-const topics = ["Productivity", "Technology", "Film", "Tools and Technology"]
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Read my thoughts and tutorials on software development and more.",
+}
 
 export default function BlogPage() {
   const [topicFilter, setTopicFilter] = useState("")
@@ -27,11 +28,6 @@ export default function BlogPage() {
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
             All posts by date
           </h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            rutrum, sapien sit amet volutpat lacinia, nisi ante gravida eros, a
-            volutpat tortor eros sed nisi.{" "}
-          </p>
         </div>
         {allBlogs
           .filter(
@@ -97,10 +93,7 @@ export default function BlogPage() {
                     : "font-semibold text-black",
                   "hover:cursor-pointer hover:text-black"
                 )}
-                onClick={() => {
-                  setTopicFilter(topicFilter === item ? "" : item)
-                  console.log(topicFilter === item ? "" : item)
-                }}
+                onClick={() => setTopicFilter(topicFilter === item ? "" : item)}
                 key={item}
               >
                 {item}

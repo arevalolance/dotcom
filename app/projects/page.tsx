@@ -1,7 +1,15 @@
 "use client"
 
+import { Metadata } from "next"
+
 import { projects } from "@/types/projects"
 import ProjectCard from "@/components/project-card"
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Learn more about the fun projects that I built since the beginning of my software development journey.",
+}
 
 export default function Projects() {
   return (
@@ -20,7 +28,7 @@ export default function Projects() {
         </div>
         <div className="flex flex-wrap gap-4">
           {projects.side.map((item) => (
-            <ProjectCard item={item} />
+            <ProjectCard key={item.name} item={item} />
           ))}
         </div>
       </div>
@@ -32,9 +40,10 @@ export default function Projects() {
           </h3>
           <p className="text-justify">
             This section contains the fun projects I made to fulfill
-            requirements from different classes throughout my college years.
-            Most of these projects were made in collaboration with my group,
-            which you can find at{" "}
+            requirements from different classes throughout my college years. I
+            only added projects where I was either the creator or major
+            contributor. Most of these projects were made in collaboration with
+            a group, which you can find at{" "}
             <a
               className="text-blue-500 hover:text-blue-600 hover:underline"
               href="https://github.com/abcd-edu"
@@ -47,7 +56,7 @@ export default function Projects() {
         </div>
         <div className="flex flex-wrap gap-4">
           {projects.college.map((item) => (
-            <ProjectCard item={item} />
+            <ProjectCard key={item.name} item={item} />
           ))}
         </div>
       </div>

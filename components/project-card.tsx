@@ -85,14 +85,14 @@ export default function ProjectCard({ item }: { item: ProjectCardProps }) {
             </div>
           </div>
 
-          <p className="font-display bg-clip-text text-center text-sm tracking-[-0.02em] md:text-left">
+          <p className="font-display bg-clip-text text-center text-sm tracking-[-0.02em] text-gray-500 md:text-left">
             {item.description}
           </p>
           <div className="mt-4 flex flex-row items-center gap-4">
             <span>Tools:</span>
             <div className="flex flex-wrap gap-3">
               {item.tools.map((tool) => (
-                <TooltipProvider delayDuration={300}>
+                <TooltipProvider key={tool.name} delayDuration={300}>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Icon
