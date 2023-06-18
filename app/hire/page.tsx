@@ -1,62 +1,14 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { ArrowUpRight } from "lucide-react"
 
 import { Resume, resume } from "@/types/resume"
 import { Metadata } from "next"
-
-interface ResumeInfo {
-  title: string
-  company: string
-  link?: string
-  duration: string
-  responsibilities: string
-}
+import JobSection from "@/components/job-section"
+import SectionHeading from "@/components/section-heading"
 
 export const metadata: Metadata = {
   title: "Hire",
   description: "Know more about my skills and how we can work together to build something amazing."
-}
-
-function SectionHeading({
-  left,
-  right,
-  link,
-}: {
-  left: string | number
-  right: string
-  link?: string
-}) {
-  return (
-    <div className="flex flex-row items-center gap-2 ">
-      <span className="whitespace-nowrap break-keep">{left}</span>
-      <hr className="h-[1px] w-full border-t-[1px] border-dotted border-black" />
-      {link ? (
-        <Link
-          className="group flex flex-row items-center gap-[1px] text-right hover:underline sm:whitespace-nowrap"
-          href={link}
-          target="_blank"
-        >
-          {right}
-          <ArrowUpRight className="hidden h-3 w-3 sm:block" />
-        </Link>
-      ) : (
-        <span className="whitespace-nowrap break-keep">{right}</span>
-      )}
-    </div>
-  )
-}
-
-function JobSection({ info }: { info: ResumeInfo }) {
-  return (
-    <div className="flex flex-col gap-2">
-      <SectionHeading left={info.duration} right={info.company} link={info.link} />
-      <div className="flex flex-row justify-between gap-10">
-        <span className="whitespace-normal text-left sm:whitespace-nowrap">{info.title}</span>
-        <span className="text-right text-gray-500">{info.responsibilities}</span>
-      </div>
-    </div>
-  )
 }
 
 export default function Resume() {

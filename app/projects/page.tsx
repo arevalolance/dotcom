@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Learn more about the fun projects that I built since the beginning of my software development journey.",
 }
 
-export default async function Projects() {
+export default function Projects() {
   return (
     <main className="container mx-auto my-16 flex flex-col gap-y-10 lg:w-10/12 xl:w-[60%] 2xl:w-1/2">
       <div className="flex flex-col gap-4">
