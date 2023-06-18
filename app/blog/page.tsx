@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Read my thoughts and tutorials on software development and more.",
 }
 
-export default function BlogPage() {
+export default async function BlogPage() {
   // const [topicFilter, setTopicFilter] = useState("")
   // const [searchEntry, setSearchEntry] = useState("")
   // const [searchFilter, setSearchFilter] = useState("")

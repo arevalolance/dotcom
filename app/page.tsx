@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className="container p-0 md:px-6 2xl:p-0">
       <div className="my-40 flex w-full flex-col-reverse items-center justify-center gap-y-14 md:justify-between lg:flex-row">
@@ -26,8 +26,20 @@ export default function Home() {
           </div>
         </div>
         <div className="w-fit">
-          <Image className="hidden rounded-full bg-gradient-to-br from-stone-800 to-black/40 shadow-md lg:block" src={"/static/images/PFP_BNW.png"} alt={"Hero Image"} width={400} height={400} />
-          <Image className="block rounded-full bg-gradient-to-br from-stone-800 to-black/40 shadow-md md:hidden " src={"/static/images/PFP_BNW.png"} alt={"Hero Image"} width={200} height={200} />
+          <Image
+            className="hidden rounded-full bg-gradient-to-br from-stone-800 to-black/40 shadow-md lg:block"
+            src={"/static/images/PFP_BNW.png"}
+            alt={"Hero Image"}
+            width={400}
+            height={400}
+          />
+          <Image
+            className="block rounded-full bg-gradient-to-br from-stone-800 to-black/40 shadow-md md:hidden "
+            src={"/static/images/PFP_BNW.png"}
+            alt={"Hero Image"}
+            width={200}
+            height={200}
+          />
         </div>
       </div>
     </main>

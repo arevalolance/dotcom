@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "Know more about my skills and how we can work together to build something amazing."
 }
 
-export default function Resume() {
+export default async function Resume() {
   return (
     <main className="container mx-auto my-14 text-sm lg:w-10/12 xl:w-[60%] 2xl:w-1/2">
       <div className="flex flex-col gap-10">

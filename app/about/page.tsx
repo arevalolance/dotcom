@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description: "Lance Arevalo - Software Developer.",
 }
 
-export default function About() {
+export default async function About() {
   return (
     <main className="container mx-auto my-16 lg:w-10/12 xl:w-[60%] 2xl:w-1/2">
       <div className="flex flex-col gap-4">
