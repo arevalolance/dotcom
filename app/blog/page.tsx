@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+// import { useState } from "react"
 import { Metadata } from "next"
 import Link from "next/link"
 import { allBlogs } from "contentlayer/generated"
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
-  const [topicFilter, setTopicFilter] = useState("")
-  const [searchEntry, setSearchEntry] = useState("")
-  const [searchFilter, setSearchFilter] = useState("")
+  // const [topicFilter, setTopicFilter] = useState("")
+  // const [searchEntry, setSearchEntry] = useState("")
+  // const [searchFilter, setSearchFilter] = useState("")
 
   return (
     <main className="container mx-auto my-16 flex flex-col-reverse gap-16 lg:flex-row lg:gap-20">
@@ -29,7 +29,7 @@ export default function BlogPage() {
             All posts by date
           </h3>
         </div>
-        {allBlogs
+        {/* {allBlogs
           .filter(
             (e) =>
               e.title.toLowerCase().includes(searchFilter) ||
@@ -74,7 +74,7 @@ export default function BlogPage() {
                 <p className="text-sm text-black/80">{post.summary}</p>
               </div>
             </Link>
-          ))}
+          ))} */}
       </section>
       <section className="flex w-full flex-col gap-6 lg:w-3/12">
         <div className="flex flex-col gap-2">
@@ -85,7 +85,7 @@ export default function BlogPage() {
           </div>
 
           <div className="flex flex-col border-l-2 border-gray-400 pl-4">
-            {topics.map((item) => (
+            {/* {topics.map((item) => (
               <div
                 className={cn(
                   topicFilter !== item
@@ -98,14 +98,14 @@ export default function BlogPage() {
               >
                 {item}
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
         <div className="flex flex-col gap-2">
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
             Search
           </h3>
-          <Input
+          {/* <Input
             placeholder={"Search content"}
             value={searchEntry}
             onChange={(e) => setSearchEntry(e.target.value)}
@@ -115,9 +115,9 @@ export default function BlogPage() {
             className="border-gray-300/7 shadow-inner-[1px] rounded-md border-[1px] bg-gray-100 p-2 text-sm font-semibold drop-shadow-sm transition-colors duration-150 hover:border-black/20 hover:ease-in md:block"
           >
             Search
-          </button>
+          </button> */}
         </div>
-        {(topicFilter !== "" || searchEntry !== "" || searchEntry !== "") && (
+        {/* {(topicFilter !== "" || searchEntry !== "" || searchEntry !== "") && (
           <div
             className="text-sm hover:cursor-pointer hover:underline"
             onClick={() => {
@@ -128,7 +128,7 @@ export default function BlogPage() {
           >
             reset all filters
           </div>
-        )}
+        )} */}
       </section>
     </main>
   )
