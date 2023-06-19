@@ -17,7 +17,7 @@ export default async function Projects() {
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
             Side Projects
           </h3>
-          <p className="text-justify">
+          <p className="text-justify text-sm text-gray-500">
             This contains the fun side projects I have made so far. Some of
             these projects are aimed at helping me have a better experience
             writing code, while others are an experimentation with unfamiliar
@@ -36,7 +36,7 @@ export default async function Projects() {
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
             University Projects
           </h3>
-          <p className="text-justify">
+          <p className="text-justify text-sm text-gray-500">
             This section contains the fun projects I made to fulfill
             requirements from different classes throughout my college years. I
             only added projects where I was either the creator or major
