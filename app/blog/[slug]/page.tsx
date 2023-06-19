@@ -2,7 +2,9 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { allBlogs } from "contentlayer/generated"
 import Balancer from "react-wrap-balancer"
+import readingTime from "reading-time"
 
+import { formatDate } from "@/lib/format-date"
 import { Mdx } from "@/components/mdx"
 
 export async function generateStaticParams() {
@@ -60,14 +62,17 @@ export default async function Blog({ params }) {
       <script type="application/ld+json">
         {JSON.stringify(post.structuredData)}
       </script>
-      <h1 className="mx-auto max-w-[650px] text-3xl font-bold">
-        <Balancer>{post.title}</Balancer>
-      </h1>
-      <div className="mx-auto mb-8 mt-4 grid max-w-[650px] grid-cols-[auto_1fr_auto] items-center font-mono text-sm">
-        <div className="rounded-md bg-neutral-100 px-2 py-1 tracking-tighter dark:bg-neutral-800">
-          {post.publishedAt}
-        </div>
+      <div className="mx-auto flex w-[650px] flex-col gap-2">
+        <span className="font-medium text-gray-500">
+          {formatDate(post.publishedAt)} · {readingTime(post.body.raw).text}
+        </span>
+        <h1 className="text-6xl font-bold text-black">
+          <Balancer>
+            <h1 className="drop-shadow-lg">{post.title}</h1>
+          </Balancer>
+        </h1>
       </div>
+
       <Mdx code={post.body.code} />
     </section>
   )
