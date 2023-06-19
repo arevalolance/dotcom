@@ -10,12 +10,12 @@ export default async function Home() {
             Hey there, I&apos;m Lance
           </div>
           <h1 className="font-display bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-left md:text-7xl md:leading-[5rem]">
-            Welcome to my digital space.
+            Crafting Code and Design for the Web
           </h1>
-          <p className="mt-4 max-w-[600px] text-center md:text-left">
-            I like building <Link href={"/projects"}>things</Link>. Currently,
-            I&apos;m building and exploring on new projects to build up my
-            skills in software development.
+          <p className="mt-4 max-w-[600px] text-center text-gray-500 md:text-left">
+            I bring ideas to life through innovative software solutions.
+            Currently, I&apos;m actively engaged in expanding my skill set and
+            tackling exciting development projects.
           </p>
           <div className="mt-6 hidden md:block">
             <span className="font-bold">
