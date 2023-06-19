@@ -25,7 +25,7 @@ export default function BlogPosts() {
   return (
     <>
       <section className="w-full">
-        <div className="mb-4 flex max-w-[400px] flex-col gap-3">
+        <div className="mb-4 flex max-w-[400px] flex-col gap-1">
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
             Writings
           </h3>
