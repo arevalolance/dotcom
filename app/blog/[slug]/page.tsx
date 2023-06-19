@@ -62,16 +62,15 @@ export default async function Blog({ params }) {
       <script type="application/ld+json">
         {JSON.stringify(post.structuredData)}
       </script>
-      <div className="mx-auto flex w-[650px] flex-col gap-2">
+
+      <div className="mx-auto mb-2 flex w-[650px] flex-col">
         <span className="font-medium text-gray-500">
           {formatDate(post.publishedAt)} · {readingTime(post.body.raw).text}
         </span>
-        <h1 className="text-6xl font-bold text-black">
-          <Balancer>
-            <h1 className="drop-shadow-lg">{post.title}</h1>
-          </Balancer>
-        </h1>
       </div>
+      <h1 className="mx-auto max-w-[650px] text-4xl font-bold text-black drop-shadow-md lg:text-6xl">
+        <Balancer>{post.title}</Balancer>
+      </h1>
 
       <Mdx code={post.body.code} />
     </section>

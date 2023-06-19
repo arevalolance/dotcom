@@ -59,7 +59,7 @@ export default function BlogPosts() {
               <div className="group relative">
                 <TooltipProvider delayDuration={100}>
                   <Tooltip>
-                    <TooltipTrigger className="absolute right-0 top-0 m-2 rounded-full border-[1px] border-transparent p-2 duration-150 ease-in group-hover:border-gray-200 group-hover:bg-white group-hover:drop-shadow-sm">
+                    <TooltipTrigger className="absolute right-0 top-0 m-2 rounded-full border-[1px] border-transparent p-2 shadow-black duration-150 ease-in group-focus-within:border-gray-200 group-focus-within:bg-white group-focus-within:shadow-sm group-hover:border-gray-200 group-hover:bg-white group-hover:shadow-sm">
                       <Link href={`/blog/${post.slug}`}>
                         <ArrowUpRightIcon className="h-4 w-4" />
                       </Link>
@@ -69,7 +69,7 @@ export default function BlogPosts() {
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
-                <div className="flex h-[300px] flex-col justify-between rounded-md bg-stone-50/50 p-4 duration-150 ease-in hover:bg-stone-100/60">
+                <div className="group flex h-[300px] flex-col justify-between rounded-lg bg-stone-50/50 p-4 duration-150 ease-in focus-within:bg-stone-100/60 hover:bg-stone-100/60">
                   <div className="text-sm text-gray-500">
                     {post.topic} · Blog
                   </div>
@@ -82,7 +82,9 @@ export default function BlogPosts() {
                         {post.publishedAt}
                       </span>
                     </div>
-                    <span className="text-justify text-sm">{post.summary}</span>
+                    <span className="line-clamp-3 text-justify text-sm">
+                      {post.summary}
+                    </span>
                   </div>
                 </div>
               </div>
