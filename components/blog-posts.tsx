@@ -69,7 +69,7 @@ export default function BlogPosts() {
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
-                <div className="group flex h-[300px] flex-col justify-between rounded-lg bg-stone-50/50 p-4 duration-150 ease-in focus-within:bg-stone-100/60 hover:bg-stone-100/60">
+                <div className="group flex h-[300px] flex-col justify-between rounded-lg bg-stone-50/50 p-4 duration-150 ease-in focus-within:bg-stone-100/60 hover:bg-stone-100/60 hover:shadow-sm">
                   <div className="text-sm text-gray-500">
                     {post.topic} · Blog
                   </div>
