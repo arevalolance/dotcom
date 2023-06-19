@@ -1,6 +1,8 @@
+"use client"
+
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { LinkedinIcon } from "lucide-react"
+import { usePathname } from "next/navigation"
 
 import {
   Dialog,
@@ -17,15 +19,21 @@ import { Textarea } from "./ui/textarea"
 export default function ContactModal() {
   const [message, setMessage] = useState<string>("")
   const [isModalOpen, openModal] = useState<boolean>(false)
+  const [submitted, setSubmitted] = useState<boolean>(false)
+
+  let pathname = usePathname() || "/"
+  if (pathname.includes("/blog/")) {
+    pathname = "/blog"
+  }
 
   useEffect(() => {
     const handleKeyDown = (event) => {
       // Ignore key presses with modifiers
       if (event.shiftKey || event.ctrlKey || event.altKey || event.metaKey) {
-        return;
+        return
       }
 
-      if (event.key === "c" || event.key === "C") {
+      if ((event.key === "c" || event.key === "C") && pathname !== "/blog") {
         openModal(true)
       }
     }
@@ -34,8 +42,10 @@ export default function ContactModal() {
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown)
+      openModal(false)
+      setMessage("")
     }
-  }, [])
+  }, [pathname])
 
   return (
     <Dialog open={isModalOpen} onOpenChange={openModal}>
@@ -44,9 +54,7 @@ export default function ContactModal() {
           Contact me
         </button>
       </DialogTrigger>
-      <DialogContent
-        onOpenAutoFocus={(e) => e.preventDefault()}
-      >
+      <DialogContent onOpenAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
           <DialogTitle>Contact Me</DialogTitle>
           <DialogDescription>
@@ -60,7 +68,7 @@ export default function ContactModal() {
               <div className="flex flex-row items-center gap-2">
                 <Input
                   id="email"
-                  value="to: hi@arevalolance.me"
+                  value="to: hi@arevalolance.com"
                   disabled
                   className="w-fit"
                 />
@@ -73,40 +81,33 @@ export default function ContactModal() {
                 autoFocus={false}
               />
             </div>
-            <button className="border-gray-300/7 shadow-inner-[1px] hidden rounded-md border-[1px] bg-gray-100 p-2 text-sm font-semibold drop-shadow-sm transition-colors duration-150 hover:border-black/20 hover:ease-in md:block">
+            <Link
+              onClick={() => setSubmitted(true)}
+              href={`mailto:hi@arevalolance.com?&subject=Let's chat!&body=${message}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-gray-300/7 shadow-inner-[1px] hidden rounded-md border-[1px] bg-gray-100 p-2 text-center text-sm font-semibold drop-shadow-sm transition-colors duration-150 hover:border-black/20 hover:ease-in md:block"
+            >
               Send
-            </button>
-          </div>
-
-          <div className="flex flex-row items-center gap-2 text-sm">
-            <hr className="my-8 h-[1px] w-full border-t-[1px] border-dotted border-black" />
-            OR
-            <hr className="my-8 h-[1px] w-full border-t-[1px] border-dotted border-black" />
-          </div>
-
-          <div className="flex w-full flex-col items-center gap-3">
-            <span className="text-sm text-gray-600">Stay connected</span>
-            <div className="flex flex-row gap-4 text-sm">
-              <Link className="hover:underline" href={"/blog"}>
-                Blog
-              </Link>
-              |
-              <Link
-                className="hover:underline"
-                href={"https://github.com/arevalolance"}
-              >
-                GitHub
-              </Link>
-              |
-              <Link
-                className="hover:underline"
-                href={"https://linkedin.com/in/arevalolance"}
-              >
-                LinkedIn
-              </Link>
-            </div>
+            </Link>
           </div>
         </div>
+
+        <DialogFooter>
+          <p className="group text-center text-xs italic text-gray-400">
+            Clicking send opens your system default mail app. Otherwise, feel
+            free to send me an email at{" "}
+            <Link
+              className="underline duration-150 ease-in group-hover:text-black"
+              href={`mailto:hi@arevalolance.com`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              hi@arevalolance.com
+            </Link>
+            .
+          </p>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   )

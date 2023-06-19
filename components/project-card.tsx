@@ -1,7 +1,17 @@
+"use client"
+
 import { Icon } from "@iconify/react"
 import { ExternalLink, Link, MoreVertical } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import {
   Tooltip,
   TooltipContent,
@@ -10,14 +20,6 @@ import {
 } from "@/components/ui/tooltip"
 
 import ImageCarousel from "./image-carousel"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu"
 
 interface ProjectCardProps {
   name: string

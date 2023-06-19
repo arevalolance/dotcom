@@ -4,13 +4,15 @@ import { Github, Twitter } from "lucide-react"
 interface FooterItem {
   link: string
   title: string
+  pop?: boolean
 }
 
-function FooterItem({ link, title }: FooterItem) {
+function FooterItem({ link, title, pop }: FooterItem) {
   return (
     <Link
       className="text-sm text-[#404040] hover:text-black hover:underline"
       href={link}
+      target={pop ? "_blank" : ""}
     >
       {title}
     </Link>
@@ -33,8 +35,8 @@ export function Footer() {
       <div className="flex flex-row gap-4">
         <div className="flex flex-col gap-y-2">
           <span className="text-black/50">Learn more</span>
-          <FooterItem link={"/about"} title={"About me"} />
-          <FooterItem link={"/resume"} title={"Resume"} />
+          <FooterItem link={"/about"} title={"About"} />
+          <FooterItem link={"/work"} title={"Work"} />
         </div>
         <div className="flex flex-col gap-y-2">
           <span className="text-black/50">Stay connected</span>
@@ -42,10 +44,17 @@ export function Footer() {
           <FooterItem
             link={"https://github.com/arevalolance"}
             title={"GitHub"}
+            pop={true}
           />
           <FooterItem
             link={"https://linkedin.com/in/arevalolance"}
             title={"LinkedIn"}
+            pop={true}
+          />
+          <FooterItem
+            link={"https:///arevalolance.com/feed.xml"}
+            title={"RSS"}
+            pop={true}
           />
         </div>
       </div>

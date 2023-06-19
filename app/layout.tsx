@@ -18,11 +18,12 @@ export const metadata: Metadata = {
     "Learn more about my journey as a developer. I write about various topics, including technology, business, and self-development. I'm based in the Philippines, and specialize in React and Typescript development.",
   openGraph: {
     title: "Lance Arevalo",
-    description: "Developer, writer, and creator.",
+    description:
+      "Learn more about my journey as a developer. I write about various topics, including technology, business, and self-development. I'm based in the Philippines, and specialize in React and Typescript development.",
     siteName: "Lance Arevalo",
     images: [
       {
-        url: "https://arevalolance.com/static/images/og.png",
+        url: "https://arevalolance.com/og.png",
         width: 1920,
         height: 1080,
       },

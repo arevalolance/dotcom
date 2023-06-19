@@ -17,10 +17,7 @@ export const projects = {
     {
       name: "Fandom - Create Custom Playlists from Your Favorite Books, Movies, and TV Shows.",
       description: `
-      This project uses OpenAI's GPT-3 (text-davinci-003) to generate playlists based on your favourite Book, Movie, or TV Show. The API runs on Vercel Edge Functions.
-
-      The client sends a custom prompt (w/ user input) to the backend which then gets processed by the GPT-3 API. After receiving the response, it returns the list of songs back to the client.
-      `,
+      This project uses OpenAI's GPT-3 (text-davinci-003) to generate playlists based on your favourite Book, Movie, or TV Show. The API runs on Vercel Edge Functions.`,
       links: [
         {
           name: "Repository",
@@ -41,7 +38,7 @@ export const projects = {
     {
       name: "Design System Template - Turborepo + TailwindCSS + Storybook",
       description:
-        "This project is a design system template that makes it easy to create user-interface components with Storybook, TailwindCSS, and React (Next.js). It includes pre-built components and a well-organized codebase. With this template, you can get started building your own design system in minutes.",
+        "This project is a design system template that makes it easy to create user-interface components with Storybook, TailwindCSS, and React (Next.js). With this template, you can get started building your own design system in minutes.",
       links: [
         {
           name: "Repository",
