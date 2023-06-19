@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Github, Twitter } from "lucide-react"
+import { Github, Linkedin, Mail, Twitter } from "lucide-react"
 
 interface FooterItem {
   link: string
@@ -24,8 +24,15 @@ export function Footer() {
     <footer className="container mx-auto my-4 flex flex-col items-center gap-y-10 p-4 md:flex-row md:justify-between md:gap-0 md:py-0 2xl:px-0">
       <div className="flex flex-col items-center gap-y-2 md:items-start">
         <div className="flex flex-row gap-x-2">
-          <Github />
-          <Twitter />
+          <Link href={"https://github.com/arevalolance"}>
+            <Github />
+          </Link>
+          <Link href={"https://linkedin.com/in/arevalolance"}>
+            <Linkedin />
+          </Link>
+          <Link href={"mailto:hi@arevalolance.com"}>
+            <Mail />
+          </Link>
         </div>
         <span className="text-sm font-medium text-black">
           © 2023 arevalolance.com
