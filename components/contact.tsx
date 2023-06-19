@@ -8,6 +8,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -18,6 +19,7 @@ import { Textarea } from "./ui/textarea"
 export default function ContactModal() {
   const [message, setMessage] = useState<string>("")
   const [isModalOpen, openModal] = useState<boolean>(false)
+  const [submitted, setSubmitted] = useState<boolean>(false)
 
   let pathname = usePathname() || "/"
   if (pathname.includes("/blog/")) {
@@ -66,7 +68,7 @@ export default function ContactModal() {
               <div className="flex flex-row items-center gap-2">
                 <Input
                   id="email"
-                  value="to: hi@arevalolance.me"
+                  value="to: hi@arevalolance.com"
                   disabled
                   className="w-fit"
                 />
@@ -80,6 +82,7 @@ export default function ContactModal() {
               />
             </div>
             <Link
+              onClick={() => setSubmitted(true)}
               href={`mailto:hi@arevalolance.com?&subject=Let's chat!&body=${message}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -88,36 +91,23 @@ export default function ContactModal() {
               Send
             </Link>
           </div>
-
-          <div className="flex flex-row items-center gap-2 text-sm">
-            <hr className="my-8 h-[1px] w-full border-t-[1px] border-dotted border-black" />
-            OR
-            <hr className="my-8 h-[1px] w-full border-t-[1px] border-dotted border-black" />
-          </div>
-
-          <div className="flex w-full flex-col items-center gap-3">
-            <span className="text-sm text-gray-600">Stay connected</span>
-            <div className="flex flex-row gap-4 text-sm">
-              <Link className="hover:underline" href={"/blog"}>
-                Blog
-              </Link>
-              |
-              <Link
-                className="hover:underline"
-                href={"https://github.com/arevalolance"}
-              >
-                GitHub
-              </Link>
-              |
-              <Link
-                className="hover:underline"
-                href={"https://linkedin.com/in/arevalolance"}
-              >
-                LinkedIn
-              </Link>
-            </div>
-          </div>
         </div>
+
+        <DialogFooter>
+          <p className="group text-center text-xs italic text-gray-400">
+            Clicking send opens your system default mail app. Otherwise, feel
+            free to send me an email at{" "}
+            <Link
+              className="underline duration-150 ease-in group-hover:text-black"
+              href={`mailto:hi@arevalolance.com`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              hi@arevalolance.com
+            </Link>
+            .
+          </p>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   )
