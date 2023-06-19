@@ -70,7 +70,9 @@ export default function BlogPosts() {
                   </Tooltip>
                 </TooltipProvider>
                 <div className="flex h-[300px] flex-col justify-between rounded-md bg-stone-50/50 p-4 duration-150 ease-in hover:bg-stone-100/50">
-                  <div className="text-sm text-gray-500">Writing · Blog</div>
+                  <div className="text-sm text-gray-500">
+                    {post.topic} · Blog
+                  </div>
                   <div className="flex flex-col gap-2">
                     <div className="grid grid-cols-1">
                       <span className="text-xl font-medium">{post.title}</span>
