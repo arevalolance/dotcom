@@ -56,7 +56,7 @@ export default function BlogPosts() {
               return 1
             })
             .map((post) => (
-              <div className="group relative">
+              <div className="group relative cursor-pointer">
                 <TooltipProvider delayDuration={100}>
                   <Tooltip>
                     <TooltipTrigger className="absolute right-0 top-0 m-2 rounded-full border-[1px] border-transparent p-2 shadow-black duration-150 ease-in group-focus-within:border-gray-200 group-focus-within:bg-white group-focus-within:shadow-sm group-hover:border-gray-200 group-hover:bg-white group-hover:shadow-sm">
@@ -69,24 +69,26 @@ export default function BlogPosts() {
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
-                <div className="group flex h-[300px] flex-col justify-between rounded-lg bg-stone-50/50 p-4 duration-150 ease-in focus-within:bg-stone-100/60 hover:bg-stone-100/60 hover:shadow-sm">
-                  <div className="text-sm text-gray-500">
-                    {post.topic} · Blog
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <div className="grid grid-cols-1">
-                      <span className="text-xl font-medium decoration-1">
-                        {post.title}
-                      </span>
-                      <span className="text-sm text-gray-500">
-                        {post.publishedAt}
+                <Link href={`/blog/${post.slug}`}>
+                  <div className="group flex h-[300px] flex-col justify-between rounded-lg bg-stone-50/50 p-4 duration-150 ease-in focus-within:bg-stone-100/60 hover:bg-stone-100/60 hover:shadow-sm">
+                    <div className="h-fit w-fit text-sm text-gray-500">
+                      {post.topic} · Blog
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <div className="grid grid-cols-1">
+                        <span className="text-xl font-medium decoration-1">
+                          {post.title}
+                        </span>
+                        <span className="text-sm text-gray-500">
+                          {post.publishedAt}
+                        </span>
+                      </div>
+                      <span className="line-clamp-3 text-justify text-sm text-gray-500">
+                        {post.summary}
                       </span>
                     </div>
-                    <span className="line-clamp-3 text-justify text-sm">
-                      {post.summary}
-                    </span>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
         </div>
