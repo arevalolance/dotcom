@@ -21,6 +21,26 @@ export default function BlogPosts() {
   const [topicFilter, setTopicFilter] = useState("")
   const [searchEntry, setSearchEntry] = useState("")
   const [searchFilter, setSearchFilter] = useState("")
+  const currentPosts = allBlogs
+    .filter(
+      (e) =>
+        e.title.toLowerCase().includes(searchFilter) ||
+        e.summary.toLowerCase().includes(searchFilter) ||
+        e.body.raw.toLowerCase().includes(searchFilter)
+    )
+    .filter((e) => {
+      if (topicFilter !== "") {
+        return topicFilter === e.topic
+      } else {
+        return true
+      }
+    })
+    .sort((a, b) => {
+      if (new Date(a.publishedAt) > new Date(b.publishedAt)) {
+        return -1
+      }
+      return 1
+    })
 
   return (
     <>
@@ -34,28 +54,9 @@ export default function BlogPosts() {
             on anything I find interesting.
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
-          {allBlogs
-            .filter(
-              (e) =>
-                e.title.toLowerCase().includes(searchFilter) ||
-                e.summary.toLowerCase().includes(searchFilter) ||
-                e.body.raw.toLowerCase().includes(searchFilter)
-            )
-            .filter((e) => {
-              if (topicFilter !== "") {
-                return topicFilter === e.topic
-              } else {
-                return true
-              }
-            })
-            .sort((a, b) => {
-              if (new Date(a.publishedAt) > new Date(b.publishedAt)) {
-                return -1
-              }
-              return 1
-            })
-            .map((post) => (
+        {currentPosts.length > 0 ? (
+          <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
+            {currentPosts.map((post) => (
               <div className="group relative cursor-pointer">
                 <TooltipProvider delayDuration={100}>
                   <Tooltip>
@@ -91,7 +92,14 @@ export default function BlogPosts() {
                 </Link>
               </div>
             ))}
-        </div>
+          </div>
+        ) : topicFilter !== "" || searchFilter !== "" ? (
+          <span className="text-gray-500">
+            No blog posts exists with the current filter/s selected
+          </span>
+        ) : (
+          <span className="text-gray-500">No blog posts found</span>
+        )}
       </section>
 
       <section className="flex w-full flex-col gap-6 lg:w-3/12">
