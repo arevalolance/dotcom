@@ -116,7 +116,7 @@ export default async function About() {
 
       <div className="flex flex-col gap-4">
         <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-          Recent musings
+          Recent Posts
         </h4>
 
         <div className="flex flex-col">

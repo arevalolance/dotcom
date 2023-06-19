@@ -23,6 +23,7 @@ export async function GET() {
   return new Response(feed.xml(), {
     headers: {
       "Content-Type": "application/xml",
+      "Cache-Control": "public, s-maxage=1200, stale-while-revalidate=600",
     },
   })
 }

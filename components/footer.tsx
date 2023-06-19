@@ -51,6 +51,11 @@ export function Footer() {
             title={"LinkedIn"}
             pop={true}
           />
+          <FooterItem
+            link={"https:///arevalolance.com/feed.xml"}
+            title={"RSS"}
+            pop={true}
+          />
         </div>
       </div>
     </footer>
