@@ -1,6 +1,7 @@
 import "./globals.css"
 import { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { Analytics } from "@vercel/analytics/react"
 
 import { cn } from "@/lib/utils"
 import { Footer } from "@/components/footer"
@@ -60,7 +61,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn("antialiased", inter.className)}>
         <SiteHeader />
-        <div className="flex-1">{children}</div>
+        <div className="flex-1">
+          {children}
+          <Analytics />
+        </div>
         <Footer />
         <TailwindIndicator />
       </body>
