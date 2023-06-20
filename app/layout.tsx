@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     title: "Lance Arevalo",
     description:
       "Learn more about my journey as a developer. I write about various topics, including technology, business, and self-development. I'm based in the Philippines, and specialize in React and Typescript development.",
+    url: "https://arevalolance.com",
     siteName: "Lance Arevalo",
     images: [
       {
