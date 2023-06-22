@@ -9,7 +9,7 @@ export default async function Home() {
           <div className="mx-auto w-fit rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-black ease-in hover:bg-gray-200 hover:duration-150 md:mx-0">
             Hey there, I&apos;m Lance
           </div>
-          <h1 className="font-display bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-left md:text-7xl md:leading-[5rem]">
+          <h1 className="font-display mt-3 bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-left md:text-7xl md:leading-[5rem]">
             Crafting Code and Design for the Web
           </h1>
           <p className="mt-4 max-w-[600px] text-center text-gray-500 md:text-left">
