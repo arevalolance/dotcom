@@ -70,7 +70,7 @@ export default function ProjectCard({ item }: { item: ProjectCardProps }) {
   return (
     <div
       key={item.name}
-      className="flex flex-col justify-between rounded-lg border-[1px] border-stone-100 bg-stone-50/50 shadow-sm focus-within:bg-stone-100/60 hover:bg-stone-100/60 md:flex-row md:justify-between"
+      className="flex flex-col justify-between rounded-lg border-[1px] border-stone-100 bg-stone-50/50 duration-100 ease-in hover:border-stone-200 hover:bg-stone-100/60 hover:shadow-sm md:flex-row md:justify-between"
     >
       <div className="flex justify-end p-2 md:hidden">
         <DropdownLinks links={item.links} />

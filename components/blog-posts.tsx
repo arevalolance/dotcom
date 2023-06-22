@@ -71,7 +71,7 @@ export default function BlogPosts() {
                   </Tooltip>
                 </TooltipProvider>
                 <Link href={`/blog/${post.slug}`}>
-                  <div className="group flex h-[300px] flex-col justify-between rounded-lg bg-stone-50/50 p-4 duration-150 ease-in focus-within:bg-stone-100/60 hover:bg-stone-100/60 hover:shadow-sm">
+                  <div className="group flex h-[300px] flex-col justify-between rounded-lg border-[1px] border-transparent bg-stone-50/50 p-4 duration-100 ease-in focus-within:bg-stone-100/60 hover:border-stone-200 hover:bg-stone-100/60 hover:shadow-sm">
                     <div className="h-fit w-fit text-sm text-gray-500">
                       {post.topic} · Blog
                     </div>
