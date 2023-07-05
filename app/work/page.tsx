@@ -42,7 +42,7 @@ export default async function Work() {
 
         <div className="flex flex-col gap-4">
           <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-            Achivements & Awards
+            Achievements & Awards
           </h4>
           <SectionHeading
             left={"2023"}
