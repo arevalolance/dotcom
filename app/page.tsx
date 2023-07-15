@@ -8,7 +8,7 @@ export default async function Home() {
   return (
     <main className="container p-0 md:px-6 2xl:p-0">
       <div className="my-40 flex w-full flex-col-reverse items-center justify-center gap-x-10 gap-y-14 px-4 lg:flex-row lg:justify-between">
-        <div className="max-w-[900px]">
+        <div className="animate-in fade-in duration-700 max-w-[900px]">
           <div className="mx-auto w-fit rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-black ease-in hover:bg-gray-200 hover:duration-150 lg:mx-0">
             Hey there, I&apos;m Lance
           </div>
@@ -26,7 +26,7 @@ export default async function Home() {
           </p>
           <PressConnectLabel />
         </div>
-        <div className="w-fit">
+        <div className="animate-in fade-in duration-700 w-fit">
           <Image
             className="hidden rounded-full bg-gradient-to-br from-stone-800 to-black/40 shadow-md lg:block"
             src={"/static/images/hero.webp"}
