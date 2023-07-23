@@ -17,8 +17,25 @@ export const siteConfig = {
       href: "/projects",
     },
     {
-      title: "Blog",
-      href: "/blog",
+      title: "Mind",
+      href: "/mind",
+      content: [
+        {
+          title: "Blog",
+          description: "Read about my thoughts on things I find interesting.",
+          href: "/mind/blog",
+        },
+        {
+          title: "Reading",
+          description: "Check out the books I've read recently.",
+          href: "/mind/reading",
+        },
+        {
+          title: "Watching",
+          description: "Click this only if you're interested in cinema.",
+          href: "/mind/reading",
+        },
+      ],
     },
   ],
 }
