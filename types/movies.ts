@@ -504,7 +504,7 @@ export const movies = [
   {
     type: "Media",
     media: "Movie",
-    title: "WALL┬ÀE",
+    title: "WALL-E",
     author: "",
     rating: 5.0,
     image: "https://image.tmdb.org/t/p/w500//2Wjn5vxvJmomJQkLuUwyX2hBaif.jpg",
@@ -524,7 +524,7 @@ export const movies = [
   {
     type: "Media",
     media: "Movie",
-    title: "T├üR",
+    title: "Tár",
     author: "",
     rating: 4.5,
     image: "https://image.tmdb.org/t/p/w500//dRVAlaU0vbG6hMf2K45NSiIyoUe.jpg",
@@ -654,7 +654,7 @@ export const movies = [
   {
     type: "Media",
     media: "Movie",
-    title: "The Hunger Games: Mockingjay ÔÇô Part 2",
+    title: "The Hunger Games: Mockingjay: Part 2",
     author: "",
     rating: 3.5,
     image: "https://image.tmdb.org/t/p/w500//lImKHDfExAulp16grYm8zD5eONE.jpg",
@@ -684,7 +684,7 @@ export const movies = [
   {
     type: "Media",
     media: "Movie",
-    title: "The Hunger Games: Mockingjay ÔÇô Part 1",
+    title: "The Hunger Games: Mockingjay: Part 1",
     author: "",
     rating: 3.5,
     image: "https://image.tmdb.org/t/p/w500//4FAA18ZIja70d1Tu5hr5cj2q1sB.jpg",
