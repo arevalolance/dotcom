@@ -32,8 +32,8 @@ export const siteConfig = {
         },
         {
           title: "Watching",
-          description: "Click this only if you're interested in cinema.",
-          href: "/mind/reading",
+          description: "Click this if you like watching movies and tv.",
+          href: "/mind/watching",
         },
       ],
     },

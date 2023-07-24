@@ -48,7 +48,7 @@ export function MainNav({ items }: MainNavProps) {
         <NavigationMenu className="z-50">
           <NavigationMenuList>
             {siteConfig.mainNav.map((item) => (
-              <NavigationMenuItem>
+              <NavigationMenuItem key={item.title}>
                 {!('content' in item) ?
                   (
                     <Link href={item.href} legacyBehavior passHref>
@@ -75,13 +75,13 @@ export function MainNav({ items }: MainNavProps) {
                                   Explore my mind
                                 </div>
                                 <p className="text-sm leading-tight text-muted-foreground">
-                                  See my thoughts and reviews on things I like and dislike.
+                                  Read about my thoughts and reviews on things I like and dislike.
                                 </p>
                               </a>
                             </NavigationMenuLink>
                           </li>
                           {item.content?.map((item) => (
-                            <ListItem href={item.href} title={item.title}>
+                            <ListItem key={item.title} href={item.href} title={item.title}>
                               {item.description}
                             </ListItem>
                           ))}
