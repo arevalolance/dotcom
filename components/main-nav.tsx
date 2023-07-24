@@ -63,7 +63,7 @@ export function MainNav({ items }: MainNavProps) {
                         {item.title}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="z-50">
-                        <ul className="z-50 grid gap-3 p-4 md:w-[400px] lg:w-[700px] lg:grid-cols-[.75fr_1fr]">
+                        <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[700px] lg:grid-cols-[.75fr_1fr]">
                           <li className="row-span-3">
                             <NavigationMenuLink asChild>
                               <a
@@ -104,19 +104,38 @@ export function MainNav({ items }: MainNavProps) {
         <DropdownMenuContent>
           <DropdownMenuLabel>Hi, there!</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            {siteConfig.mainNav.map((item) => (
-              <DropdownMenuItem
-                key={item.title}
-                onClick={() => router.push(item.href)}
-              >
-                {item.title}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuGroup>
+          {siteConfig.mainNav.map((item) => (
+            <DropdownMenuGroup key={item.title}>
+              {(item.content) ?
+                <React.Fragment key={item.title}>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuLabel>{item.title}</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuGroup>
+
+                    {item.content.map((item) => (
+                      <DropdownMenuItem
+                        key={item.title}
+                        onClick={() => router.push(item.href)}
+                      >
+                        {item.title}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuGroup>
+                </React.Fragment>
+                :
+                <DropdownMenuItem
+                  key={item.title}
+                  onClick={() => router.push(item.href)}
+                >
+                  {item.title}
+                </DropdownMenuItem>
+              }
+            </DropdownMenuGroup>
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
-    </div>
+    </div >
   )
 }
 
