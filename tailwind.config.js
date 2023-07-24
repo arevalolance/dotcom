@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
@@ -6,7 +8,7 @@ module.exports = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   theme: {
     container: {
       center: true,
@@ -72,5 +74,11 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"),
+  require("@tailwindcss/typography"),
+  plugin(function ({ addVariant }) {
+    addVariant('optional', '&:optional')
+    addVariant('group-optional', ':merge(.group):optional &')
+    addVariant('peer-optional', ':merge(.peer):optional ~ &')
+  }),],
 }
