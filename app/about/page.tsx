@@ -127,7 +127,7 @@ export default async function About() {
               <Link
                 key={item.title}
                 className="group flex flex-row items-center gap-[1px] text-sm hover:underline"
-                href={`/blog/${item.slug}`}
+                href={`/mind/blog/${item.slug}`}
                 target="_blank"
               >
                 {item.title}

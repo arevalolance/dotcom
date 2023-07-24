@@ -40,7 +40,7 @@ export async function generateMetadata({
       description,
       type: "article",
       publishedTime,
-      url: `https://arevalolance.com/blog/${slug}`,
+      url: `https://arevalolance.com/mind/blog/${slug}`,
       images: [
         {
           url: ogImage,

@@ -30,8 +30,8 @@ export function MainNav({ items }: MainNavProps) {
   const router = useRouter()
 
   let pathname = usePathname() || "/"
-  if (pathname.includes("/blog/")) {
-    pathname = "/blog"
+  if (pathname.includes("/mind/blog/")) {
+    pathname = "/mind/blog"
   }
 
   return (

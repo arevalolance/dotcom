@@ -62,7 +62,7 @@ export default function BlogPosts() {
                 <TooltipProvider delayDuration={100}>
                   <Tooltip>
                     <TooltipTrigger className="absolute right-0 top-0 m-2 rounded-full border-[1px] border-transparent p-2 shadow-black duration-150 ease-in group-focus-within:border-gray-200 group-focus-within:bg-white group-focus-within:shadow-sm group-hover:border-gray-200 group-hover:bg-white group-hover:shadow-sm">
-                      <Link href={`/blog/${post.slug}`}>
+                      <Link href={`/mind/blog/${post.slug}`}>
                         <ArrowUpRightIcon className="h-4 w-4" />
                       </Link>
                     </TooltipTrigger>
@@ -71,7 +71,7 @@ export default function BlogPosts() {
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
-                <Link className="z-0" href={`/blog/${post.slug}`}>
+                <Link className="z-0" href={`/mind/blog/${post.slug}`}>
                   <MindCard key={post.title} data={{
                     type: "Blog",
                     title: post.title,

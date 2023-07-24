@@ -15,7 +15,7 @@ export async function GET() {
     feed.item({
       title: post.title,
       description: post.summary,
-      url: `https://arevalolance.com/blog/${post.slug}`,
+      url: `https://arevalolance.com/mind/blog/${post.slug}`,
       date: post.publishedAt,
     })
   })
