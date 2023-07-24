@@ -22,7 +22,7 @@ export const siteConfig = {
       content: [
         {
           title: "Blog",
-          description: "Read about my thoughts on things I find interesting.",
+          description: "I write about life and tech. Check it out.",
           href: "/mind/blog",
         },
         {
