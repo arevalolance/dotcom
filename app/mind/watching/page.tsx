@@ -1,10 +1,16 @@
 import MindCard from "@/components/mind-card";
 import { movies } from "@/types/movies";
+import { Metadata } from "next";
 
 const sortOrder = {
   "Watching": 0,
   "To Watch": 1,
   "Watched": 2,
+}
+
+export const metadata: Metadata = {
+  title: "Watching",
+  description: "I like watching movies of any kind. Also, I started rating movies recently. Here are some of the movies I've watched that, the good and the bad.",
 }
 
 export default function WatchingPage() {

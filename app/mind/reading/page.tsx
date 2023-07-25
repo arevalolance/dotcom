@@ -1,10 +1,17 @@
 import MindCard from "@/components/mind-card";
 import { books } from "@/types/books";
+import { Metadata } from "next";
 
 const sortOrder = {
   "Reading": 0,
   "To Read": 1,
   "Read": 2,
+}
+
+export const metadata: Metadata = {
+  title: "Reading",
+  description:
+    "I rarely read self-help books. You&apos;ll be surprised on the things I read. Although, I&apos;m planning to read more non-fiction books in the future.",
 }
 
 export default function ReadingPage() {
