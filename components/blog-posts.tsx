@@ -14,6 +14,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip"
+import MindCard from "./mind-card"
 
 const topics = ["Productivity", "Tools and Technology", "Thoughts", "Others"]
 
@@ -45,7 +46,7 @@ export default function BlogPosts() {
   return (
     <>
       <section className="w-full">
-        <div className="mb-4 flex max-w-[400px] flex-col gap-1">
+        <div className="mb-4 flex max-w-[600px] flex-col gap-1">
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
             Writings
           </h3>
@@ -57,11 +58,11 @@ export default function BlogPosts() {
         {currentPosts.length > 0 ? (
           <div className="grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
             {currentPosts.map((post) => (
-              <div className="group relative cursor-pointer">
+              <div key={post.title} className="group relative cursor-pointer">
                 <TooltipProvider delayDuration={100}>
                   <Tooltip>
                     <TooltipTrigger className="absolute right-0 top-0 m-2 rounded-full border-[1px] border-transparent p-2 shadow-black duration-150 ease-in group-focus-within:border-gray-200 group-focus-within:bg-white group-focus-within:shadow-sm group-hover:border-gray-200 group-hover:bg-white group-hover:shadow-sm">
-                      <Link href={`/blog/${post.slug}`}>
+                      <Link href={`/mind/blog/${post.slug}`}>
                         <ArrowUpRightIcon className="h-4 w-4" />
                       </Link>
                     </TooltipTrigger>
@@ -70,25 +71,14 @@ export default function BlogPosts() {
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
-                <Link href={`/blog/${post.slug}`}>
-                  <div className="group flex h-[300px] flex-col justify-between rounded-lg border-[1px] border-transparent bg-stone-50/50 p-4 duration-100 ease-in focus-within:bg-stone-100/60 hover:border-stone-200 hover:bg-stone-100/60 hover:shadow-sm">
-                    <div className="h-fit w-fit text-sm text-gray-500">
-                      {post.topic} · Blog
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <div className="grid grid-cols-1">
-                        <span className="text-xl font-medium decoration-1">
-                          {post.title}
-                        </span>
-                        <span className="text-sm text-gray-500">
-                          {post.publishedAt}
-                        </span>
-                      </div>
-                      <span className="line-clamp-3 text-justify text-sm text-gray-500">
-                        {post.summary}
-                      </span>
-                    </div>
-                  </div>
+                <Link className="z-0" href={`/mind/blog/${post.slug}`}>
+                  <MindCard key={post.title} data={{
+                    type: "Blog",
+                    title: post.title,
+                    publishedAt: post.publishedAt,
+                    summary: post.summary,
+                    topic: post.topic as string
+                  }} page={"Blog"} />
                 </Link>
               </div>
             ))}

@@ -47,7 +47,7 @@ export function Footer() {
         </div>
         <div className="flex flex-col gap-y-2">
           <span className="text-black/50">Stay connected</span>
-          <FooterItem link={"/blog"} title={"Blog"} />
+          <FooterItem link={"/mind/blog"} title={"Blog"} />
           <FooterItem
             link={"https://github.com/arevalolance"}
             title={"GitHub"}

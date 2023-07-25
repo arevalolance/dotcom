@@ -22,8 +22,8 @@ export default function ContactModal() {
   const [submitted, setSubmitted] = useState<boolean>(false)
 
   let pathname = usePathname() || "/"
-  if (pathname.includes("/blog/")) {
-    pathname = "/blog"
+  if (pathname.includes("/mind/blog/")) {
+    pathname = "/mind/blog"
   }
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function ContactModal() {
         return
       }
 
-      if ((event.key === "c" || event.key === "C") && pathname !== "/blog") {
+      if ((event.key === "c" || event.key === "C") && pathname !== "/mind/blog") {
         openModal(true)
       }
     }

@@ -23,7 +23,7 @@ const computedFields = {
       image: doc.image
         ? `https://arevalolance.com${doc.image}`
         : `https://arevalolance.com/api/og?title=${doc.title}`,
-      url: `https://arevalolance.com/blog/${doc._raw.flattenedPath}`,
+      url: `https://arevalolance.com/mind/blog/${doc._raw.flattenedPath}`,
       author: {
         "@type": "Person",
         name: "Lance Arevalo",
