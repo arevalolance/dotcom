@@ -1,4 +1,4 @@
-# arevalolance.me
+# arevalolance.com
 
 ![Banner](https://www.arevalolance.com/og.png)
 
