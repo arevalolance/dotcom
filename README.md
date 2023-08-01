@@ -20,9 +20,9 @@ npm install
 npm run dev
 ```
 
-_More over-engineered features and fun stuff coming soon._
+_More over-engineered features and fun stuff are coming soon._
 
 ---
 
-If you have any questions send me an [email](mailto:arevalowrites@gmail.com).
+If you have any questions, send me an [email](mailto:hi@arevalolance.com).
 
