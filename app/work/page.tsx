@@ -106,7 +106,7 @@ export default async function Work() {
             hesitate to contact me through{" "}
             <Link
               className="text-blue-600 underline"
-              href={"mailto:lancearevalo2000@gmail.com"}
+              href={"mailto:hi@arevalolance.com"}
             >
               email
             </Link>
