@@ -66,6 +66,6 @@
     "@iconify/react": "^4.1.0",
     "@tailwindcss/typography": "^0.5.9",
     "@types/rss": "^0.0.30",
-    "prettier": "3.0.0"
+    "prettier": "3.0.1"
   }
 }
