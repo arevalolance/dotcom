@@ -8,9 +8,14 @@ export default async function Home() {
   return (
     <main className="container p-0 md:px-6 2xl:p-0">
       <div className="my-40 flex w-full flex-col-reverse items-center justify-center gap-x-10 gap-y-14 px-4 lg:flex-row lg:justify-between">
-        <div className="max-w-[900px] animate-in fade-in duration-700">
-          <div className="mx-auto w-fit rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-black ease-in hover:bg-gray-200 hover:duration-150 lg:mx-0">
-            Hey there, I&apos;m Lance
+        <div className="max-w-[900px] duration-700 animate-in fade-in">
+          <div className="mx-auto flex w-fit flex-row items-center gap-2 rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-black ease-in hover:bg-gray-200 hover:duration-150 lg:mx-0">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+            </span>
+
+            Available for work
           </div>
           <h1 className="font-display z-10 mt-3 bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center text-4xl font-bold tracking-[-0.02em] text-transparent md:text-6xl md:leading-[5rem] lg:text-left">
             <Balancer ratio={0.4}>
@@ -26,7 +31,7 @@ export default async function Home() {
           </p>
           <PressConnectLabel />
         </div>
-        <div className="w-fit animate-in fade-in duration-700">
+        <div className="w-fit duration-700 animate-in fade-in">
           <Image
             className="hidden rounded-full bg-gradient-to-br from-stone-800 to-black/40 shadow-md lg:block"
             src={"/static/images/hero.webp"}
