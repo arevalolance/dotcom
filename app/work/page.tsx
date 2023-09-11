@@ -1,8 +1,7 @@
 import { Metadata } from "next"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 
-import { Resume, resume } from "@/types/resume"
+import { resume } from "@/types/resume"
 import DownloadResume from "@/components/download-resume"
 import JobSection from "@/components/job-section"
 import SectionHeading from "@/components/section-heading"
@@ -29,6 +28,15 @@ export default async function Work() {
               <span>PHILIPPINES</span>
             </div>
           </div>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+            Now
+          </h4>
+          {resume.now.map((item) => (
+            <JobSection key={item.company} info={item} />
+          ))}
         </div>
 
         <div className="flex flex-col gap-4">
@@ -73,7 +81,7 @@ export default async function Work() {
             link="https://linkedin.com/in/arevalolance"
           />
           <SectionHeading
-            left={"CV"}
+            left={"Read.cv"}
             right={"arevalolance"}
             link="https://read.cv/arevalolance"
           />
