@@ -23,11 +23,11 @@ export function Footer() {
   return (
     <footer className="container mx-auto my-4 flex flex-col items-center gap-y-10 p-4 md:flex-row md:justify-between md:gap-0 md:py-0 2xl:px-0">
       <div className="flex flex-col items-center gap-y-2 md:items-start">
-        <div className="flex flex-row gap-x-2">
-          <Link href={"https://github.com/arevalolance"}>
+        <div className="flex flex-row gap-x-4">
+          <Link href={"https://github.com/arevalolance"} target="_blank">
             <Github />
           </Link>
-          <Link href={"https://linkedin.com/in/arevalolance"}>
+          <Link href={"https://linkedin.com/in/arevalolance"} target="_blank">
             <Linkedin />
           </Link>
           <Link href={"mailto:hi@arevalolance.com"}>
