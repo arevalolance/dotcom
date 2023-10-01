@@ -121,6 +121,13 @@ export default async function About() {
 
         <div className="flex flex-col">
           {allBlogs
+            // sorts by latest
+            .sort((a, b) => {
+              if (new Date(a.publishedAt) < new Date(b.publishedAt)) {
+                return -1
+              }
+              return 1
+            })
             .slice(-3)
             .reverse()
             .map((item) => (
