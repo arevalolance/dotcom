@@ -43,7 +43,7 @@ export default async function Work() {
           <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Experience
           </h4>
-          {resume.experiences.map((item) => (
+          {resume.experiences.sort((a, b) => parseInt(b.duration) - parseInt(a.duration)).map((item) => (
             <JobSection key={item.company} info={item} />
           ))}
         </div>

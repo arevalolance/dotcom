@@ -36,11 +36,9 @@ export const resume = {
         },
       ],
     },
-  ],
-  now: [
     {
       company: "Freelance",
-      duration: "Now",
+      duration: "2023",
       responsibilities: [
         {
           title: "Front-end Developer",
@@ -51,6 +49,19 @@ export const resume = {
           title: "Web Developer",
           description:
             "Building landing pages for wrestling organizations while upgrading and migrating the project to modern technologies.",
+        },
+      ],
+    },
+  ],
+  now: [
+    {
+      company: "Focus Global Inc.",
+      link: "https://www.linkedin.com/company/focus-global-inc",
+      duration: "2023 - Present",
+      responsibilities: [
+        {
+          title: "Front-end Engineer",
+          description: "Building cool tools and webapps for the company :)",
         },
       ],
     },
