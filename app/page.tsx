@@ -1,7 +1,6 @@
 import Image from "next/image"
 import { Balancer } from "react-wrap-balancer"
 
-import useDeviceType from "@/lib/hook/useDeviceType"
 import PressConnectLabel from "@/components/press-connect-label"
 
 export default async function Home() {
@@ -15,7 +14,7 @@ export default async function Home() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
             </span>
 
-            Available for work
+            Building fun things
           </div>
           <h1 className="font-display z-10 mt-3 bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center text-4xl font-bold tracking-[-0.02em] text-transparent md:text-6xl md:leading-[5rem] lg:text-left">
             <Balancer ratio={0.4}>
