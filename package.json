@@ -6,7 +6,7 @@
     "node": "^18.0.0"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "build-only": "next build",
     "start": "next start",
@@ -43,7 +43,7 @@
     "eslint-plugin-tailwindcss": "^3.13.0",
     "lucide": "^0.263.0",
     "lucide-react": "^0.265.0",
-    "next": "13.5.1",
+    "next": "14.0.0",
     "next-contentlayer": "^0.3.4",
     "postcss": "8.4.27",
     "react": "18.2.0",
