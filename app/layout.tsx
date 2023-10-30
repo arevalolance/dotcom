@@ -1,12 +1,14 @@
 import "./globals.css"
 import { Metadata } from "next"
-import { GeistSans, GeistMono } from 'geist/font'
+import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/react"
 
 import { cn } from "@/lib/utils"
 import { Footer } from "@/components/footer"
 import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
+
+const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const metadata: Metadata = {
   title: {
@@ -57,8 +59,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className={cn("antialiased")}>
+    <html lang="en">
+      <body className={cn("antialiased", inter.className)}>
         <SiteHeader />
         <div className="flex-1">
           {children}
