@@ -61,7 +61,7 @@ export const resume = {
       responsibilities: [
         {
           title: "Front-end Engineer",
-          description: "Building cool tools and webapps for the company :)",
+          description: "Building cool tools and websites for Consumer Goods and Home Furnishing companies in Asia.",
         },
       ],
     },
