@@ -9,11 +9,10 @@ const sortOrder = {
 }
 
 export const metadata: Metadata = {
-  title: "Watching",
-  description: "I like watching movies of any kind. Also, I started rating movies recently. Here are some of the movies I've watched that, the good and the bad.",
+  title: "Watching", description: "I like watching movies of any kind. Also, I started rating movies recently. Here are some of the movies I've watched that, the good and the bad.",
 }
 
-export default function WatchingPage() {
+export default async function WatchingPage() {
   return (
     <main className="container mx-auto my-16 flex flex-col-reverse gap-16 lg:flex-row lg:gap-20">
       <section className="w-full">
@@ -22,7 +21,7 @@ export default function WatchingPage() {
             Watching
           </h3>
           <p className="text-sm text-gray-500">
-            I like watching movies of any kind. Also, I started rating movies recently. Here are some of the movies I&apos;ve watched that, the good and the bad.
+            I like watching movies of any kind. Also, I started rating movies recently. Here are some of the movies I&apos;ve watched that I found interesting, the good and the bad.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
