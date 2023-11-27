@@ -69,10 +69,16 @@ export default async function About() {
           or{" "}
           <TooltipProvider delayDuration={100}>
             <Tooltip>
-              <TooltipTrigger className="text-gray-500 hover:cursor-not-allowed">
-                phone
+              <TooltipTrigger>
+                <Link
+                  className="text-blue-500 underline"
+                  href={"https://cal.com/arevalolance/15min"}
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  phone
+                </Link>
               </TooltipTrigger>
-              <TooltipContent>Coming soon</TooltipContent>
+              <TooltipContent>Schedule via cal.com</TooltipContent>
             </Tooltip>
           </TooltipProvider>
           . I&apos;ll get back to you as soon as I can when I receive your
