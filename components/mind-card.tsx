@@ -19,7 +19,7 @@ type MediaProps = {
   title: string
   author: string
   image: string
-  status: "Read" | "Reading" | "To Read" | "Watched" | "To Watch" | "Watching"
+  status: "Read" | "Reading" | "To Read" | "DNF" | "Watched" | "To Watch" | "Watching"
   rating?: number
 }
 
