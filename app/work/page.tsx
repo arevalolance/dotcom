@@ -43,9 +43,11 @@ export default async function Work() {
           <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Experience
           </h4>
-          {resume.experiences.sort((a, b) => parseInt(b.duration) - parseInt(a.duration)).map((item) => (
-            <JobSection key={item.company} info={item} />
-          ))}
+          {resume.experiences
+            .sort((a, b) => parseInt(b.duration) - parseInt(a.duration))
+            .map((item) => (
+              <JobSection key={item.company} info={item} />
+            ))}
         </div>
 
         <div className="flex flex-col gap-4">
@@ -87,6 +89,7 @@ export default async function Work() {
           />
         </div>
 
+        {/*
         <div className="flex flex-col gap-4">
           <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Background
@@ -127,7 +130,7 @@ export default async function Work() {
           <span className="text-center text-gray-500">
             (Click &apos;Download PDF&apos; for a more detailed resume)
           </span>
-        </div>
+        </div>*/}
       </div>
     </main>
   )
