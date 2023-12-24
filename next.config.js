@@ -20,6 +20,11 @@ const nextConfig = {
         hostname: "image.tmdb.org",
         protocol: "https",
         pathname: "/**"
+      },
+      {
+        hostname: "m.media-amazon.com",
+        protocol: "https",
+        pathname: "/**"
       }
     ]
   }

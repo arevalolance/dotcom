@@ -6,6 +6,7 @@ const sortOrder = {
   "Reading": 0,
   "To Read": 1,
   "Read": 2,
+  "DNF": 3,
 }
 
 export const metadata: Metadata = {
@@ -33,7 +34,7 @@ export default function ReadingPage() {
               media: book.media as "Book" | "Audiobook" | "Movie" | "Series",
               title: book.title,
               author: book.author,
-              status: book.status as "Read" | "Reading" | "To Read" | "Watched" | "To Watch" | "Watching",
+              status: book.status as "Read" | "Reading" | "To Read" | "DNF" | "Watched" | "To Watch" | "Watching",
               image: book.image
             }}
               page={"Read"} />
