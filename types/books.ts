@@ -2,6 +2,14 @@ export type Books = typeof books
 
 export const books = [
   {
+    title: "The Dark Forest",
+    author: "Liu Cixin",
+    image: "https://covers.openlibrary.org/b/id/0012392944-L.jpg",
+    status: "Reading",
+    type: "Media",
+    media: "Book",
+  },
+  {
     title: "Project Hail Mary",
     author: "Andy Weir",
     image: "https://covers.openlibrary.org/b/id/11212360-L.jpg",
@@ -61,7 +69,7 @@ export const books = [
     title: "Inspired: How to Create Tech Products Customers Love",
     author: "Marty Cagan",
     image: "https://covers.openlibrary.org/b/id/13348591-L.jpg",
-    status: "Reading",
+    status: "DNF",
     type: "Media",
     media: "Book",
   },
@@ -69,7 +77,7 @@ export const books = [
     title: "14 Habits of Highly Productive Developers",
     author: "Zeno Rocha",
     image: "https://m.media-amazon.com/images/I/719Siqxb0eL._SL1500_.jpg",
-    status: "Reading",
+    status: "Read",
     type: "Media",
     media: "Book",
   },
