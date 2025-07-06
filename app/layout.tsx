@@ -1,15 +1,18 @@
 import "./globals.css"
+
 import { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { cn } from "@/lib/utils"
-import { Footer } from "@/components/footer"
-import { SiteHeader } from "@/components/site-header"
+import BottomProfile from "@/components/bottom-profile"
+import SideProfile from "@/components/side-profile"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 
-const inter = Inter({ subsets: ["latin"], display: "swap" })
+const inter = Inter({
+  subsets: ["latin"],
+})
 
 export const metadata: Metadata = {
   title: {
@@ -61,14 +64,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn("antialiased", inter.className)}>
-        <SiteHeader />
-        <div className="flex-1">
-          {children}
+      <body
+        className={cn(
+          "flex min-h-screen w-full flex-col font-medium font-sans leading-snug tracking-tight antialiased",
+          inter.className
+        )}
+      >
+        <div className="min-h-screen flex lg:flex-row flex-col lg:justify-between gap-16">
+          <aside className="flex w-full max-w-xs shrink-0 flex-col gap-8 p-4 lg:justify-between">
+            <SideProfile />
+            <BottomProfile />
+          </aside>
+          <section className="flex w-full max-w-7xl flex-col gap-2 p-2">
+            {children}
+          </section>
           <Analytics />
           <SpeedInsights />
         </div>
-        <Footer />
         <TailwindIndicator />
       </body>
     </html>

@@ -1,4 +1,5 @@
-const { withContentlayer } = require('next-contentlayer')
+const { withContentlayer } = require("next-contentlayer")
+const path = require("path")
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -6,27 +7,27 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: 'images.unsplash.com',
+        hostname: "images.unsplash.com",
         protocol: "https",
-        pathname: "/**"
+        pathname: "/**",
       },
       {
-        hostname: 'covers.openlibrary.org',
+        hostname: "covers.openlibrary.org",
         protocol: "https",
-        pathname: "/**"
+        pathname: "/**",
       },
       {
         hostname: "image.tmdb.org",
         protocol: "https",
-        pathname: "/**"
+        pathname: "/**",
       },
       {
         hostname: "m.media-amazon.com",
         protocol: "https",
-        pathname: "/**"
-      }
-    ]
-  }
+        pathname: "/**",
+      },
+    ],
+  },
 }
 
 module.exports = withContentlayer(nextConfig)
