@@ -11,6 +11,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 interface GuestbookEntry {
   message: string
@@ -96,17 +101,35 @@ export default function GuestbookGrid() {
       
       <div className="grid gap-1 w-full" style={{ gridTemplateColumns: 'repeat(14, 1fr)' }}>
         {entries.map((entry, index) => (
-          <button
-            key={index}
-            onClick={() => handleSquareClick(index)}
-            className="w-4 h-4 rounded-sm border transition-all hover:scale-110 hover:border-ring focus:outline-none focus:ring-2 focus:ring-ring/50"
-            style={{
-              backgroundColor: entry ? entry.color : "transparent",
-              borderColor: entry ? entry.color : "hsl(var(--border))",
-              opacity: entry ? 0.8 : 0.3,
-            }}
-            title={entry ? `${entry.name}: ${entry.message}` : "Click to add message"}
-          />
+          entry ? (
+            <Tooltip key={index}>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={() => handleSquareClick(index)}
+                  className="w-4 h-4 rounded-sm border transition-all hover:scale-110 hover:border-ring focus:outline-none focus:ring-2 focus:ring-ring/50"
+                  style={{
+                    backgroundColor: entry.color,
+                    borderColor: entry.color,
+                    opacity: 0.8,
+                  }}
+                />
+              </TooltipTrigger>
+              <TooltipContent className="bg-popover text-popover-foreground border">
+                <p>{entry.name}: {entry.message}</p>
+              </TooltipContent>
+            </Tooltip>
+          ) : (
+            <button
+              key={index}
+              onClick={() => handleSquareClick(index)}
+              className="w-4 h-4 rounded-sm border transition-all hover:scale-110 hover:border-ring focus:outline-none focus:ring-2 focus:ring-ring/50"
+              style={{
+                backgroundColor: "transparent",
+                borderColor: "hsl(var(--border))",
+                opacity: 0.3,
+              }}
+            />
+          )
         ))}
       </div>
 
