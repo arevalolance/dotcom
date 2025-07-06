@@ -16,12 +16,23 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import DrawingReplay from "./drawing-replay"
+
+interface DrawingCommand {
+  type: 'move' | 'line' | 'stroke-start' | 'stroke-end'
+  x: number
+  y: number
+  timestamp: number
+  color: string
+  size: number
+}
 
 interface GuestbookEntry {
   message: string
   color: string
   name: string
   drawing?: string
+  drawingCommands?: DrawingCommand[]
 }
 
 const colorOptions = [
@@ -37,15 +48,19 @@ const colorOptions = [
 
 interface DrawingCanvasProps {
   value: string
+  commands: DrawingCommand[]
   onChange: (drawing: string) => void
+  onCommandsChange: (commands: DrawingCommand[]) => void
 }
 
-function DrawingCanvas({ value, onChange }: DrawingCanvasProps) {
+function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingCanvasProps) {
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
   const [isDrawing, setIsDrawing] = React.useState(false)
   const [currentColor, setCurrentColor] = React.useState("#000000")
   const [brushSize, setBrushSize] = React.useState(2)
   const [isExpanded, setIsExpanded] = React.useState(true)
+  const [recordingCommands, setRecordingCommands] = React.useState<DrawingCommand[]>([])
+  const [sessionStartTime, setSessionStartTime] = React.useState<number | null>(null)
 
   React.useEffect(() => {
     const canvas = canvasRef.current
@@ -68,6 +83,10 @@ function DrawingCanvas({ value, onChange }: DrawingCanvasProps) {
     }
   }, [value])
 
+  React.useEffect(() => {
+    setRecordingCommands(commands)
+  }, [commands])
+
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -76,12 +95,39 @@ function DrawingCanvas({ value, onChange }: DrawingCanvasProps) {
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
 
+    const now = Date.now()
+    if (sessionStartTime === null) {
+      setSessionStartTime(now)
+    }
+
     setIsDrawing(true)
     const ctx = canvas.getContext("2d")
     if (ctx) {
       ctx.beginPath()
       ctx.moveTo(x, y)
     }
+
+    // Record stroke start and initial move
+    const newCommands = [
+      ...recordingCommands,
+      {
+        type: 'stroke-start' as const,
+        x,
+        y,
+        timestamp: now - (sessionStartTime || now),
+        color: currentColor,
+        size: brushSize,
+      },
+      {
+        type: 'move' as const,
+        x,
+        y,
+        timestamp: now - (sessionStartTime || now),
+        color: currentColor,
+        size: brushSize,
+      }
+    ]
+    setRecordingCommands(newCommands)
   }
 
   const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -102,15 +148,48 @@ function DrawingCanvas({ value, onChange }: DrawingCanvasProps) {
       ctx.lineCap = "round"
       ctx.stroke()
     }
+
+    // Record line command
+    const now = Date.now()
+    const newCommands = [
+      ...recordingCommands,
+      {
+        type: 'line' as const,
+        x,
+        y,
+        timestamp: now - (sessionStartTime || now),
+        color: currentColor,
+        size: brushSize,
+      }
+    ]
+    setRecordingCommands(newCommands)
   }
 
   const stopDrawing = () => {
+    if (!isDrawing) return
+    
     setIsDrawing(false)
     const canvas = canvasRef.current
     if (canvas) {
       const dataURL = canvas.toDataURL("image/png")
       onChange(dataURL)
     }
+
+    // Record stroke end
+    const now = Date.now()
+    const finalCommands = [
+      ...recordingCommands,
+      {
+        type: 'stroke-end' as const,
+        x: 0,
+        y: 0,
+        timestamp: now - (sessionStartTime || now),
+        color: currentColor,
+        size: brushSize,
+      }
+    ]
+    setRecordingCommands(finalCommands)
+    onCommandsChange(finalCommands)
   }
 
   const clearCanvas = () => {
@@ -124,6 +203,11 @@ function DrawingCanvas({ value, onChange }: DrawingCanvasProps) {
       ctx.fillRect(0, 0, canvas.width, canvas.height)
     }
     onChange("")
+    
+    // Clear recorded commands
+    setRecordingCommands([])
+    setSessionStartTime(null)
+    onCommandsChange([])
   }
 
   return (
@@ -187,6 +271,7 @@ export default function GuestbookGrid() {
     color: colorOptions[0].value,
     name: "",
     drawing: "",
+    drawingCommands: [] as DrawingCommand[],
   })
 
   const handleSquareClick = (index: number) => {
@@ -198,6 +283,7 @@ export default function GuestbookGrid() {
         color: existingEntry.color,
         name: existingEntry.name,
         drawing: existingEntry.drawing || "",
+        drawingCommands: existingEntry.drawingCommands || [],
       })
     } else {
       setFormData({
@@ -205,6 +291,7 @@ export default function GuestbookGrid() {
         color: colorOptions[0].value,
         name: "",
         drawing: "",
+        drawingCommands: [],
       })
     }
     setIsOpen(true)
@@ -219,10 +306,11 @@ export default function GuestbookGrid() {
         color: formData.color,
         name: formData.name || "Anonymous",
         drawing: formData.drawing,
+        drawingCommands: formData.drawingCommands,
       }
       setEntries(newEntries)
       setIsOpen(false)
-      setFormData({ message: "", color: colorOptions[0].value, name: "", drawing: "" })
+      setFormData({ message: "", color: colorOptions[0].value, name: "", drawing: "", drawingCommands: [] })
     }
   }
 
@@ -232,7 +320,7 @@ export default function GuestbookGrid() {
       newEntries[selectedIndex] = null
       setEntries(newEntries)
       setIsOpen(false)
-      setFormData({ message: "", color: colorOptions[0].value, name: "", drawing: "" })
+      setFormData({ message: "", color: colorOptions[0].value, name: "", drawing: "", drawingCommands: [] })
     }
   }
 
@@ -263,13 +351,20 @@ export default function GuestbookGrid() {
               <TooltipContent className="bg-popover text-popover-foreground border">
                 <div className="space-y-2">
                   <p>{entry.name}: {entry.message}</p>
-                  {entry.drawing && (
+                  {entry.drawingCommands && entry.drawingCommands.length > 0 ? (
+                    <DrawingReplay 
+                      commands={entry.drawingCommands}
+                      width={200}
+                      height={150}
+                      className="max-w-[200px] max-h-[150px]"
+                    />
+                  ) : entry.drawing ? (
                     <img 
                       src={entry.drawing} 
                       alt="Drawing" 
                       className="max-w-[200px] max-h-[150px] rounded border"
                     />
-                  )}
+                  ) : null}
                 </div>
               </TooltipContent>
             </Tooltip>
@@ -358,8 +453,12 @@ export default function GuestbookGrid() {
             
             <DrawingCanvas
               value={formData.drawing}
+              commands={formData.drawingCommands}
               onChange={(drawing) =>
                 setFormData({ ...formData, drawing })
+              }
+              onCommandsChange={(commands) =>
+                setFormData({ ...formData, drawingCommands: commands })
               }
             />
             
