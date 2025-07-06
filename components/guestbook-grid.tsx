@@ -21,6 +21,7 @@ interface GuestbookEntry {
   message: string
   color: string
   name: string
+  drawing?: string
 }
 
 const colorOptions = [
@@ -34,6 +35,147 @@ const colorOptions = [
   { name: "Teal", value: "#14b8a6" },
 ]
 
+interface DrawingCanvasProps {
+  value: string
+  onChange: (drawing: string) => void
+}
+
+function DrawingCanvas({ value, onChange }: DrawingCanvasProps) {
+  const canvasRef = React.useRef<HTMLCanvasElement>(null)
+  const [isDrawing, setIsDrawing] = React.useState(false)
+  const [currentColor, setCurrentColor] = React.useState("#000000")
+  const [brushSize, setBrushSize] = React.useState(2)
+  const [isExpanded, setIsExpanded] = React.useState(true)
+
+  React.useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    if (value) {
+      const img = new Image()
+      img.onload = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.drawImage(img, 0, 0)
+      }
+      img.src = value
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.fillStyle = "#ffffff"
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+    }
+  }, [value])
+
+  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const rect = canvas.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    setIsDrawing(true)
+    const ctx = canvas.getContext("2d")
+    if (ctx) {
+      ctx.beginPath()
+      ctx.moveTo(x, y)
+    }
+  }
+
+  const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (!isDrawing) return
+
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const rect = canvas.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    const ctx = canvas.getContext("2d")
+    if (ctx) {
+      ctx.lineTo(x, y)
+      ctx.strokeStyle = currentColor
+      ctx.lineWidth = brushSize
+      ctx.lineCap = "round"
+      ctx.stroke()
+    }
+  }
+
+  const stopDrawing = () => {
+    setIsDrawing(false)
+    const canvas = canvasRef.current
+    if (canvas) {
+      const dataURL = canvas.toDataURL("image/png")
+      onChange(dataURL)
+    }
+  }
+
+  const clearCanvas = () => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = canvas.getContext("2d")
+    if (ctx) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.fillStyle = "#ffffff"
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+    }
+    onChange("")
+  }
+
+  return (
+    <div className="grid gap-2">
+      <label className="text-sm font-medium">Drawing (optional)</label>
+      <div className="border rounded-md p-3 space-y-3">
+        <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-2">
+            <label className="text-xs font-medium">Color:</label>
+            <input
+              type="color"
+              value={currentColor}
+              onChange={(e) => setCurrentColor(e.target.value)}
+              className="w-6 h-6 rounded border cursor-pointer"
+            />
+          </div>
+          <div className="flex items-center gap-2">
+            <label className="text-xs font-medium">Size:</label>
+            <input
+              type="range"
+              min="1"
+              max="10"
+              value={brushSize}
+              onChange={(e) => setBrushSize(parseInt(e.target.value))}
+              className="w-16"
+            />
+            <span className="text-xs">{brushSize}px</span>
+          </div>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={clearCanvas}
+          >
+            Clear
+          </Button>
+        </div>
+        <canvas
+          ref={canvasRef}
+          width={400}
+          height={250}
+          className="border rounded cursor-crosshair bg-white w-full"
+          onMouseDown={startDrawing}
+          onMouseMove={draw}
+          onMouseUp={stopDrawing}
+          onMouseLeave={stopDrawing}
+        />
+      </div>
+    </div>
+  )
+}
+
 export default function GuestbookGrid() {
   const [entries, setEntries] = React.useState<(GuestbookEntry | null)[]>(
     Array(140).fill(null)
@@ -44,6 +186,7 @@ export default function GuestbookGrid() {
     message: "",
     color: colorOptions[0].value,
     name: "",
+    drawing: "",
   })
 
   const handleSquareClick = (index: number) => {
@@ -54,12 +197,14 @@ export default function GuestbookGrid() {
         message: existingEntry.message,
         color: existingEntry.color,
         name: existingEntry.name,
+        drawing: existingEntry.drawing || "",
       })
     } else {
       setFormData({
         message: "",
         color: colorOptions[0].value,
         name: "",
+        drawing: "",
       })
     }
     setIsOpen(true)
@@ -73,10 +218,11 @@ export default function GuestbookGrid() {
         message: formData.message,
         color: formData.color,
         name: formData.name || "Anonymous",
+        drawing: formData.drawing,
       }
       setEntries(newEntries)
       setIsOpen(false)
-      setFormData({ message: "", color: colorOptions[0].value, name: "" })
+      setFormData({ message: "", color: colorOptions[0].value, name: "", drawing: "" })
     }
   }
 
@@ -86,7 +232,7 @@ export default function GuestbookGrid() {
       newEntries[selectedIndex] = null
       setEntries(newEntries)
       setIsOpen(false)
-      setFormData({ message: "", color: colorOptions[0].value, name: "" })
+      setFormData({ message: "", color: colorOptions[0].value, name: "", drawing: "" })
     }
   }
 
@@ -115,7 +261,16 @@ export default function GuestbookGrid() {
                 />
               </TooltipTrigger>
               <TooltipContent className="bg-popover text-popover-foreground border">
-                <p>{entry.name}: {entry.message}</p>
+                <div className="space-y-2">
+                  <p>{entry.name}: {entry.message}</p>
+                  {entry.drawing && (
+                    <img 
+                      src={entry.drawing} 
+                      alt="Drawing" 
+                      className="max-w-[200px] max-h-[150px] rounded border"
+                    />
+                  )}
+                </div>
               </TooltipContent>
             </Tooltip>
           ) : (
@@ -200,6 +355,13 @@ export default function GuestbookGrid() {
                 placeholder="Anonymous"
               />
             </div>
+            
+            <DrawingCanvas
+              value={formData.drawing}
+              onChange={(drawing) =>
+                setFormData({ ...formData, drawing })
+              }
+            />
             
             <DialogFooter>
               <div className="flex gap-2 w-full sm:w-auto">
