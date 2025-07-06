@@ -60,6 +60,7 @@ export default function BottomProfile() {
       <p className="text-xs text-muted-foreground">
         Companies I've had the privilege to work with and contribute to.
       </p>
+        <span className="text-xs text-muted-foreground">© Lance Arevalo - 2025</span>
     </div>
   )
 }
