@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { Marquee } from "@/components/magicui/marquee"
+import GuestbookGrid from "@/components/guestbook-grid"
 
 const companies = [
   { src: "/work/cobi.svg", alt: "Cobi", url: "https://hellocobi.com" },
@@ -34,6 +35,7 @@ const companies = [
 export default function BottomProfile() {
   return (
     <div className="w-full flex flex-col gap-3 lg:sticky lg:bottom-4">
+      <GuestbookGrid />
       <div className="relative">
         <Marquee pauseOnHover className="[--duration:20s]">
           {companies.map((company, index) => (
