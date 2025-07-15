@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 import BottomProfile from "@/components/bottom-profile"
 import SideProfile from "@/components/side-profile"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
+import SideNavbar from "@/components/side-navbar"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -70,14 +71,15 @@ export default function RootLayout({
           inter.className
         )}
       >
-        <div className="min-h-screen flex lg:flex-row flex-col lg:justify-between gap-16">
-          <aside className="flex w-full max-w-xs shrink-0 flex-col gap-8 p-4 lg:justify-between">
+        <div className="min-h-screen flex lg:flex-row flex-col gap-20">
+          <aside className="flex w-full max-w-[450px] shrink-0 flex-col gap-8 p-4 lg:justify-between">
             <SideProfile />
             <BottomProfile />
           </aside>
           <section className="flex w-full max-w-7xl flex-col gap-2 p-2">
             {children}
           </section>
+          {/*<SideNavbar />*/}
           <Analytics />
           <SpeedInsights />
         </div>
