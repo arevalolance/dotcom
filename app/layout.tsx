@@ -6,10 +6,11 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { cn } from "@/lib/utils"
-import BottomProfile from "@/components/bottom-profile"
-import SideProfile from "@/components/side-profile"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import SideNavbar from "@/components/side-navbar"
+import { MainLogo } from "@/components/ui/logo"
+import ContactButtons from "@/components/contact-buttons"
+import HomeHeader from "@/components/home-header"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -73,13 +74,23 @@ export default function RootLayout({
       >
         <div className="min-h-screen flex lg:flex-row flex-col gap-20">
           <aside className="flex w-full max-w-[450px] shrink-0 flex-col gap-8 p-4 lg:justify-between">
-            <SideProfile />
-            <BottomProfile />
+            <div className="flex h-full w-full flex-col gap-6 lg:sticky lg:top-4">
+              <MainLogo />
+              <HomeHeader />
+              <ContactButtons />
+
+              <div className="h-full">
+                {children}
+              </div>
+            </div>
+
+            <span className="text-xs text-muted-foreground">© Lance Arevalo - 2025</span>
           </aside>
-          <section className="flex w-full max-w-7xl flex-col gap-2 p-2">
-            {children}
-          </section>
-          {/*<SideNavbar />*/}
+
+          <aside className="flex w-full max-w-fit shrink-0 flex-col gap-8 mt-20 p-4 lg:justify-between">
+            <SideNavbar />
+          </aside>
+
           <Analytics />
           <SpeedInsights />
         </div>
