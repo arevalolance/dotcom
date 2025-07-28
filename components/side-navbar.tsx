@@ -7,10 +7,9 @@ import { usePathname } from "next/navigation"
 const links = [
   { name: "about", href: "/" },
   { name: "writing", href: "/writing" },
-  { name: "bookmarks", href: "/bookmarks" },
-  { name: "follow ↗", href: "/follow" },
-  { name: "code ↗", href: "/code" },
-  { name: "videos ↗", href: "/videos" },
+  { name: "hobbies", href: "/hobbies" },
+  { name: "code ↗", href: "https://github.com/arevalolance" },
+  { name: "linkedin ↗", href: "https://linkedin.com/in/arevalolance" },
 ]
 
 export default function SideNavbar() {
@@ -25,6 +24,7 @@ export default function SideNavbar() {
           className={cn("text-sm text-muted-foreground hover:text-foreground text-right", {
             "text-foreground": pathname === link.href,
           })}
+          target={link.href.startsWith("http") ? "_blank" : "_self"}
         >
           {link.name}
         </Link>

@@ -7,6 +7,8 @@ export function middleware(request: NextRequest) {
   // Define valid routes - add your actual routes here
   const validRoutes = [
     '/',
+    '/writing',
+    '/hobbies',
     '/feed.xml',
     '/robots.txt',
     '/sitemap.xml'

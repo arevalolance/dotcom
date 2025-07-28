@@ -76,8 +76,6 @@ export default function RootLayout({
           <aside className="flex w-full max-w-[450px] shrink-0 flex-col gap-8 p-4 lg:justify-between">
             <div className="flex h-full w-full flex-col gap-6 lg:sticky lg:top-4">
               <MainLogo />
-              <HomeHeader />
-              <ContactButtons />
 
               <div className="h-full">
                 {children}
