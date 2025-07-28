@@ -9,8 +9,6 @@ import { cn } from "@/lib/utils"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import SideNavbar from "@/components/side-navbar"
 import { MainLogo } from "@/components/ui/logo"
-import ContactButtons from "@/components/contact-buttons"
-import HomeHeader from "@/components/home-header"
 
 const inter = Inter({
   subsets: ["latin"],
