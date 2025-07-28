@@ -1,11 +1,5 @@
 "use client"
 
-import { useEffect } from "react"
-import Link from "next/link"
-import { getCalApi } from "@calcom/embed-react"
-
-import { Button } from "./ui/button"
-import { MainLogo } from "./ui/logo"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion"
 
 const workExperience = [
@@ -35,14 +29,7 @@ const workExperience = [
   }
 ]
 
-export default function SideProfile() {
-  useEffect(() => {
-    ; (async function() {
-      const cal = await getCalApi({ namespace: "15min" })
-      cal("ui", { hideEventTypeDetails: false, layout: "month_view" })
-    })()
-  }, [])
-
+export default function WorkSection() {
   return (
     <div className="flex w-full flex-col gap-6 lg:sticky lg:top-4">
       <div className="flex flex-col gap-3">

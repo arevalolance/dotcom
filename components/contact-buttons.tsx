@@ -1,7 +1,18 @@
+"use client"
+
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { useEffect } from "react";
+import { getCalApi } from "@calcom/embed-react";
 
 export default function ContactButtons() {
+  useEffect(() => {
+    ; (async function() {
+      const cal = await getCalApi({ namespace: "15min" })
+      cal("ui", { hideEventTypeDetails: false, layout: "month_view" })
+    })()
+  }, [])
+
   return (
     <div className="flex flex-row gap-2">
       <Button
