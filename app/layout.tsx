@@ -73,7 +73,7 @@ export default function RootLayout({
         )}
       >
         <div className="min-h-screen flex lg:flex-row flex-col gap-20">
-          <aside className="flex w-full max-w-[450px] shrink-0 flex-col gap-8 p-4 lg:justify-between">
+          <aside className="flex w-full max-w-[450px] shrink-0 flex-col gap-8 p-4">
             <div className="flex h-full w-full flex-col gap-6 lg:sticky lg:top-4">
               <MainLogo />
 
