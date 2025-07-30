@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import PageHeader from "@/components/page-header";
 import { Separator } from "@/components/ui/separator";
@@ -10,12 +10,12 @@ import { movies } from "@/types/movies";
 import { books } from "@/types/books";
 import { travels } from "@/types/travel";
 
-export default function Hobbies() {
+function HobbiesContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
   const [activeFilter, setActiveFilter] = useState<FilterType>(() => {
-    const filter = searchParams.get('filter') as FilterType;
+    const filter = searchParams?.get('filter') as FilterType;
     return ['all', 'movie', 'book', 'travel'].includes(filter) ? filter : 'all';
   });
 
@@ -34,7 +34,7 @@ export default function Hobbies() {
 
   const handleFilterChange = (filter: FilterType) => {
     setActiveFilter(filter);
-    const newParams = new URLSearchParams(searchParams.toString());
+    const newParams = new URLSearchParams(searchParams?.toString() || '');
     if (filter === 'all') {
       newParams.delete('filter');
     } else {
@@ -62,4 +62,12 @@ export default function Hobbies() {
       <HobbyFeed activeFilter={activeFilter} />
     </div>
   )
+}
+
+export default function Hobbies() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HobbiesContent />
+    </Suspense>
+  );
 }

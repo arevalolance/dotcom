@@ -1,4 +1,11 @@
-export type Travel = typeof travels[0];
+export type Travel = {
+  type: "Travel";
+  location: string;
+  title: string;
+  description: string;
+  images: readonly string[];
+  date: string;
+};
 
 export const travels = [
   {

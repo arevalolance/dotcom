@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -70,7 +71,7 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
     if (!ctx) return
 
     if (value) {
-      const img = new Image()
+      const img = new globalThis.Image()
       img.onload = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.drawImage(img, 0, 0)
@@ -363,10 +364,12 @@ export default function GuestbookGrid() {
                       className="max-w-[200px] max-h-[150px]"
                     />
                   ) : entry.drawing ? (
-                    <img 
+                    <Image 
                       src={entry.drawing} 
-                      alt="Drawing" 
-                      className="max-w-[200px] max-h-[150px] rounded border"
+                      alt="Drawing"
+                      width={200}
+                      height={150}
+                      className="max-w-[200px] max-h-[150px] rounded border object-contain"
                     />
                   ) : null}
                 </div>

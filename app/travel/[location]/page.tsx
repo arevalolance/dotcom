@@ -2,27 +2,41 @@
 
 import { notFound, useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
+import { useState, useEffect } from "react";
 import PageHeader from "@/components/page-header";
 import { Separator } from "@/components/ui/separator";
 import ZoomableImage from "@/components/zoomable-image";
-import { travels } from "@/types/travel";
+import { travels, Travel } from "@/types/travel";
 import { Button } from "@/components/ui/button";
 
 interface TravelDetailPageProps {
-  params: { location: string };
+  params: Promise<{ location: string }>;
 }
 
 export default function TravelDetailPage({ params }: TravelDetailPageProps) {
   const router = useRouter();
+  const [location, setLocation] = useState<string | null>(null);
+  const [travel, setTravel] = useState<Travel | null>(null);
 
-  // Decode the location parameter and find matching travel
-  const decodedLocation = decodeURIComponent(params.location);
-  const travel = travels.find(t =>
-    t.location.toLowerCase().replace(/[^a-z0-9]/g, '-') === decodedLocation.toLowerCase()
-  );
+  useEffect(() => {
+    params.then((resolvedParams) => {
+      const decodedLocation = decodeURIComponent(resolvedParams.location);
+      setLocation(decodedLocation);
+      
+      const foundTravel = travels.find(t =>
+        t.location.toLowerCase().replace(/[^a-z0-9]/g, '-') === decodedLocation.toLowerCase()
+      );
+      
+      if (!foundTravel) {
+        notFound();
+      } else {
+        setTravel(foundTravel);
+      }
+    });
+  }, [params]);
 
   if (!travel) {
-    notFound();
+    return <div>Loading...</div>;
   }
 
   return (

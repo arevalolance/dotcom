@@ -22,25 +22,7 @@ export default function ZoomableImage({
   sizes 
 }: ZoomableImageProps) {
   return (
-    <Zoom 
-      zoomMargin={20}
-      wrapStyle={{ 
-        width: '100%', 
-        height: '100%' 
-      }}
-      overlayBgColorEnd="rgba(0, 0, 0, 0.95)"
-      overlayBgColorStart="rgba(0, 0, 0, 0)"
-      zoomImg={{
-        src: src,
-        alt: alt,
-        style: {
-          maxWidth: '90vw',
-          maxHeight: '90vh',
-          objectFit: 'contain',
-          imageRendering: 'high-quality'
-        }
-      }}
-    >
+    <Zoom>
       <Image
         src={src}
         alt={alt}
