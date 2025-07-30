@@ -5,6 +5,7 @@ import MovieCard from "./movie-card";
 import BookCard from "./book-card";
 import TravelCard from "./travel-card";
 import { FilterType } from "./hobby-filter";
+import Masonry from "react-masonry-css";
 
 type FeedItem = {
   type: 'movie' | 'book' | 'travel';
@@ -25,7 +26,7 @@ export default function HobbyFeed({ activeFilter }: HobbyFeedProps) {
     })),
     ...books.map(book => ({
       type: 'book' as const,
-      date: '2024-01-01', // Since books don't have dates, using placeholder
+      date: book.date,
       data: book
     })),
     ...travels.map(travel => ({
@@ -41,15 +42,25 @@ export default function HobbyFeed({ activeFilter }: HobbyFeedProps) {
     ? sortedItems 
     : sortedItems.filter(item => item.type === activeFilter);
 
+  const breakpointColumnsObj = {
+    default: 3,
+    1100: 2,
+    700: 1
+  };
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <Masonry
+      breakpointCols={breakpointColumnsObj}
+      className="flex -ml-2 w-auto"
+      columnClassName="pl-2 bg-clip-padding"
+    >
       {filteredItems.map((item, index) => {
         const key = `${item.type}-${index}`;
         
         switch (item.type) {
           case 'movie':
             return (
-              <div key={key}>
+              <div key={key} className="mb-2">
                 <MovieCard
                   title={item.data.title}
                   image={item.data.image}
@@ -61,7 +72,7 @@ export default function HobbyFeed({ activeFilter }: HobbyFeedProps) {
             );
           case 'book':
             return (
-              <div key={key}>
+              <div key={key} className="mb-2">
                 <BookCard
                   title={item.data.title}
                   author={item.data.author}
@@ -73,7 +84,7 @@ export default function HobbyFeed({ activeFilter }: HobbyFeedProps) {
             );
           case 'travel':
             return (
-              <div key={key}>
+              <div key={key} className="mb-2">
                 <TravelCard
                   location={item.data.location}
                   title={item.data.title}
@@ -87,6 +98,6 @@ export default function HobbyFeed({ activeFilter }: HobbyFeedProps) {
             return null;
         }
       })}
-    </div>
+    </Masonry>
   );
 }

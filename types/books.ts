@@ -2,14 +2,50 @@ export type Books = typeof books
 
 export const books = [
   {
+    title: "Morning Star",
+    author: "Pierce Brown",
+    image: "https://covers.openlibrary.org/b/id/0012401168-L.jpg",
+    status: "Reading",
+    type: "Media",
+    media: "Book",
+    date: "2025-06-30",
+  },
+  {
+    title: "Memory Police",
+    author: "Yōko Ogawa",
+    image: "https://covers.openlibrary.org/b/id/0013763988-L.jpg",
+    status: "Read",
+    type: "Media",
+    media: "Book",
+    date: "2025-05-08",
+  },
+  {
+    title: "Golden Son",
+    author: "Pierce Brown",
+    image: "https://covers.openlibrary.org/b/id/0012047886-L.jpg",
+    status: "Read",
+    type: "Media",
+    media: "Book",
+    date: "2025-05-11",
+  },
+  {
+    title: "Red Rising",
+    author: "Pierce Brown",
+    image: "https://covers.openlibrary.org/b/id/0008185003-L.jpg",
+    status: "Read",
+    type: "Media",
+    media: "Book",
+    date: "2025-04-29",
+  },
+  {
     title: "Tao Te Ching",
     author: "Lao Tzu (translated by Stephen Mitchell)",
     image: "https://covers.openlibrary.org/b/id/36638-L.jpg",
     status: "Read",
     type: "Media",
     media: "Book",
+    date: "2025-03-27",
   },
-
   {
     title: "The Martian",
     author: "Andy Weir (narrated by Wil Wheaton)",
@@ -17,6 +53,7 @@ export const books = [
     status: "Read",
     type: "Media",
     media: "Audiobook",
+    date: "2024-02-08",
   },
   {
     title: "The Dark Forest",
@@ -25,6 +62,7 @@ export const books = [
     status: "DNF",
     type: "Media",
     media: "Book",
+    date: "2024-03-12",
   },
   {
     title: "Project Hail Mary",
@@ -33,6 +71,7 @@ export const books = [
     status: "Read",
     type: "Media",
     media: "Book",
+    date: "2024-04-20",
   },
   {
     title: "I'm Glad My Mom Died",
@@ -41,6 +80,7 @@ export const books = [
     status: "Read",
     type: "Media",
     media: "Audiobook",
+    date: "2022-08-09",
   },
   {
     title: "We are Legion (We are Bob)",
@@ -49,6 +89,7 @@ export const books = [
     status: "DNF",
     type: "Media",
     media: "Audiobook",
+    date: "2024-05-18",
   },
   {
     title: "Three Body Problem",
@@ -57,6 +98,7 @@ export const books = [
     status: "Read",
     type: "Media",
     media: "Book",
+    date: "2022-06-22",
   },
   {
     title: "Seven Husbands of Evelyn Hugo",
@@ -65,6 +107,7 @@ export const books = [
     status: "Read",
     type: "Media",
     media: "Book",
+    date: "2023-07-10",
   },
   {
     title: "Tomorrow, Tomorrow, and Tomorrow",
@@ -73,6 +116,7 @@ export const books = [
     status: "DNF",
     type: "Media",
     media: "Book",
+    date: "2024-08-05",
   },
   {
     title: "No Longer Human",
@@ -81,6 +125,7 @@ export const books = [
     status: "Read",
     type: "Media",
     media: "Book",
+    date: "2021-09-14",
   },
   {
     title: "Inspired: How to Create Tech Products Customers Love",
@@ -89,6 +134,7 @@ export const books = [
     status: "DNF",
     type: "Media",
     media: "Book",
+    date: "2024-10-08",
   },
   {
     title: "14 Habits of Highly Productive Developers",
@@ -97,5 +143,6 @@ export const books = [
     status: "Read",
     type: "Media",
     media: "Book",
+    date: "2024-11-25",
   },
 ]

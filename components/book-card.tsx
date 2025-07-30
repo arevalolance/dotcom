@@ -20,7 +20,7 @@ export default function BookCard({ title, author, image, status, media }: BookCa
           width={300} 
           height={450} 
         />
-        <div className="absolute top-2 left-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+        <div className="absolute top-2 left-2 bg-background/90 backdrop-blur-sm border border-border text-foreground text-xs px-2 py-1 rounded-md font-medium shadow-sm">
           {media}
         </div>
       </div>

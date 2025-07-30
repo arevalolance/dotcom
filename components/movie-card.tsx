@@ -24,27 +24,6 @@ export default function MovieCard({ title, image, rating, date, status }: MovieC
           ★ {rating}
         </div>
       </div>
-      
-      <div className="p-3">
-        <h3 className="font-medium text-sm text-gray-900 mb-1 line-clamp-2">{title}</h3>
-        <div className="flex items-center justify-between text-xs text-gray-500">
-          <div
-            className={cn(
-              "w-fit rounded border px-1 text-black font-mono text-xs tracking-tight drop-shadow-sm",
-              status === "Watched"
-                ? "border-green-500 bg-green-400/40"
-                : status === "Watching"
-                ? "border-blue-500 bg-blue-400/40"
-                : status === "To Watch"
-                ? "border-red-500 bg-red-400/40"
-                : "border-gray-500 bg-gray-400/40"
-            )}
-          >
-            <span>{status.toUpperCase()}</span>
-          </div>
-          <span>{new Date(date).toLocaleDateString()}</span>
-        </div>
-      </div>
     </div>
   );
 }
