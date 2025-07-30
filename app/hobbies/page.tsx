@@ -1,9 +1,49 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import PageHeader from "@/components/page-header";
 import { Separator } from "@/components/ui/separator";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import WatchList from "@/components/watch-list";
+import HobbyFeed from "@/components/hobby-feed";
+import HobbyFilter, { FilterType } from "@/components/hobby-filter";
+import { movies } from "@/types/movies";
+import { books } from "@/types/books";
+import { travels } from "@/types/travel";
 
-export default async function Hobbies() {
+export default function Hobbies() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  
+  const [activeFilter, setActiveFilter] = useState<FilterType>(() => {
+    const filter = searchParams.get('filter') as FilterType;
+    return ['all', 'movie', 'book', 'travel'].includes(filter) ? filter : 'all';
+  });
+
+  // Calculate counts for each category
+  const movieCount = movies.filter(movie => movie.image !== "").length;
+  const bookCount = books.length;
+  const travelCount = travels.length;
+  const totalCount = movieCount + bookCount + travelCount;
+
+  const counts = {
+    all: totalCount,
+    movie: movieCount,
+    book: bookCount,
+    travel: travelCount,
+  };
+
+  const handleFilterChange = (filter: FilterType) => {
+    setActiveFilter(filter);
+    const newParams = new URLSearchParams(searchParams.toString());
+    if (filter === 'all') {
+      newParams.delete('filter');
+    } else {
+      newParams.set('filter', filter);
+    }
+    const newUrl = newParams.toString() ? `?${newParams.toString()}` : '/hobbies';
+    router.push(newUrl);
+  };
+
   return (
     <div className="flex min-h-full w-full flex-col gap-6">
       <PageHeader
@@ -13,22 +53,13 @@ export default async function Hobbies() {
 
       <Separator />
 
-      <Tabs defaultValue="watching">
-        <TabsList>
-          <TabsTrigger value="watching">Watching</TabsTrigger>
-          <TabsTrigger value="reading">Reading</TabsTrigger>
-          <TabsTrigger value="travel">Travel</TabsTrigger>
-        </TabsList>
-        <TabsContent value="watching">
-          <WatchList />
-        </TabsContent>
-        <TabsContent value="reading">
-          password
-        </TabsContent>
-        <TabsContent value="travel">
-          password
-        </TabsContent>
-      </Tabs>
+      <HobbyFilter 
+        activeFilter={activeFilter}
+        onFilterChange={handleFilterChange}
+        counts={counts}
+      />
+
+      <HobbyFeed activeFilter={activeFilter} />
     </div>
   )
 }

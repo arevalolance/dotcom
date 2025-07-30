@@ -20,6 +20,7 @@ export function middleware(request: NextRequest) {
   const isValidRoute = validRoutes.includes(pathname) || 
                       pathname.startsWith('/api/') ||
                       pathname.startsWith('/_next/') ||
+                      pathname.startsWith('/travel/') ||
                       pathname.includes('.')
 
   // If route is not valid, redirect to home
