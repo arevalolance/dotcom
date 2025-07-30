@@ -42,14 +42,14 @@ export default function HobbyFeed({ activeFilter }: HobbyFeedProps) {
     : sortedItems.filter(item => item.type === activeFilter);
 
   return (
-    <div className="columns-1 sm:columns-2 gap-4 space-y-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {filteredItems.map((item, index) => {
         const key = `${item.type}-${index}`;
         
         switch (item.type) {
           case 'movie':
             return (
-              <div key={key} className="break-inside-avoid mb-4">
+              <div key={key}>
                 <MovieCard
                   title={item.data.title}
                   image={item.data.image}
@@ -61,7 +61,7 @@ export default function HobbyFeed({ activeFilter }: HobbyFeedProps) {
             );
           case 'book':
             return (
-              <div key={key} className="break-inside-avoid mb-4">
+              <div key={key}>
                 <BookCard
                   title={item.data.title}
                   author={item.data.author}
@@ -73,7 +73,7 @@ export default function HobbyFeed({ activeFilter }: HobbyFeedProps) {
             );
           case 'travel':
             return (
-              <div key={key} className="break-inside-avoid mb-4">
+              <div key={key}>
                 <TravelCard
                   location={item.data.location}
                   title={item.data.title}

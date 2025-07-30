@@ -16,7 +16,7 @@ export default function BookCard({ title, author, image, status, media }: BookCa
         <Image 
           src={image} 
           alt={title} 
-          className="w-full h-72 object-cover transition-transform duration-300 ease-in-out" 
+          className="w-full h-auto object-contain transition-transform duration-300 ease-in-out" 
           width={300} 
           height={450} 
         />
