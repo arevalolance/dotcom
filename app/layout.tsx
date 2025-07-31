@@ -70,7 +70,7 @@ export default function RootLayout({
           inter.className
         )}
       >
-        <div className="min-h-screen flex lg:flex-row flex-col gap-20">
+        <div className="min-h-screen flex lg:flex-row flex-col gap-20 mx-auto">
           <aside className="flex w-full max-w-[450px] shrink-0 flex-col gap-8 p-4">
             <div className="flex h-full w-full flex-col gap-6 lg:sticky lg:top-4">
               <MainLogo />
