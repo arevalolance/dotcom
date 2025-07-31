@@ -267,7 +267,7 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
 
 export default function GuestbookGrid() {
   const [entries, setEntries] = React.useState<(GuestbookEntry | null)[]>(
-    Array(140).fill(null)
+    Array(190).fill(null)
   )
   const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null)
   const [isOpen, setIsOpen] = React.useState(false)
@@ -338,7 +338,7 @@ export default function GuestbookGrid() {
         </span>
       </div>
       
-      <div className="grid gap-1 w-full" style={{ gridTemplateColumns: 'repeat(14, 1fr)' }}>
+      <div className="grid gap-1 w-full" style={{ gridTemplateColumns: 'repeat(19, 1fr)' }}>
         {entries.map((entry, index) => (
           entry ? (
             <Tooltip key={index}>
