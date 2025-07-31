@@ -7,7 +7,7 @@ export function middleware(request: NextRequest) {
   // Define valid routes - add your actual routes here
   const validRoutes = [
     '/',
-    '/writing',
+    // '/writing',
     '/hobbies',
     '/feed.xml',
     '/robots.txt',
@@ -21,6 +21,7 @@ export function middleware(request: NextRequest) {
                       pathname.startsWith('/api/') ||
                       pathname.startsWith('/_next/') ||
                       pathname.startsWith('/travel/') ||
+                      // pathname.startsWith('/writing/') ||
                       pathname.includes('.')
 
   // If route is not valid, redirect to home
