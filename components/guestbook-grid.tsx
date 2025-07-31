@@ -330,7 +330,7 @@ export default function GuestbookGrid() {
   }
 
   return (
-    <div className="hidden lg:block w-full mb-4">
+    <div className="hidden md:block w-full mb-4">
       <div className="flex items-center gap-2 mb-2">
         <h3 className="text-sm font-medium">Guestbook</h3>
         <span className="text-xs text-muted-foreground">

@@ -70,12 +70,12 @@ export default function RootLayout({
         )}
       >
         {/* Fixed navbar positioned close to main content */}
-        <aside className="fixed left-1/2 top-23 z-10 hidden lg:block -translate-x-94">
+        <aside className="fixed left-1/2 top-23 z-10 hidden md:block -translate-x-94">
           <SideNavbar />
         </aside>
 
         {/* Mobile navbar */}
-        <aside className="flex w-full justify-center p-4 lg:hidden">
+        <aside className="flex w-full justify-center p-4 md:hidden">
           <SideNavbar />
         </aside>
 
