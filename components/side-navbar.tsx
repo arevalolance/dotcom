@@ -16,12 +16,12 @@ export default function SideNavbar() {
   const pathname = usePathname()
 
   return (
-    <nav className="flex flex-col gap-2">
+    <nav className="flex flex-row gap-4 justify-center md:flex-col md:gap-2 md:justify-start">
       {links.map((link, index) => (
         <Link
           key={index}
           href={link.href}
-          className={cn("text-sm text-muted-foreground hover:text-foreground text-right", {
+          className={cn("text-sm text-muted-foreground hover:text-foreground text-center md:text-right", {
             "text-foreground": pathname === link.href,
           })}
           target={link.href.startsWith("http") ? "_blank" : "_self"}

@@ -45,7 +45,6 @@ export default function HobbyFeed({ activeFilter }: HobbyFeedProps) {
   const breakpointColumnsObj = {
     default: 3,
     1100: 2,
-    700: 1
   };
 
   return (

@@ -20,8 +20,7 @@ export const metadata: Metadata = {
     template: "%s | Lance Arevalo",
   },
   description:
-    "Learn more about my journey as a developer. I write about various topics, including technology, business, and self-development. I'm based in the Philippines, and specialize in React and Typescript development.",
-  openGraph: {
+    "Learn more about my journey as a developer. I write about various topics, including technology, business, and self-development. I'm based in the Philippines, and specialize in React and Typescript development.", openGraph: {
     title: "Lance Arevalo",
     description:
       "Learn more about my journey as a developer. I write about various topics, including technology, business, and self-development. I'm based in the Philippines, and specialize in React and Typescript development.",
@@ -70,26 +69,30 @@ export default function RootLayout({
           inter.className
         )}
       >
-        <div className="min-h-screen flex lg:flex-row flex-col gap-20 mx-auto">
-          <aside className="flex w-full max-w-fit shrink-0 flex-col gap-8 mt-20 p-4 lg:justify-between">
-            <SideNavbar />
-          </aside>
+        {/* Fixed navbar positioned close to main content */}
+        <aside className="fixed left-1/2 top-20 z-10 hidden lg:block -translate-x-80">
+          <SideNavbar />
+        </aside>
 
-          <aside className="flex w-full max-w-[450px] shrink-0 flex-col gap-8 p-4">
-            <div className="flex h-full w-full flex-col gap-6 lg:sticky lg:top-4">
+        {/* Mobile navbar */}
+        <aside className="flex w-full justify-center p-4 lg:hidden">
+          <SideNavbar />
+        </aside>
+
+        {/* Main content centered on screen */}
+        <div className="flex flex-1 items-center justify-center">
+          <div className="flex min-h-screen w-full max-w-[450px] flex-col justify-between gap-8 p-4">
+            <div className="flex flex-1 h-full w-full flex-col gap-6">
               <MainLogo />
-
-              <div className="h-full">
-                {children}
-              </div>
+              {children}
             </div>
 
-            <span className="text-xs text-muted-foreground">© Lance Arevalo - 2025</span>
-          </aside>
-
-          <Analytics />
-          <SpeedInsights />
+            <span className="text-xs text-muted-foreground text-center">© Lance Arevalo - 2025</span>
+          </div>
         </div>
+
+        <Analytics />
+        <SpeedInsights />
         <TailwindIndicator />
       </body>
     </html>
