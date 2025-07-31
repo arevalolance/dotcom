@@ -24,7 +24,7 @@ export default function ContactButtons() {
       >
         Book a call
       </Button>
-      <Button variant="secondary" size="sm" className="rounded-full" asChild>
+      <Button variant="secondary" size="sm" className="rounded-full bg-white" asChild>
         <Link
           target="_blank"
           rel="noopener noreferrer"

@@ -37,27 +37,27 @@ export default function BottomProfile() {
     <div className="w-full flex flex-col gap-3 lg:sticky lg:bottom-4">
       <GuestbookGrid />
       <div className="relative">
-        <Marquee pauseOnHover className="[--duration:20s]">
-          {companies.map((company, index) => (
-            <Link
-              key={index}
-              href={company.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block mx-4"
-            >
-              <Image
-                src={company.src}
-                alt={company.alt}
-                width={100}
-                height={24}
-                className="h-6 w-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all"
-              />
-            </Link>
-          ))}
-        </Marquee>
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-background"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background"></div>
+        <div className="[mask-image:linear-gradient(to_right,transparent,black_48px,black_calc(100%-48px),transparent)]">
+          <Marquee pauseOnHover className="[--duration:20s]">
+            {companies.map((company, index) => (
+              <Link
+                key={index}
+                href={company.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mx-4"
+              >
+                <Image
+                  src={company.src}
+                  alt={company.alt}
+                  width={100}
+                  height={24}
+                  className="h-6 w-auto object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all"
+                />
+              </Link>
+            ))}
+          </Marquee>
+        </div>
       </div>
       <p className="text-xs text-muted-foreground text-center">
         Companies I've had the privilege to work with and contribute to.
