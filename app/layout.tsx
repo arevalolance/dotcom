@@ -81,7 +81,7 @@ export default function RootLayout({
 
         {/* Main content centered on screen */}
         <div className="flex flex-1 items-center justify-center">
-          <div className="flex min-h-screen w-full max-w-[550px] flex-col justify-between gap-8 p-4">
+          <div className="flex min-h-screen w-full max-w-[550px] flex-col justify-between gap-4 p-4">
             <div className="flex flex-1 h-full w-full flex-col gap-6">
               <MainLogo />
               {children}
