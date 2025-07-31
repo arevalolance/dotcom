@@ -59,7 +59,7 @@ export default function BottomProfile() {
         <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-background"></div>
         <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-background"></div>
       </div>
-      <p className="text-xs text-muted-foreground">
+      <p className="text-xs text-muted-foreground text-center">
         Companies I've had the privilege to work with and contribute to.
       </p>
     </div>

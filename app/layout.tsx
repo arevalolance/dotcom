@@ -70,7 +70,7 @@ export default function RootLayout({
         )}
       >
         {/* Fixed navbar positioned close to main content */}
-        <aside className="fixed left-1/2 top-20 z-10 hidden lg:block -translate-x-90">
+        <aside className="fixed left-1/2 top-23 z-10 hidden lg:block -translate-x-94">
           <SideNavbar />
         </aside>
 
