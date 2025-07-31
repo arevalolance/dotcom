@@ -71,6 +71,10 @@ export default function RootLayout({
         )}
       >
         <div className="min-h-screen flex lg:flex-row flex-col gap-20 mx-auto">
+          <aside className="flex w-full max-w-fit shrink-0 flex-col gap-8 mt-20 p-4 lg:justify-between">
+            <SideNavbar />
+          </aside>
+
           <aside className="flex w-full max-w-[450px] shrink-0 flex-col gap-8 p-4">
             <div className="flex h-full w-full flex-col gap-6 lg:sticky lg:top-4">
               <MainLogo />
@@ -81,10 +85,6 @@ export default function RootLayout({
             </div>
 
             <span className="text-xs text-muted-foreground">© Lance Arevalo - 2025</span>
-          </aside>
-
-          <aside className="flex w-full max-w-fit shrink-0 flex-col gap-8 mt-20 p-4 lg:justify-between">
-            <SideNavbar />
           </aside>
 
           <Analytics />
