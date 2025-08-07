@@ -574,7 +574,7 @@ export default function GuestbookGrid() {
             
             <DialogFooter>
               <div className="flex gap-2 w-full sm:w-auto">
-                {entries[selectedIndex || 0] && (
+                {selectedIndex !== null && entries[selectedIndex]?.id && (
                   <Button
                     type="button"
                     variant="outline"
