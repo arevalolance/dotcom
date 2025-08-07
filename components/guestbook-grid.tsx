@@ -70,7 +70,8 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
   const [brushSize, setBrushSize] = React.useState(2)
   const [isExpanded, setIsExpanded] = React.useState(true)
   const [recordingCommands, setRecordingCommands] = React.useState<DrawingCommand[]>([])
-  const [sessionStartTime, setSessionStartTime] = React.useState<number | null>(null)
+  const [totalActiveTime, setTotalActiveTime] = React.useState(0)
+  const [lastStrokeStartTime, setLastStrokeStartTime] = React.useState<number | null>(null)
 
   React.useEffect(() => {
     const canvas = canvasRef.current
@@ -108,11 +109,9 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
     const y = (e.clientY - rect.top) * scaleY
 
     const now = Date.now()
-    if (sessionStartTime === null) {
-      setSessionStartTime(now)
-    }
-
+    setLastStrokeStartTime(now)
     setIsDrawing(true)
+    
     const ctx = canvas.getContext("2d")
     if (ctx) {
       ctx.beginPath()
@@ -126,7 +125,7 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
         type: 'stroke-start' as const,
         x,
         y,
-        timestamp: now - (sessionStartTime || now),
+        timestamp: totalActiveTime,
         color: currentColor,
         size: brushSize,
       },
@@ -134,7 +133,7 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
         type: 'move' as const,
         x,
         y,
-        timestamp: now - (sessionStartTime || now),
+        timestamp: totalActiveTime,
         color: currentColor,
         size: brushSize,
       }
@@ -165,13 +164,16 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
 
     // Record line command
     const now = Date.now()
+    const strokeElapsed = lastStrokeStartTime ? now - lastStrokeStartTime : 0
+    const currentTimestamp = totalActiveTime + strokeElapsed
+    
     const newCommands = [
       ...recordingCommands,
       {
         type: 'line' as const,
         x,
         y,
-        timestamp: now - (sessionStartTime || now),
+        timestamp: currentTimestamp,
         color: currentColor,
         size: brushSize,
       }
@@ -189,15 +191,21 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
       onChange(dataURL)
     }
 
-    // Record stroke end
+    // Calculate total stroke time and update active time
     const now = Date.now()
+    const strokeElapsed = lastStrokeStartTime ? now - lastStrokeStartTime : 0
+    const newTotalActiveTime = totalActiveTime + strokeElapsed
+    setTotalActiveTime(newTotalActiveTime)
+    setLastStrokeStartTime(null)
+
+    // Record stroke end
     const finalCommands = [
       ...recordingCommands,
       {
         type: 'stroke-end' as const,
         x: 0,
         y: 0,
-        timestamp: now - (sessionStartTime || now),
+        timestamp: newTotalActiveTime,
         color: currentColor,
         size: brushSize,
       }
@@ -218,9 +226,10 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
     }
     onChange("")
     
-    // Clear recorded commands
+    // Clear recorded commands and reset timing
     setRecordingCommands([])
-    setSessionStartTime(null)
+    setTotalActiveTime(0)
+    setLastStrokeStartTime(null)
     onCommandsChange([])
   }
 
@@ -320,25 +329,21 @@ export default function GuestbookGrid() {
   }, [])
 
   const handleSquareClick = (index: number) => {
-    setSelectedIndex(index)
     const existingEntry = entries[index]
-    if (existingEntry) {
-      setFormData({
-        message: existingEntry.message,
-        color: existingEntry.color,
-        name: existingEntry.name,
-        drawing: existingEntry.drawing || "",
-        drawingCommands: existingEntry.drawingCommands || [],
-      })
-    } else {
-      setFormData({
-        message: "",
-        color: colorOptions[0].value,
-        name: "",
-        drawing: "",
-        drawingCommands: [],
-      })
+    
+    // Block editing if there's already an entry (read-only mode)
+    if (existingEntry?.id) {
+      return // Don't open dialog for existing entries
     }
+    
+    setSelectedIndex(index)
+    setFormData({
+      message: "",
+      color: colorOptions[0].value,
+      name: "",
+      drawing: "",
+      drawingCommands: [],
+    })
     setIsOpen(true)
   }
 
@@ -446,9 +451,8 @@ export default function GuestbookGrid() {
           entry ? (
             <Tooltip key={index}>
               <TooltipTrigger asChild>
-                <button
-                  onClick={() => handleSquareClick(index)}
-                  className="w-4 h-4 rounded-sm border transition-all hover:scale-110 hover:border-ring focus:outline-none focus:ring-2 focus:ring-ring/50"
+                <div
+                  className="w-4 h-4 rounded-sm border cursor-default"
                   style={{
                     backgroundColor: entry.color,
                     borderColor: entry.color,
