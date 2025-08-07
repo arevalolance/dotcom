@@ -18,6 +18,14 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import DrawingReplay from "./drawing-replay"
+import { 
+  getGuestbookEntries, 
+  createGuestbookEntry, 
+  updateGuestbookEntry, 
+  deleteGuestbookEntry 
+} from "@/lib/db/actions"
+import { uploadDrawing, deleteDrawing } from "@/lib/blob-storage"
+import type { GuestbookEntry } from "@/lib/db/schema"
 
 interface DrawingCommand {
   type: 'move' | 'line' | 'stroke-start' | 'stroke-end'
@@ -28,7 +36,8 @@ interface DrawingCommand {
   size: number
 }
 
-interface GuestbookEntry {
+interface GuestbookEntryDisplay {
+  id?: string
   message: string
   color: string
   name: string
@@ -266,11 +275,13 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
 }
 
 export default function GuestbookGrid() {
-  const [entries, setEntries] = React.useState<(GuestbookEntry | null)[]>(
+  const [entries, setEntries] = React.useState<(GuestbookEntryDisplay | null)[]>(
     Array(190).fill(null)
   )
   const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null)
   const [isOpen, setIsOpen] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(true)
+  const [isSaving, setIsSaving] = React.useState(false)
   const [formData, setFormData] = React.useState({
     message: "",
     color: colorOptions[0].value,
@@ -278,6 +289,35 @@ export default function GuestbookGrid() {
     drawing: "",
     drawingCommands: [] as DrawingCommand[],
   })
+
+  // Load entries from database on mount
+  React.useEffect(() => {
+    const loadEntries = async () => {
+      try {
+        const dbEntries = await getGuestbookEntries()
+        const entriesArray: (GuestbookEntryDisplay | null)[] = Array(190).fill(null)
+        
+        dbEntries.forEach((entry) => {
+          entriesArray[entry.gridIndex] = {
+            id: entry.id,
+            message: entry.message,
+            color: entry.color,
+            name: entry.name,
+            drawing: entry.drawingUrl || undefined,
+            drawingCommands: entry.drawingCommands as DrawingCommand[] || undefined,
+          }
+        })
+        
+        setEntries(entriesArray)
+      } catch (error) {
+        console.error('Failed to load guestbook entries:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    loadEntries()
+  }, [])
 
   const handleSquareClick = (index: number) => {
     setSelectedIndex(index)
@@ -302,30 +342,93 @@ export default function GuestbookGrid() {
     setIsOpen(true)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (selectedIndex !== null && formData.message.trim()) {
-      const newEntries = [...entries]
-      newEntries[selectedIndex] = {
-        message: formData.message,
-        color: formData.color,
-        name: formData.name || "Anonymous",
-        drawing: formData.drawing,
-        drawingCommands: formData.drawingCommands,
+      setIsSaving(true)
+      try {
+        let drawingUrl: string | undefined
+        
+        // Upload drawing if present
+        if (formData.drawing) {
+          const filename = `guestbook-drawing-${selectedIndex}-${Date.now()}.png`
+          drawingUrl = await uploadDrawing(formData.drawing, filename)
+        }
+
+        const entryData = {
+          gridIndex: selectedIndex,
+          message: formData.message,
+          color: formData.color,
+          name: formData.name || "Anonymous",
+          drawingUrl,
+          drawingCommands: formData.drawingCommands.length > 0 ? formData.drawingCommands : null,
+        }
+
+        let savedEntry: GuestbookEntry
+        const existingEntry = entries[selectedIndex]
+        
+        if (existingEntry?.id) {
+          // Update existing entry
+          if (existingEntry.drawing && drawingUrl) {
+            // Delete old drawing
+            await deleteDrawing(existingEntry.drawing)
+          }
+          savedEntry = await updateGuestbookEntry(selectedIndex, entryData)
+        } else {
+          // Create new entry
+          savedEntry = await createGuestbookEntry(entryData)
+        }
+
+        // Update local state
+        const newEntries = [...entries]
+        newEntries[selectedIndex] = {
+          id: savedEntry.id,
+          message: savedEntry.message,
+          color: savedEntry.color,
+          name: savedEntry.name,
+          drawing: savedEntry.drawingUrl || undefined,
+          drawingCommands: savedEntry.drawingCommands as DrawingCommand[] || undefined,
+        }
+        setEntries(newEntries)
+        setIsOpen(false)
+        setFormData({ message: "", color: colorOptions[0].value, name: "", drawing: "", drawingCommands: [] })
+      } catch (error) {
+        console.error('Failed to save guestbook entry:', error)
+        alert('Failed to save entry. Please try again.')
+      } finally {
+        setIsSaving(false)
       }
-      setEntries(newEntries)
-      setIsOpen(false)
-      setFormData({ message: "", color: colorOptions[0].value, name: "", drawing: "", drawingCommands: [] })
     }
   }
 
-  const handleClear = () => {
+  const handleClear = async () => {
     if (selectedIndex !== null) {
-      const newEntries = [...entries]
-      newEntries[selectedIndex] = null
-      setEntries(newEntries)
-      setIsOpen(false)
-      setFormData({ message: "", color: colorOptions[0].value, name: "", drawing: "", drawingCommands: [] })
+      setIsSaving(true)
+      try {
+        const existingEntry = entries[selectedIndex]
+        
+        if (existingEntry?.id) {
+          // Delete from database
+          await deleteGuestbookEntry(selectedIndex)
+          
+          // Delete associated drawing from blob storage
+          if (existingEntry.drawing) {
+            await deleteDrawing(existingEntry.drawing)
+          }
+        }
+
+        // Update local state
+        const newEntries = [...entries]
+        newEntries[selectedIndex] = null
+        setEntries(newEntries)
+        setIsOpen(false)
+        setFormData({ message: "", color: colorOptions[0].value, name: "", drawing: "", drawingCommands: [] })
+      } catch (error) {
+        console.error('Failed to clear guestbook entry:', error)
+        alert('Failed to clear entry. Please try again.')
+      } finally {
+        setIsSaving(false)
+      }
     }
   }
 
@@ -334,7 +437,7 @@ export default function GuestbookGrid() {
       <div className="flex items-center gap-2 mb-2">
         <h3 className="text-sm font-medium">Guestbook</h3>
         <span className="text-xs text-muted-foreground">
-          Click any square to leave a message
+          {isLoading ? 'Loading...' : 'Click any square to leave a message'}
         </span>
       </div>
       
@@ -477,12 +580,13 @@ export default function GuestbookGrid() {
                     variant="outline"
                     onClick={handleClear}
                     className="flex-1 sm:flex-initial"
+                    disabled={isSaving}
                   >
-                    Clear
+                    {isSaving ? 'Clearing...' : 'Clear'}
                   </Button>
                 )}
-                <Button type="submit" className="flex-1 sm:flex-initial">
-                  Save Message
+                <Button type="submit" className="flex-1 sm:flex-initial" disabled={isSaving}>
+                  {isSaving ? 'Saving...' : 'Save Message'}
                 </Button>
               </div>
             </DialogFooter>
