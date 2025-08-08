@@ -14,7 +14,7 @@ const workExperience = [
 		company: "Cobi",
 		period: "Today",
 		description:
-			"Building agentic data analysis frameworks and built AI-powered recommendation systems.",
+			"Building agentic data analysis frameworks and AI-powered recommendation systems.",
 		technologies: ["Vite", "AI SDK", "Express", "TailwindCSS", "PostgreSQL"],
 	},
 	{
