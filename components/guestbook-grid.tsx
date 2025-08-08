@@ -376,7 +376,7 @@ export default function GuestbookGrid() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (selectedIndex !== null && formData.message.trim()) {
+    if (selectedIndex !== null && formData.message.trim() && formData.name.trim()) {
       setIsSaving(true)
       try {
         let drawingUrl: string | undefined
@@ -391,7 +391,7 @@ export default function GuestbookGrid() {
           gridIndex: selectedIndex,
           message: formData.message,
           color: formData.color,
-          name: formData.name || "Anonymous",
+          name: formData.name.trim(),
           drawingUrl,
           drawingCommands: formData.drawingCommands.length > 0 ? formData.drawingCommands : null,
         }
@@ -563,7 +563,7 @@ export default function GuestbookGrid() {
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 min-w-0">
                   <span className={`text-base ${caveat.className} truncate`}>
-                    {formData.name || 'Anonymous'}
+                    {formData.name || 'Your name'}
                   </span>
                   <span
                     className="inline-block w-3 h-3 rounded-full border"
@@ -600,7 +600,7 @@ export default function GuestbookGrid() {
 
               <div className="grid gap-2">
                 <label htmlFor="name" className="text-sm font-medium">
-                  Name (optional)
+                  Name
                 </label>
                 <input
                   id="name"
@@ -610,7 +610,8 @@ export default function GuestbookGrid() {
                     setFormData({ ...formData, name: e.target.value })
                   }
                 className="w-full rounded-md border bg-white px-3 py-2 text-sm shadow-xs placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-none"
-                  placeholder="Anonymous or your signature"
+                  placeholder="Your name"
+                  required
                 />
               </div>
 

@@ -16,9 +16,14 @@ export async function getGuestbookEntries(): Promise<GuestbookEntry[]> {
 
 export async function createGuestbookEntry(entry: Omit<NewGuestbookEntry, 'id' | 'createdAt' | 'updatedAt'>): Promise<GuestbookEntry> {
   try {
+    const trimmedName = entry.name?.trim()
+    if (!trimmedName) {
+      throw new Error('Name is required')
+    }
+
     const [newEntry] = await db
       .insert(guestbookEntries)
-      .values(entry)
+      .values({ ...entry, name: trimmedName })
       .returning()
     return newEntry
   } catch (error) {
@@ -32,12 +37,23 @@ export async function updateGuestbookEntry(
   updates: Partial<Omit<NewGuestbookEntry, 'id' | 'gridIndex' | 'createdAt'>>
 ): Promise<GuestbookEntry> {
   try {
+    const updatesToSet: Partial<Omit<NewGuestbookEntry, 'id' | 'gridIndex' | 'createdAt'>> & { updatedAt: Date } = {
+      ...updates,
+      updatedAt: new Date(),
+    }
+
+    if (Object.prototype.hasOwnProperty.call(updates, 'name')) {
+      const providedName = (updates as { name?: string }).name
+      const trimmedName = providedName?.trim() ?? ''
+      if (!trimmedName) {
+        throw new Error('Name is required')
+      }
+      updatesToSet.name = trimmedName
+    }
+
     const [updatedEntry] = await db
       .update(guestbookEntries)
-      .set({
-        ...updates,
-        updatedAt: new Date(),
-      })
+      .set(updatesToSet)
       .where(eq(guestbookEntries.gridIndex, gridIndex))
       .returning()
     
