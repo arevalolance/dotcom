@@ -34,7 +34,7 @@ const companies = [
 
 export default function BottomProfile() {
   return (
-    <div className="w-full flex flex-col gap-3 lg:sticky lg:bottom-4">
+    <div className="w-full flex flex-col gap-3 sticky bottom-4">
       <GuestbookGrid />
       <div className="relative">
         <div className="[mask-image:linear-gradient(to_right,transparent,black_48px,black_calc(100%-48px),transparent)]">
