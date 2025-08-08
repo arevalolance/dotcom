@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 		siteName: "Lance Arevalo",
 		images: [
 			{
-				url: "https://arevalolance.com/og.png",
+				url: "https://arevalolance.com/open-graph.png",
 				width: 1920,
 				height: 1080,
 			},

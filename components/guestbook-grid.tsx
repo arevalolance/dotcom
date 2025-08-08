@@ -239,7 +239,7 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
   return (
     <div className="grid gap-2">
       <label className="text-sm font-medium">Optional drawing</label>
-      <div className="border rounded-md p-3 space-y-3">
+      <div className="border rounded-md p-3 !bg-white space-y-3">
         <div className="flex items-center gap-2 flex-wrap">
           <div className="flex items-center gap-2">
             <label className="text-xs font-medium">Ink:</label>
@@ -297,7 +297,7 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
           ref={canvasRef}
           width={400}
           height={250}
-          className="border rounded cursor-crosshair bg-white w-full"
+          className="rounded cursor-crosshair bg-white w-full"
           onMouseDown={startDrawing}
           onMouseMove={draw}
           onMouseUp={stopDrawing}
@@ -549,7 +549,7 @@ export default function GuestbookGrid() {
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent
-          className="sm:max-w-md border border-black/10 bg-popover [background-image:linear-gradient(#0000000a_1px,transparent_1px)] [background-size:100%_28px]"
+          className="sm:max-w-md border border-black/10 [background-image:linear-gradient(#0000000a_1px,transparent_1px)] bg-[#fafafa] [background-size:100%_28px]"
         >
           <DialogHeader>
             <DialogTitle className={`${caveat.className} text-2xl`}>Sign the guestbook</DialogTitle>
@@ -562,7 +562,7 @@ export default function GuestbookGrid() {
             <div className="relative space-y-3">
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2 min-w-0">
-                  <span className={`text-base ${caveat.className} truncate`}>
+                  <span className={`text-base ${caveat.className} leading-[1.6] py-0.5 text-ellipsis whitespace-nowrap`}>
                     {formData.name || 'Your name'}
                   </span>
                   <span
@@ -604,10 +604,10 @@ export default function GuestbookGrid() {
                 </label>
                 <input
                   id="name"
-                  type="text"
+                  type="text" maxLength={20}
                   value={formData.name}
                   onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
+                    setFormData({ ...formData, name: e.target.value.slice(0, 20) })
                   }
                 className="w-full rounded-md border bg-white px-3 py-2 text-sm shadow-xs placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-none"
                   placeholder="Your name"
