@@ -11,7 +11,8 @@ export function middleware(request: NextRequest) {
     '/hobbies',
     '/feed.xml',
     '/robots.txt',
-    '/sitemap.xml'
+    '/sitemap.xml',
+    '/static/lance_arevalo_resume.pdf'
   ]
 
   // Check if the current path is a valid route
