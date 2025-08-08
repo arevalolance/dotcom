@@ -4,6 +4,7 @@ import * as React from "react"
 import Image from "next/image"
 import { Caveat } from "next/font/google"
 import { format } from "date-fns"
+import { PenLine, Paintbrush, Brush, Eraser, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -256,9 +257,15 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
           <div className="flex items-center gap-2">
             <label className="text-xs font-medium">Brush:</label>
             <div className="flex items-center gap-1">
-              <Button type="button" size="sm" variant={brushSize === 2 ? "default" : "outline"} onClick={() => setBrushSize(2)}>Fine</Button>
-              <Button type="button" size="sm" variant={brushSize === 5 ? "default" : "outline"} onClick={() => setBrushSize(5)}>Marker</Button>
-              <Button type="button" size="sm" variant={brushSize === 8 ? "default" : "outline"} onClick={() => setBrushSize(8)}>Bold</Button>
+              <Button type="button" size="sm" variant={brushSize === 2 ? "default" : "outline"} onClick={() => setBrushSize(2)} title="Fine">
+                <PenLine className="h-4 w-4" />
+              </Button>
+              <Button type="button" size="sm" variant={brushSize === 5 ? "default" : "outline"} onClick={() => setBrushSize(5)} title="Marker">
+                <Paintbrush className="h-4 w-4" />
+              </Button>
+              <Button type="button" size="sm" variant={brushSize === 8 ? "default" : "outline"} onClick={() => setBrushSize(8)} title="Bold">
+                <Brush className="h-4 w-4" />
+              </Button>
             </div>
           </div>
           <Button
@@ -274,7 +281,7 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
             }}
             title="Erase by drawing white"
           >
-            {isEraser ? "Eraser on" : "Eraser"}
+            <Eraser className="h-4 w-4" />
           </Button>
           <Button
             type="button"
@@ -282,7 +289,8 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
             size="sm"
             onClick={clearCanvas}
           >
-            Clear drawing
+            <Trash2 className="h-4 w-4 mr-1" />
+            Clear
           </Button>
         </div>
         <canvas
@@ -540,104 +548,123 @@ export default function GuestbookGrid() {
       </div>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent
+          className="sm:max-w-md border border-black/10 bg-popover [background-image:linear-gradient(#0000000a_1px,transparent_1px)] [background-size:100%_28px]"
+        >
           <DialogHeader>
-            <DialogTitle>Sign the guestbook</DialogTitle>
+            <DialogTitle className={`${caveat.className} text-2xl`}>Sign the guestbook</DialogTitle>
             <DialogDescription>
-              Leave a short note and, if you like, a small doodle.
+              A quick note and an optional doodle—make it yours.
             </DialogDescription>
           </DialogHeader>
           
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid gap-2">
-              <label htmlFor="message" className="text-sm font-medium">
-                Message (max {MAX_CHARS})
-              </label>
-              <textarea
-                id="message"
-                value={formData.message}
-                onChange={(e) =>
-                  setFormData({ ...formData, message: e.target.value })
-                }
-                className="min-h-[80px] w-full rounded-md border bg-transparent px-3 py-2 text-sm shadow-xs placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-none"
-                placeholder="Where are you visiting from? What brought you here?"
-                maxLength={MAX_CHARS}
-                required
-              />
-              <div className="flex items-center justify-end text-xs">
-                <span className={formData.message.length > MAX_CHARS - 20 ? "text-destructive" : "text-muted-foreground"}>
-                  {formData.message.length}/{MAX_CHARS}
+            <div className="relative space-y-3">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className={`text-base ${caveat.className} truncate`}>
+                    {formData.name || 'Anonymous'}
+                  </span>
+                  <span
+                    className="inline-block w-3 h-3 rounded-full border"
+                    style={{ backgroundColor: formData.color, borderColor: formData.color }}
+                  />
+                </div>
+                <span className="text-[10px] text-muted-foreground shrink-0">
+                  {format(new Date(), 'MMM d, yyyy')}
                 </span>
               </div>
-            </div>
-            
-            <div className="grid gap-2">
-              <label htmlFor="color" className="text-sm font-medium">
-                Ink color
-              </label>
-              <div className="grid grid-cols-4 gap-2">
-                {colorOptions.map((color) => (
-                  <button
-                    key={color.value}
-                    type="button"
-                    onClick={() =>
-                      setFormData({ ...formData, color: color.value })
-                    }
-                    className="h-8 w-full rounded-md border-2 transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring/50"
-                    style={{
-                      backgroundColor: color.value,
-                      borderColor:
-                        formData.color === color.value
-                          ? "hsl(var(--ring))"
-                          : "transparent",
-                    }}
-                    title={color.name}
-                  />
-                ))}
+
+              <div className="grid gap-2">
+                <label htmlFor="message" className="text-sm font-medium">
+                  Message (max {MAX_CHARS})
+                </label>
+                <textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
+                className="min-h-[96px] w-full rounded-md border bg-white px-3 py-2 text-sm shadow-xs placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-none"
+                  placeholder="Where are you visiting from? What brought you here?"
+                  maxLength={MAX_CHARS}
+                  required
+                />
+                <div className="flex items-center justify-between text-xs">
+                  <em className="text-muted-foreground">Tip: a short, heartfelt note feels most guestbook-y.</em>
+                  <span className={formData.message.length > MAX_CHARS - 20 ? "text-destructive" : "text-muted-foreground"}>
+                    {formData.message.length}/{MAX_CHARS}
+                  </span>
+                </div>
               </div>
-            </div>
-            
-            <div className="grid gap-2">
-              <label htmlFor="name" className="text-sm font-medium">
-                Name (optional)
-              </label>
-              <input
-                id="name"
-                type="text"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
+
+              <div className="grid gap-2">
+                <label htmlFor="name" className="text-sm font-medium">
+                  Name (optional)
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                className="w-full rounded-md border bg-white px-3 py-2 text-sm shadow-xs placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-none"
+                  placeholder="Anonymous or your signature"
+                />
+              </div>
+
+              <div className="grid gap-2">
+                <label htmlFor="color" className="text-sm font-medium">
+                  Grid color
+                </label>
+                <div className="grid grid-cols-4 gap-2">
+                  {colorOptions.map((color) => (
+                    <button
+                      key={color.value}
+                      type="button"
+                      onClick={() =>
+                        setFormData({ ...formData, color: color.value })
+                      }
+                      className="h-8 w-full rounded-md border-2 transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring/50"
+                      style={{
+                        backgroundColor: color.value,
+                        borderColor:
+                          formData.color === color.value
+                            ? "hsl(var(--ring))"
+                            : "transparent",
+                      }}
+                      title={color.name}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <DrawingCanvas
+                value={formData.drawing}
+                commands={formData.drawingCommands}
+                onChange={(drawing) =>
+                  setFormData({ ...formData, drawing })
                 }
-                className="w-full rounded-md border bg-transparent px-3 py-2 text-sm shadow-xs placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-none"
-                placeholder="Anonymous or your signature"
+                onCommandsChange={(commands) =>
+                  setFormData({ ...formData, drawingCommands: commands })
+                }
               />
             </div>
-            
-            <DrawingCanvas
-              value={formData.drawing}
-              commands={formData.drawingCommands}
-              onChange={(drawing) =>
-                setFormData({ ...formData, drawing })
-              }
-              onCommandsChange={(commands) =>
-                setFormData({ ...formData, drawingCommands: commands })
-              }
-            />
-            
+
             <DialogFooter>
               <div className="flex gap-2 w-full sm:w-auto">
-                {selectedIndex !== null && entries[selectedIndex]?.id && (
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={handleClear}
-                    className="flex-1 sm:flex-initial"
-                    disabled={isSaving}
-                  >
-                    {isSaving ? 'Clearing...' : 'Clear'}
-                  </Button>
-                )}
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setIsOpen(false)}
+                  className="flex-1 sm:flex-initial"
+                  disabled={isSaving}
+                >
+                  Cancel
+                </Button>
                 <Button type="submit" className="flex-1 sm:flex-initial" disabled={isSaving}>
+                  <PenLine className="mr-2 h-4 w-4" />
                   {isSaving ? 'Signing...' : 'Sign the guestbook'}
                 </Button>
               </div>
