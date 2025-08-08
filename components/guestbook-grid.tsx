@@ -2,6 +2,8 @@
 
 import * as React from "react"
 import Image from "next/image"
+import { Caveat } from "next/font/google"
+import { format } from "date-fns"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -12,11 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
 import DrawingReplay from "./drawing-replay"
 import { 
   getGuestbookEntries, 
@@ -43,7 +41,10 @@ interface GuestbookEntryDisplay {
   name: string
   drawing?: string
   drawingCommands?: DrawingCommand[]
+  createdAt?: string | Date
 }
+
+const caveat = Caveat({ subsets: ["latin"] })
 
 const colorOptions = [
   { name: "Green", value: "#22c55e" },
@@ -72,6 +73,7 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
   const [recordingCommands, setRecordingCommands] = React.useState<DrawingCommand[]>([])
   const [totalActiveTime, setTotalActiveTime] = React.useState(0)
   const [lastStrokeStartTime, setLastStrokeStartTime] = React.useState<number | null>(null)
+  const [isEraser, setIsEraser] = React.useState(false)
 
   React.useEffect(() => {
     const canvas = canvasRef.current
@@ -235,37 +237,52 @@ function DrawingCanvas({ value, commands, onChange, onCommandsChange }: DrawingC
 
   return (
     <div className="grid gap-2">
-      <label className="text-sm font-medium">Drawing (optional)</label>
+      <label className="text-sm font-medium">Optional drawing</label>
       <div className="border rounded-md p-3 space-y-3">
         <div className="flex items-center gap-2 flex-wrap">
           <div className="flex items-center gap-2">
-            <label className="text-xs font-medium">Color:</label>
+            <label className="text-xs font-medium">Ink:</label>
             <input
               type="color"
               value={currentColor}
-              onChange={(e) => setCurrentColor(e.target.value)}
+              onChange={(e) => {
+                setCurrentColor(e.target.value)
+                setIsEraser(false)
+              }}
               className="w-6 h-6 rounded border cursor-pointer"
+              title="Pick ink color"
             />
           </div>
           <div className="flex items-center gap-2">
-            <label className="text-xs font-medium">Size:</label>
-            <input
-              type="range"
-              min="1"
-              max="10"
-              value={brushSize}
-              onChange={(e) => setBrushSize(parseInt(e.target.value))}
-              className="w-16"
-            />
-            <span className="text-xs">{brushSize}px</span>
+            <label className="text-xs font-medium">Brush:</label>
+            <div className="flex items-center gap-1">
+              <Button type="button" size="sm" variant={brushSize === 2 ? "default" : "outline"} onClick={() => setBrushSize(2)}>Fine</Button>
+              <Button type="button" size="sm" variant={brushSize === 5 ? "default" : "outline"} onClick={() => setBrushSize(5)}>Marker</Button>
+              <Button type="button" size="sm" variant={brushSize === 8 ? "default" : "outline"} onClick={() => setBrushSize(8)}>Bold</Button>
+            </div>
           </div>
+          <Button
+            type="button"
+            variant={isEraser ? "default" : "outline"}
+            size="sm"
+            onClick={() => {
+              setIsEraser((prev) => {
+                const next = !prev
+                if (next) setCurrentColor("#ffffff")
+                return next
+              })
+            }}
+            title="Erase by drawing white"
+          >
+            {isEraser ? "Eraser on" : "Eraser"}
+          </Button>
           <Button
             type="button"
             variant="outline"
             size="sm"
             onClick={clearCanvas}
           >
-            Clear
+            Clear drawing
           </Button>
         </div>
         <canvas
@@ -298,6 +315,7 @@ export default function GuestbookGrid() {
     drawing: "",
     drawingCommands: [] as DrawingCommand[],
   })
+  const MAX_CHARS = 280
 
   // Load entries from database on mount
   React.useEffect(() => {
@@ -313,7 +331,8 @@ export default function GuestbookGrid() {
             color: entry.color,
             name: entry.name,
             drawing: entry.drawingUrl || undefined,
-            drawingCommands: entry.drawingCommands as DrawingCommand[] || undefined,
+            drawingCommands: (entry.drawingCommands as DrawingCommand[]) || undefined,
+            createdAt: (entry as any).createdAt,
           }
         })
         
@@ -442,46 +461,69 @@ export default function GuestbookGrid() {
       <div className="flex items-center gap-2 mb-2">
         <h3 className="text-sm font-medium">Guestbook</h3>
         <span className="text-xs text-muted-foreground">
-          {isLoading ? 'Loading...' : 'Click any square to leave a message'}
+          {isLoading ? 'Loading...' : 'Click a blank square to sign'}
         </span>
       </div>
       
       <div className="grid gap-1 w-full" style={{ gridTemplateColumns: 'repeat(19, 1fr)' }}>
         {entries.map((entry, index) => (
           entry ? (
-            <Tooltip key={index}>
-              <TooltipTrigger asChild>
-                <div
-                  className="w-4 h-4 rounded-sm border cursor-default"
+            <HoverCard key={index} openDelay={120} closeDelay={80}>
+              <HoverCardTrigger asChild>
+                <button
+                  aria-label={`View signature ${index + 1}`}
+                  className="w-4 h-4 rounded-sm border cursor-pointer transition-transform hover:scale-110"
                   style={{
                     backgroundColor: entry.color,
                     borderColor: entry.color,
-                    opacity: 0.8,
+                    opacity: 0.9,
                   }}
                 />
-              </TooltipTrigger>
-              <TooltipContent className="bg-popover text-popover-foreground border">
-                <div className="space-y-2">
-                  <p>{entry.name}: {entry.message}</p>
-                  {entry.drawingCommands && entry.drawingCommands.length > 0 ? (
-                    <DrawingReplay 
-                      commands={entry.drawingCommands}
-                      width={200}
-                      height={150}
-                      className="max-w-[200px] max-h-[150px]"
-                    />
-                  ) : entry.drawing ? (
-                    <Image 
-                      src={entry.drawing} 
-                      alt="Drawing"
-                      width={200}
-                      height={150}
-                      className="max-w-[200px] max-h-[150px] rounded border object-contain"
-                    />
-                  ) : null}
+              </HoverCardTrigger>
+              <HoverCardContent sideOffset={8} className="w-80 p-0 border-none bg-transparent shadow-none">
+                <div
+                  className="rounded-lg border bg-popover text-popover-foreground shadow-md p-3 relative"
+                  style={{
+                    transform: `rotate(${((index * 31) % 5) - 2}deg)`,
+                  }}
+                >
+                  <div className="absolute inset-0 rounded-lg pointer-events-none bg-[linear-gradient(#0000000a_1px,transparent_1px)] [background-size:100%_28px]" />
+                  <div className="relative space-y-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className={`text-base ${caveat.className} truncate`}>{entry.name}</span>
+                        <span
+                          className="inline-block w-3 h-3 rounded-full border"
+                          style={{ backgroundColor: entry.color, borderColor: entry.color }}
+                        />
+                      </div>
+                      <span className="text-[10px] text-muted-foreground shrink-0">
+                        {entry.createdAt ? format(new Date(entry.createdAt), 'MMM d, yyyy') : ''}
+                      </span>
+                    </div>
+                    <p className="text-sm leading-relaxed break-words whitespace-pre-wrap">
+                      {entry.message}
+                    </p>
+                    {entry.drawingCommands && entry.drawingCommands.length > 0 ? (
+                      <DrawingReplay
+                        commands={entry.drawingCommands}
+                        width={220}
+                        height={160}
+                        className="max-w-[220px] max-h-[160px] rounded border bg-white"
+                      />
+                    ) : entry.drawing ? (
+                      <Image
+                        src={entry.drawing}
+                        alt="Drawing"
+                        width={220}
+                        height={160}
+                        className="max-w-[220px] max-h-[160px] rounded border object-contain bg-white"
+                      />
+                    ) : null}
+                  </div>
                 </div>
-              </TooltipContent>
-            </Tooltip>
+              </HoverCardContent>
+            </HoverCard>
           ) : (
             <button
               key={index}
@@ -500,16 +542,16 @@ export default function GuestbookGrid() {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Leave a Message</DialogTitle>
+            <DialogTitle>Sign the guestbook</DialogTitle>
             <DialogDescription>
-              Add your message to the guestbook grid
+              Leave a short note and, if you like, a small doodle.
             </DialogDescription>
           </DialogHeader>
           
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-2">
               <label htmlFor="message" className="text-sm font-medium">
-                Message *
+                Message (max {MAX_CHARS})
               </label>
               <textarea
                 id="message"
@@ -518,14 +560,20 @@ export default function GuestbookGrid() {
                   setFormData({ ...formData, message: e.target.value })
                 }
                 className="min-h-[80px] w-full rounded-md border bg-transparent px-3 py-2 text-sm shadow-xs placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-none"
-                placeholder="Your message here..."
+                placeholder="Where are you visiting from? What brought you here?"
+                maxLength={MAX_CHARS}
                 required
               />
+              <div className="flex items-center justify-end text-xs">
+                <span className={formData.message.length > MAX_CHARS - 20 ? "text-destructive" : "text-muted-foreground"}>
+                  {formData.message.length}/{MAX_CHARS}
+                </span>
+              </div>
             </div>
             
             <div className="grid gap-2">
               <label htmlFor="color" className="text-sm font-medium">
-                Color
+                Ink color
               </label>
               <div className="grid grid-cols-4 gap-2">
                 {colorOptions.map((color) => (
@@ -561,7 +609,7 @@ export default function GuestbookGrid() {
                   setFormData({ ...formData, name: e.target.value })
                 }
                 className="w-full rounded-md border bg-transparent px-3 py-2 text-sm shadow-xs placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:outline-none"
-                placeholder="Anonymous"
+                placeholder="Anonymous or your signature"
               />
             </div>
             
@@ -590,7 +638,7 @@ export default function GuestbookGrid() {
                   </Button>
                 )}
                 <Button type="submit" className="flex-1 sm:flex-initial" disabled={isSaving}>
-                  {isSaving ? 'Saving...' : 'Save Message'}
+                  {isSaving ? 'Signing...' : 'Sign the guestbook'}
                 </Button>
               </div>
             </DialogFooter>
