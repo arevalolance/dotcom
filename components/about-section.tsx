@@ -14,7 +14,7 @@ export default function AboutSection() {
 				</p>
 				<p className="text-sm">
 					Currently, I'm working as a software engineer at Cobi [4th
-					employee], where I explore cool and innovative ideas to unlock
+					hire], where I explore cool and innovative ideas to unlock
 					insights from raw information and data.
 				</p>
 				<p className="text-sm">

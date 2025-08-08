@@ -41,7 +41,7 @@ export default function WorkSection() {
 	return (
 		<div className="flex w-full flex-col gap-6 lg:sticky lg:top-4">
 			<div className="flex flex-col gap-3">
-				<h2 className="text-sm text-muted-foreground">Work</h2>
+				<h2 className="text-sm text-muted-foreground">[Work]</h2>
 
 				<Accordion
 					type="single"
