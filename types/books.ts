@@ -5,10 +5,10 @@ export const books = [
     title: "Morning Star",
     author: "Pierce Brown",
     image: "https://covers.openlibrary.org/b/id/0012401168-L.jpg",
-    status: "Reading",
+    status: "Read",
     type: "Media",
     media: "Book",
-    date: "2025-06-30",
+    date: "2025-09-17",
   },
   {
     title: "Memory Police",
