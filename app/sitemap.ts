@@ -14,6 +14,7 @@ export default async function sitemap() {
     "/mind/reading",
     "/mind/watching",
     "/mind/blog",
+    "/contact.vcf",
   ].map((route) => ({
     url: `https://arevalolance.com${route}`,
     lastModified: new Date().toISOString().split("T")[0],
