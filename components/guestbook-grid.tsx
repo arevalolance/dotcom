@@ -40,6 +40,7 @@ interface GuestbookEntryDisplay {
   message: string
   color: string
   name: string
+  location?: string
   drawing?: string
   drawingCommands?: DrawingCommand[]
   createdAt?: string | Date
@@ -338,6 +339,7 @@ export default function GuestbookGrid() {
             message: entry.message,
             color: entry.color,
             name: entry.name,
+            location: entry.location ?? undefined,
             drawing: entry.drawingUrl || undefined,
             drawingCommands: (entry.drawingCommands as DrawingCommand[]) || undefined,
             createdAt: (entry as any).createdAt,
@@ -418,6 +420,7 @@ export default function GuestbookGrid() {
           message: savedEntry.message,
           color: savedEntry.color,
           name: savedEntry.name,
+          location: savedEntry.location ?? undefined,
           drawing: savedEntry.drawingUrl || undefined,
           drawingCommands: savedEntry.drawingCommands as DrawingCommand[] || undefined,
         }
