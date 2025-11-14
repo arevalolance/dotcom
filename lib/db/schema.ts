@@ -6,6 +6,7 @@ export const guestbookEntries = pgTable('guestbook_entries', {
   message: text('message').notNull(),
   color: varchar('color', { length: 7 }).notNull(),
   name: varchar('name', { length: 100 }).notNull().default('Anonymous'),
+  location: varchar('location', { length: 150 }),
   drawingUrl: text('drawing_url'),
   drawingCommands: jsonb('drawing_commands'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),

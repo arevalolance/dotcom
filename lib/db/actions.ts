@@ -1,6 +1,7 @@
 'use server'
 
 import { eq } from 'drizzle-orm'
+import { headers } from 'next/headers'
 import { db } from './db'
 import { guestbookEntries, type NewGuestbookEntry, type GuestbookEntry } from './schema'
 
@@ -21,9 +22,17 @@ export async function createGuestbookEntry(entry: Omit<NewGuestbookEntry, 'id' |
       throw new Error('Name is required')
     }
 
+    const headerList = headers()
+    const locationParts = [
+      headerList.get('x-vercel-ip-city'),
+      headerList.get('x-vercel-ip-country-region'),
+      headerList.get('x-vercel-ip-country'),
+    ].filter((part): part is string => Boolean(part && part.trim()))
+    const location = locationParts.length > 0 ? locationParts.join(', ') : null
+
     const [newEntry] = await db
       .insert(guestbookEntries)
-      .values({ ...entry, name: trimmedName })
+      .values({ ...entry, name: trimmedName, location })
       .returning()
     return newEntry
   } catch (error) {
