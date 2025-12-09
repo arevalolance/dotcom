@@ -22,7 +22,7 @@ export async function createGuestbookEntry(entry: Omit<NewGuestbookEntry, 'id' |
       throw new Error('Name is required')
     }
 
-    const headerList = headers()
+    const headerList = await headers()
     const locationParts = [
       headerList.get('x-vercel-ip-city'),
       headerList.get('x-vercel-ip-country-region'),
