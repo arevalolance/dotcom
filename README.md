@@ -1,3 +1,5 @@
+
+
 # arevalolance.com
 
 ![Banner](https://www.arevalolance.com/og.png)
@@ -16,8 +18,8 @@ This personal project is subject to change in terms of design, technology stack,
 ```
 git clone https://github.com/arevalolance/dotcom.git
 cd dotcom
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 _More over-engineered features and fun stuff are coming soon._
@@ -25,4 +27,3 @@ _More over-engineered features and fun stuff are coming soon._
 ---
 
 If you have any questions, send me an [email](mailto:hi@arevalolance.com).
-
